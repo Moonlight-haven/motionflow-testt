@@ -1,0 +1,2516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>APK Share - Motion-Flow</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --color-dark: #0a0a12;
+      --color-bg: #0f0f1a;
+      --color-bg-light: #1a1a2e;
+      --color-primary: #00bcd4;
+      --color-accent: #00bcd4;
+      --color-accent-alt: #f97316;
+      --color-success: #10b981;
+      --color-warning: #f59e0b;
+      --color-error: #ef4444;
+      --color-text: #e2e8f0;
+      --color-text-muted: #94a3b8;
+      --font-heading: 'Orbitron', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --bg-card: #1a1a2e;
+      --bg-input: #0f111a;
+      --border: rgba(0, 188, 212, 0.2);
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      --radius-sm: 12px;
+      --radius-lg: 20px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-body);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--color-bg) 0%, #0a0b14 100%);
+      color: var(--color-text);
+      overflow-x: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      touch-action: pan-y;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(0, 188, 212, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* --- TOP NAVIGATION --- */
+    .top-nav {
+      height: 70px;
+      background: rgba(10, 10, 18, 0.9);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+      touch-action: pan-y;
+      max-width: 100%;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    .nav-left { 
+      display: flex; 
+      align-items: center; 
+      gap: 18px; 
+    }
+    
+    .hamburger {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 188, 212, 0.1);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      color: var(--color-primary);
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .hamburger:hover {
+      background: rgba(0, 188, 212, 0.2);
+      transform: rotate(90deg);
+    }
+
+    .brand {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      /* Standard property first, then vendor prefixes */
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      /* Fallback for non-webkit browsers */
+      text-decoration: none;
+      text-shadow: 0 0 20px rgba(0, 188, 212, 0.3);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* --- SIDEBAR --- */
+    .sidebar-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      display: none;
+      z-index: 150;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .sidebar-overlay.active { 
+      display: block; 
+      opacity: 1;
+    }
+
+    .sidebar {
+      position: fixed;
+      left: -320px;
+      top: 0;
+      width: 300px;
+      height: 100%;
+      background: rgba(10, 10, 18, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 200;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 10px 0 40px rgba(0, 0, 0, 0.5);
+      border-right: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+      touch-action: pan-y;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .sidebar.open { left: 0; }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-user-info h3 {
+      font-size: 1.1rem;
+      color: var(--color-text);
+      margin-bottom: 4px;
+    }
+
+    .sidebar-username {
+      color: var(--color-primary);
+      font-size: 0.75rem;
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .sidebar-menu { 
+      list-style: none; 
+    }
+    
+    .sidebar-menu li {
+      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.95rem;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+    
+    .sidebar-menu li a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      width: 100%;
+    }
+    
+    .sidebar-menu li:hover { 
+      background: rgba(0, 188, 212, 0.1);
+      color: var(--color-primary);
+      transform: translateX(5px);
+    }
+
+    .sidebar-menu li i {
+      width: 24px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.5rem 0;
+      opacity: 0.3;
+    }
+
+    /* --- ADMIN MODALS --- */
+    .admin-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .admin-modal-overlay.active {
+      display: flex;
+    }
+
+    .admin-modal-content {
+      background: var(--color-bg-light);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      max-width: 800px;
+      width: 95%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 2px solid var(--color-primary);
+      box-shadow: 0 10px 40px rgba(0, 188, 212, 0.3);
+      animation: modalSlideIn 0.3s ease;
+      position: relative;
+    }
+
+    @keyframes modalSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .back-to-home-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      font-size: 0.9rem;
+      font-weight: 600;
+      z-index: 3001;
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+    }
+
+    .back-to-home-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4);
+    }
+
+    .admin-form-group {
+      margin-bottom: 20px;
+    }
+
+    .admin-form-label {
+      display: block;
+      color: var(--color-text);
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .admin-form-input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .admin-form-input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+    }
+
+    .admin-form-textarea {
+      min-height: 100px;
+      resize: vertical;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* Aspect Ratio Selector */
+    .aspect-ratio-selector {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .aspect-ratio-option {
+      padding: 12px;
+      background: rgba(0, 188, 212, 0.1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .aspect-ratio-option:hover {
+      background: rgba(0, 188, 212, 0.2);
+    }
+
+    .aspect-ratio-option.selected {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .aspect-ratio-option i {
+      font-size: 1.2rem;
+    }
+
+    /* Image Upload */
+    .image-upload-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .image-preview {
+      width: 200px;
+      height: 200px;
+      border: 2px dashed rgba(0, 188, 212, 0.3);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .image-preview img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
+    .image-preview:empty::before {
+      content: 'Image Preview';
+      color: var(--color-text-muted);
+      opacity: 0.5;
+    }
+
+    .admin-form-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .admin-form-submit {
+      flex: 1;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .admin-form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+    }
+
+    .admin-form-submit.loading {
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+
+    .admin-form-submit.loading:after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 50%;
+      left: 50%;
+      margin: -10px 0 0 -10px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .admin-form-cancel {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--color-text);
+      border: 1px solid var(--border);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .admin-form-cancel:hover {
+      background: rgba(0, 188, 212, 0.1);
+      border-color: var(--color-primary);
+    }
+
+    /* Upload Status */
+    .upload-status {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px;
+      border-radius: var(--radius-sm);
+      margin: 20px 0;
+      font-weight: 600;
+    }
+
+    .upload-status.success {
+      display: flex;
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--color-success);
+      border: 1px solid var(--color-success);
+    }
+
+    .upload-status.error {
+      display: flex;
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--color-error);
+      border: 1px solid var(--color-error);
+    }
+
+    .upload-status.loading {
+      display: flex;
+      background: rgba(0, 188, 212, 0.1);
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+    }
+
+    /* Success Popup */
+    .success-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--color-bg-light);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      max-width: 400px;
+      width: 90%;
+      border: 2px solid var(--color-success);
+      box-shadow: 0 10px 40px rgba(16, 185, 129, 0.3);
+      z-index: 5000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: modalSlideIn 0.3s ease;
+    }
+
+    .success-popup.active {
+      display: flex;
+    }
+
+    .success-icon {
+      font-size: 3.5em;
+      color: var(--color-success);
+      margin-bottom: 15px;
+    }
+
+    /* Confirmation Dialog */
+    .confirmation-dialog {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 5, 26, 0.95);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 5000;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .confirmation-dialog.active {
+      display: flex;
+    }
+
+    .confirmation-content {
+      background: rgba(15, 17, 30, 0.95);
+      padding: 30px;
+      border-radius: 16px;
+      max-width: 400px;
+      width: 90%;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      box-shadow: 0 0 40px rgba(239, 68, 68, 0.3);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .confirmation-icon {
+      font-size: 3em;
+      color: var(--color-error);
+      margin-bottom: 15px;
+    }
+
+    .confirmation-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .confirmation-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      min-width: 100px;
+    }
+
+    .confirmation-btn.confirm {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+    }
+
+    .confirmation-btn.confirm:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+    }
+
+    .confirmation-btn.cancel {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(0, 188, 212, 0.2);
+    }
+
+    .confirmation-btn.cancel:hover {
+      background: rgba(0, 188, 212, 0.1);
+      border-color: var(--color-accent);
+    }
+
+    /* --- Main Content --- */
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 90px;
+      padding-bottom: 100px;
+    }
+
+    .apk-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 0 10px;
+    }
+
+    .apk-header h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8em, 5vw, 2.8em);
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 15px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+      line-height: 1.2;
+    }
+
+    .apk-header p {
+      color: var(--color-text-muted);
+      font-size: clamp(0.9em, 3vw, 1.1em);
+      opacity: 0.8;
+      line-height: 1.5;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* APK Grid */
+    .apk-container {
+      column-count: 3;
+      column-gap: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 1024px) {
+      .apk-container {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .apk-container {
+        column-count: 1;
+      }
+    }
+
+    /* APK Card */
+    .apk-card {
+      background: var(--color-bg-light);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      break-inside: avoid;
+      margin-bottom: 25px;
+      page-break-inside: avoid;
+    }
+
+    .apk-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 188, 212, 0.3);
+      box-shadow: 0 15px 40px rgba(0, 188, 212, 0.2);
+    }
+
+    /* Admin Edit Controls on APK Card */
+    .apk-admin-controls {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      display: flex;
+      gap: 8px;
+      z-index: 10;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .apk-card:hover .apk-admin-controls {
+      opacity: 1;
+    }
+
+    .card-admin-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+    }
+
+    .card-admin-btn.edit:hover {
+      background: rgba(59, 130, 246, 0.9);
+      transform: scale(1.1);
+    }
+
+    .card-admin-btn.delete:hover {
+      background: rgba(239, 68, 68, 0.9);
+      transform: scale(1.1);
+    }
+
+    .apk-img-wrapper {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+      background: rgba(10, 12, 25, 0.6);
+    }
+
+    .apk-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .apk-card:hover .apk-img {
+      transform: scale(1.05);
+    }
+
+    .apk-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      flex: 1;
+    }
+
+    .apk-header-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .apk-title h3 {
+      font-size: 1.2em;
+      color: var(--color-text);
+      margin: 0;
+      line-height: 1.3;
+      word-break: break-word;
+      font-weight: 600;
+    }
+
+    .apk-date {
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.85em;
+      white-space: nowrap;
+    }
+
+    .apk-description {
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      flex: 1;
+      font-size: 0.95em;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .apk-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.85em;
+    }
+
+    .apk-author {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    /* Admin Badge */
+    .admin-badge {
+      background: linear-gradient(135deg, var(--color-warning), #d97706);
+      color: white;
+      font-size: 0.65em;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 5px;
+    }
+
+    /* Share link functionality */
+    .share-link-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85em;
+    }
+
+    .share-link {
+      flex: 1;
+      color: var(--color-text-muted);
+      font-size: 0.8em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .copy-link-btn {
+      background: rgba(0, 188, 212, 0.15);
+      color: var(--color-accent);
+      border: 1px solid rgba(0, 188, 212, 0.3);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .copy-link-btn:hover {
+      background: rgba(0, 188, 212, 0.25);
+      transform: scale(1.05);
+    }
+
+    /* Download button */
+    .download-btn {
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.9em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      width: 100%;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+    }
+
+    /* Comments Section */
+    .comments-section {
+      display: none;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .comments-section.active {
+      display: block;
+    }
+
+    .comments-title {
+      font-size: 1em;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--color-text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .comments-list {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+      padding-right: 10px;
+    }
+
+    .comment-item {
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+
+    .comment-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--color-primary);
+    }
+
+    .comment-author {
+      font-weight: 600;
+      font-size: 0.9em;
+      color: var(--color-text);
+    }
+
+    .comment-time {
+      font-size: 0.75em;
+      color: var(--color-text-muted);
+      margin-left: auto;
+    }
+
+    .comment-text {
+      font-size: 0.9em;
+      line-height: 1.5;
+      color: var(--color-text);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .add-comment {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .comment-input {
+      flex: 1;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: var(--color-text);
+      font-size: 0.9em;
+      resize: none;
+      min-height: 40px;
+      max-height: 100px;
+      font-family: var(--font-body);
+    }
+
+    .comment-input:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+    }
+
+    .comment-submit {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      white-space: nowrap;
+      font-family: var(--font-body);
+    }
+
+    .comment-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+    }
+
+    .comment-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .comment-count {
+      background: var(--color-primary);
+      color: white;
+      font-size: 0.7em;
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-left: 5px;
+    }
+
+    .toggle-comments-btn {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--color-text);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    .toggle-comments-btn:hover {
+      background: rgba(0, 188, 212, 0.1);
+      border-color: rgba(0, 188, 212, 0.3);
+      color: var(--color-accent);
+    }
+
+    /* --- BOTTOM NAVIGATION --- */
+    .bottom-nav {
+      height: 60px;
+      background: rgba(10, 10, 18, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(0, 188, 212, 0.3);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      overflow: hidden;
+      max-width: 100%;
+      width: 100%;
+      box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--color-text-muted);
+      font-size: 0.7rem;
+      gap: 4px;
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 8px;
+      transition: var(--transition);
+      position: relative;
+      min-width: 60px;
+      flex: 1;
+      text-align: center;
+      max-width: 25%;
+    }
+
+    .nav-item.active {
+      color: var(--color-primary);
+    }
+
+    .nav-item.active i {
+      color: var(--color-primary);
+      text-shadow: 0 0 15px var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .nav-item:hover:not(.active) {
+      color: var(--color-text);
+    }
+
+    .nav-item i {
+      font-size: 1.3rem;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 17, 30, 0.95);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 188, 212, 0.3);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      z-index: 2001;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      animation: slideUp 0.3s ease;
+      max-width: 90%;
+      overflow-x: hidden;
+    }
+
+    .toast.show {
+      display: flex;
+    }
+
+    .toast.success {
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    .toast.error {
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* Loading Animation */
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px;
+      text-align: center;
+      width: 100%;
+      min-height: 400px;
+    }
+
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(0, 188, 212, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--color-accent);
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    .loading-text {
+      color: var(--color-text-muted);
+      font-size: 1.1em;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--color-text-muted);
+      break-inside: avoid;
+      width: 100%;
+    }
+
+    .empty-icon {
+      font-size: 4em;
+      color: rgba(0, 188, 212, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .empty-state h3 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: var(--color-text);
+    }
+
+    .empty-state p {
+      font-size: 1.1em;
+      opacity: 0.8;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .top-nav {
+        height: 65px;
+        padding: 0 1rem;
+      }
+
+      .hamburger {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
+
+      .brand {
+        font-size: 1.1rem;
+      }
+
+      .main-content {
+        padding: 70px 15px 100px;
+      }
+
+      .apk-container {
+        column-count: 1;
+      }
+
+      .back-to-home-btn {
+        top: 10px;
+        right: 10px;
+        padding: 10px 16px;
+        font-size: 0.8rem;
+      }
+
+      .admin-modal-content {
+        max-width: 95%;
+        padding: 20px;
+      }
+
+      .aspect-ratio-selector {
+        grid-template-columns: 1fr;
+      }
+
+      .apk-img-wrapper {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .top-nav {
+        height: 60px;
+        padding: 0 0.8rem;
+      }
+
+      .hamburger {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9rem;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      .main-content {
+        padding: 65px 10px 90px;
+      }
+
+      .bottom-nav {
+        height: 55px;
+      }
+
+      .nav-item {
+        padding: 6px;
+        font-size: 0.65rem;
+      }
+
+      .nav-item i {
+        font-size: 1.2rem;
+      }
+
+      .back-to-home-btn {
+        top: 5px;
+        right: 5px;
+        padding: 8px 12px;
+        font-size: 0.7rem;
+      }
+
+      .apk-img-wrapper {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Success Popup -->
+  <div class="success-popup" id="successPopup">
+    <div class="success-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h2 class="success-message">APK Posted Successfully!</h2>
+    <button class="admin-form-submit" onclick="closeSuccessPopup()">
+      <i class="fas fa-check"></i> OK
+    </button>
+  </div>
+
+  <!-- Confirmation Dialog for Delete -->
+  <div class="confirmation-dialog" id="deleteConfirmationDialog">
+    <div class="confirmation-content">
+      <div class="confirmation-icon">
+        <i class="fas fa-exclamation-triangle"></i>
+      </div>
+      <h2 style="color: var(--color-text); margin-bottom: 10px;">Confirm Delete</h2>
+      <p style="color: var(--color-text-muted); margin-bottom: 20px;" id="deleteConfirmationText">
+        Are you sure you want to delete this APK? This action cannot be undone.
+      </p>
+      <div class="confirmation-buttons">
+        <button class="confirmation-btn confirm" id="confirmDeleteBtn">Delete</button>
+        <button class="confirmation-btn cancel" onclick="closeDeleteConfirmation()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="nav-left">
+      <div class="hamburger" id="hamburgerBtn"><i class="fa-solid fa-bars"></i></div>
+      <a href="#" class="brand" id="brandLogo">MOTION-FLOW</a>
+    </div>
+  </nav>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-user-info">
+        <h3 style="font-size: 1.5rem; color: var(--color-primary); text-align: center; width: 100%;">
+          MOTION FLOW
+        </h3>
+      </div>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li><a href="../homepage.html"><i class="fa-solid fa-home"></i> Home</a></li>
+      <li><a href="apk.html"><i class="fa-solid fa-download"></i> APK Share</a></li>
+      <li><a href="../Users/users.html"><i class="fa-solid fa-users"></i> Users</a></li>
+      <li><a href="../Chats/chats.html"><i class="fa-solid fa-comments"></i> Messages</a></li>
+      <!-- REMOVED Admin Upload APK from sidebar -->
+      <li><a href="../Settings/settings.html"><i class="fa-solid fa-cog"></i> Settings</a></li>
+    </ul>
+
+    <div class="sidebar-divider"></div>
+
+    <ul class="sidebar-menu">
+      <li onclick="logout()" style="color: #ef4444; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+    </ul>
+  </div>
+
+  <!-- Admin Login Modal -->
+  <div class="admin-modal-overlay" id="adminLoginModal">
+    <div class="admin-modal-content">
+      <h2 style="margin-bottom: 20px; color: var(--color-primary); text-align: center;">
+        <i class="fa-solid fa-lock"></i> Admin Login
+      </h2>
+      
+      <div class="admin-form-group">
+        <label class="admin-form-label">Email</label>
+        <input type="email" id="adminEmail" class="admin-form-input" placeholder="motionflow.admins@gmail.com">
+      </div>
+      
+      <div class="admin-form-group">
+        <label class="admin-form-label">Password</label>
+        <input type="password" id="adminPassword" class="admin-form-input" placeholder="MOTION-FLOW-ADMIN">
+      </div>
+      
+      <div class="admin-form-group" id="twoFactorSection" style="display: none;">
+        <label class="admin-form-label">2FA Access Code</label>
+        <input type="text" id="admin2FACode" class="admin-form-input" placeholder="MF-ADMIN-2026">
+        <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 5px;">
+          Check Firebase path: admin/accessCode
+        </p>
+      </div>
+      
+      <div class="admin-form-buttons">
+        <button class="admin-form-submit" id="adminLoginSubmit">Login</button>
+        <button class="admin-form-cancel" onclick="closeAdminModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin APK Upload Modal (Also used for editing) -->
+  <div class="admin-modal-overlay" id="adminApkModal">
+    <button class="back-to-home-btn" onclick="closeApkModal()">
+      <i class="fa-solid fa-arrow-left"></i> Back to APKs
+    </button>
+    
+    <div class="admin-modal-content">
+      <h2 style="margin-bottom: 20px; color: var(--color-primary); text-align: center;" id="apkModalTitle">
+        <i class="fa-solid fa-plus"></i> Upload New APK
+      </h2>
+      
+      <!-- Upload Status Indicator -->
+      <div class="upload-status" id="uploadStatus">
+        <i class="fas fa-spinner fa-spin"></i>
+        <span id="uploadStatusText">Uploading APK...</span>
+      </div>
+      
+      <form id="apkUploadForm">
+        <input type="hidden" id="editingApkId" value="">
+        
+        <div class="admin-form-group">
+          <label class="admin-form-label">Your Name *</label>
+          <input type="text" id="adminName" class="admin-form-input" placeholder="Admin Name" required>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 5px;">
+            This name will be displayed as the uploader
+          </p>
+        </div>
+        
+        <div class="admin-form-group">
+          <label class="admin-form-label">APK Title *</label>
+          <input type="text" id="apkTitle" class="admin-form-input" placeholder="App Name" required>
+        </div>
+        
+        <div class="admin-form-group">
+          <label class="admin-form-label">Description *</label>
+          <textarea id="apkDescription" class="admin-form-input admin-form-textarea" placeholder="Describe the app features, requirements, etc..." required></textarea>
+          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 5px;">
+            URLs will be automatically converted to clickable links. Use Enter for new lines.
+          </p>
+        </div>
+        
+        <div class="admin-form-group">
+          <label class="admin-form-label">Download Link *</label>
+          <input type="url" id="apkDownloadLink" class="admin-form-input" placeholder="https://example.com/app.apk" required>
+        </div>
+        
+        <div class="admin-form-group">
+          <label class="admin-form-label">Image Aspect Ratio *</label>
+          <div class="aspect-ratio-selector">
+            <div class="aspect-ratio-option selected" data-ratio="1:1">
+              <i class="fas fa-square"></i>
+              <span>1:1</span>
+            </div>
+            <div class="aspect-ratio-option" data-ratio="16:9">
+              <i class="fas fa-tv"></i>
+              <span>16:9</span>
+            </div>
+            <div class="aspect-ratio-option" data-ratio="4:3">
+              <i class="fas fa-tablet-alt"></i>
+              <span>4:3</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="admin-form-group">
+          <label class="admin-form-label">App Image *</label>
+          <div class="image-upload-container">
+            <input type="file" id="apkImage" accept="image/*" required>
+            <div class="image-preview" id="imagePreview"></div>
+          </div>
+        </div>
+        
+        <div class="admin-form-buttons">
+          <button type="submit" class="admin-form-submit" id="apkSubmitBtn">
+            <i class="fas fa-paper-plane"></i> Upload APK
+          </button>
+          <button type="button" class="admin-form-cancel" onclick="closeApkModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <!-- APK Header -->
+    <div class="apk-header">
+      <h1>APK Share Platform</h1>
+      <p>Share and discover amazing Android applications with our community</p>
+    </div>
+    
+    <!-- APK Grid -->
+    <div class="apk-container" id="apkContainer">
+      <!-- APKs will be loaded here -->
+      <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading APKs...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="../homepage.html" class="nav-item">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+    
+    <a href="../updates/updates.html" class="nav-item">
+      <i class="fa-solid fa-bell"></i>
+      <span>Updates</span>
+    </a>
+    
+    <a href="../Live_Chat/live.html" class="nav-item">
+      <i class="fa-solid fa-comments"></i>
+      <span>Live Chat</span>
+    </a>
+    
+    <a href="../profile/profile.html" class="nav-item">
+      <i class="fa-solid fa-user"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle" id="toastIcon"></i>
+    <span id="toastMessage">Copied to clipboard!</span>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { ref, set, getDatabase, push, onValue, get, update, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+    import { onAuthStateChanged, getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCy5uQGcg1cALqFSa1xAQOL6lX8Gz5nFNU",
+      authDomain: "motion-flow-47450.firebasestorage.app",
+      databaseURL: "https://motion-flow-47450-default-rtdb.firebaseio.com",
+      projectId: "motion-flow-47450",
+      storageBucket: "motion-flow-47450.firebasestorage.app",
+      messagingSenderId: "686875529848",
+      appId: "1:686875529848:web:48edf5164aaaf938cdd38d",
+      measurementId: "G-K46N8C1HFQ"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getDatabase();
+
+    // DOM Elements
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const brandLogo = document.getElementById('brandLogo');
+    const apkContainer = document.getElementById('apkContainer');
+    
+    // Admin Modals
+    const adminLoginModal = document.getElementById('adminLoginModal');
+    const adminApkModal = document.getElementById('adminApkModal');
+    const adminEmail = document.getElementById('adminEmail');
+    const adminPassword = document.getElementById('adminPassword');
+    const admin2FACode = document.getElementById('admin2FACode');
+    const twoFactorSection = document.getElementById('twoFactorSection');
+    const adminLoginSubmit = document.getElementById('adminLoginSubmit');
+    const apkUploadForm = document.getElementById('apkUploadForm');
+    const apkSubmitBtn = document.getElementById('apkSubmitBtn');
+    const uploadStatus = document.getElementById('uploadStatus');
+    const uploadStatusText = document.getElementById('uploadStatusText');
+    const apkModalTitle = document.getElementById('apkModalTitle');
+    const editingApkId = document.getElementById('editingApkId');
+    const apkImageInput = document.getElementById('apkImage');
+    const imagePreview = document.getElementById('imagePreview');
+    
+    // Aspect ratio elements
+    const aspectRatioOptions = document.querySelectorAll('.aspect-ratio-option');
+    
+    // Confirmation Dialog
+    const deleteConfirmationDialog = document.getElementById('deleteConfirmationDialog');
+    const deleteConfirmationText = document.getElementById('deleteConfirmationText');
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    
+    // Toast
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+    
+    // Success Popup
+    const successPopup = document.getElementById('successPopup');
+
+    // Global State
+    let currentUserId = null;
+    let currentUserData = null;
+    let allApksData = [];
+    let sidebarOpen = false;
+    let isAdmin = false;
+    let adminClickCount = 0;
+    let adminClickTimer = null;
+    
+    // APK upload state
+    let selectedImageFile = null;
+    let selectedAspectRatio = '1:1';
+    let apkToDelete = null;
+    let apkToEdit = null;
+
+    // Hardcoded Admin Credentials
+    const ADMIN_EMAIL = "motionflow.admins@gmail.com";
+    const ADMIN_PASSWORD = "MOTION-FLOW-ADMIN";
+
+    // Toast notification
+    function showToast(message, type = 'success') {
+      toastMessage.textContent = message;
+      toast.className = `toast ${type}`;
+      toastIcon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Show success popup
+    function showSuccessPopup(message) {
+      const messageElement = successPopup.querySelector('.success-message');
+      messageElement.textContent = message;
+      successPopup.classList.add('active');
+    }
+
+    function closeSuccessPopup() {
+      successPopup.classList.remove('active');
+    }
+
+    window.closeSuccessPopup = closeSuccessPopup;
+
+    // Show upload status
+    function showUploadStatus(message, type = 'loading') {
+      uploadStatus.className = `upload-status ${type}`;
+      uploadStatusText.textContent = message;
+      uploadStatus.style.display = 'flex';
+    }
+
+    // Hide upload status
+    function hideUploadStatus() {
+      uploadStatus.style.display = 'none';
+      uploadStatus.className = 'upload-status';
+    }
+
+    // Admin Hidden Entry System (Triple-Click)
+    brandLogo.addEventListener('click', () => {
+      adminClickCount++;
+      
+      if (adminClickTimer) {
+        clearTimeout(adminClickTimer);
+      }
+      
+      adminClickTimer = setTimeout(() => {
+        adminClickCount = 0;
+      }, 2000);
+      
+      if (adminClickCount >= 3) {
+        adminClickCount = 0;
+        clearTimeout(adminClickTimer);
+        openAdminLogin();
+      }
+    });
+
+    function openAdminLogin() {
+      adminLoginModal.classList.add('active');
+      adminEmail.focus();
+    }
+
+    function closeAdminModal() {
+      adminLoginModal.classList.remove('active');
+      adminEmail.value = '';
+      adminPassword.value = '';
+      admin2FACode.value = '';
+      twoFactorSection.style.display = 'none';
+    }
+
+    function openApkModal() {
+      adminApkModal.classList.add('active');
+      resetApkForm();
+      apkModalTitle.innerHTML = '<i class="fa-solid fa-plus"></i> Upload New APK';
+      editingApkId.value = '';
+    }
+
+    function closeApkModal() {
+      adminApkModal.classList.remove('active');
+      resetApkForm();
+      hideUploadStatus();
+      apkToEdit = null;
+    }
+
+    function openEditModal(apk) {
+      apkToEdit = apk;
+      editingApkId.value = apk.key;
+      apkModalTitle.innerHTML = '<i class="fas fa-edit"></i> Edit APK';
+      
+      // Fill form with existing data
+      document.getElementById('adminName').value = apk.authorName || '';
+      document.getElementById('apkTitle').value = apk.title || '';
+      document.getElementById('apkDescription').value = apk.description || '';
+      document.getElementById('apkDownloadLink').value = apk.downloadLink || '';
+      
+      // Set aspect ratio
+      selectedAspectRatio = apk.aspectRatio || '1:1';
+      aspectRatioOptions.forEach(opt => opt.classList.remove('selected'));
+      document.querySelector(`.aspect-ratio-option[data-ratio="${selectedAspectRatio}"]`).classList.add('selected');
+      
+      // Set image preview if available
+      if (apk.image) {
+        imagePreview.innerHTML = `<img src="${apk.image}" alt="Preview">`;
+        selectedImageFile = null; // We don't have the file, just the URL
+      }
+      
+      adminApkModal.classList.add('active');
+    }
+
+    // Aspect Ratio Selection
+    aspectRatioOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        aspectRatioOptions.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedAspectRatio = option.dataset.ratio;
+      });
+    });
+
+    // Image upload preview
+    apkImageInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        selectedImageFile = file;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Admin Login Handler - MODIFIED to automatically open APK modal after login
+    adminLoginSubmit.addEventListener('click', async () => {
+      const email = adminEmail.value.trim();
+      const password = adminPassword.value.trim();
+      const twoFACode = admin2FACode.value.trim();
+
+      if (!email || !password) {
+        showToast('Please enter email and password', 'error');
+        return;
+      }
+
+      if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
+        showToast('Invalid admin credentials', 'error');
+        return;
+      }
+
+      if (twoFactorSection.style.display === 'none') {
+        twoFactorSection.style.display = 'block';
+        admin2FACode.focus();
+        showToast('Please enter 2FA access code', 'info');
+        return;
+      }
+
+      if (!twoFACode) {
+        showToast('Please enter 2FA access code', 'error');
+        return;
+      }
+
+      try {
+        const accessCodeRef = ref(db, 'admin/accessCode');
+        const snapshot = await get(accessCodeRef);
+        
+        if (snapshot.exists() && snapshot.val() === twoFACode) {
+          isAdmin = true;
+          closeAdminModal();
+          showToast('Admin login successful!', 'success');
+          
+          // Automatically open APK upload modal after successful login
+          setTimeout(() => {
+            openApkModal();
+          }, 500);
+          
+        } else {
+          showToast('Invalid 2FA access code', 'error');
+        }
+      } catch (error) {
+        console.error('2FA verification error:', error);
+        showToast('Error verifying access code', 'error');
+      }
+    });
+
+    // Reset APK Form
+    function resetApkForm() {
+      apkUploadForm.reset();
+      imagePreview.innerHTML = '';
+      selectedImageFile = null;
+      selectedAspectRatio = '1:1';
+      
+      // Reset aspect ratio selector
+      aspectRatioOptions.forEach(opt => opt.classList.remove('selected'));
+      document.querySelector('.aspect-ratio-option[data-ratio="1:1"]').classList.add('selected');
+    }
+
+    // Helper function to read file as data URL
+    function readFileAsDataURL(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          resolve(e.target.result);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Convert URLs to clickable links while preserving whitespace
+    function linkify(text) {
+      const urlRegex = /(https?:\/\/[^\s]+)/g;
+      return text.replace(urlRegex, (url) => {
+        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+      });
+    }
+
+    // Upload/Post Handler (for both create and update)
+    apkUploadForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (!currentUserId || !isAdmin) {
+        showToast('Admin access required', 'error');
+        return;
+      }
+
+      const adminName = document.getElementById('adminName').value.trim();
+      const apkTitle = document.getElementById('apkTitle').value.trim();
+      const apkDescription = document.getElementById('apkDescription').value.trim();
+      const downloadLink = document.getElementById('apkDownloadLink').value.trim();
+      const isEditing = editingApkId.value !== '';
+      
+      // Validate required fields
+      if (!adminName) {
+        showToast('Admin name is required', 'error');
+        return;
+      }
+
+      if (!apkTitle) {
+        showToast('APK title is required', 'error');
+        return;
+      }
+
+      if (!apkDescription) {
+        showToast('Description is required', 'error');
+        return;
+      }
+
+      if (!downloadLink) {
+        showToast('Download link is required', 'error');
+        return;
+      }
+
+      if (!selectedImageFile && !isEditing) {
+        showToast('App image is required', 'error');
+        return;
+      }
+
+      // Show loading state on button
+      apkSubmitBtn.classList.add('loading');
+      apkSubmitBtn.disabled = true;
+      showUploadStatus(isEditing ? 'Updating APK...' : 'Uploading APK...', 'loading');
+
+      let apkId;
+      let apkData;
+      let imageDataUrl = apkToEdit?.image || '';
+      
+      try {
+        // Read image file if new upload
+        if (selectedImageFile && !isEditing) {
+          imageDataUrl = await readFileAsDataURL(selectedImageFile);
+        } else if (isEditing && selectedImageFile) {
+          // If editing and new image selected
+          imageDataUrl = await readFileAsDataURL(selectedImageFile);
+        }
+        
+        if (isEditing) {
+          // Editing existing APK
+          apkId = editingApkId.value;
+          apkData = {
+            ...apkToEdit,
+            title: apkTitle,
+            description: apkDescription,
+            downloadLink: downloadLink,
+            aspectRatio: selectedAspectRatio,
+            image: imageDataUrl,
+            authorName: adminName,
+            updatedAt: Date.now()
+          };
+        } else {
+          // Creating new APK
+          apkId = 'apk_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+          apkData = {
+            id: apkId,
+            title: apkTitle,
+            description: apkDescription,
+            downloadLink: downloadLink,
+            aspectRatio: selectedAspectRatio,
+            image: imageDataUrl,
+            authorName: adminName,
+            authorId: currentUserId,
+            authorIsAdmin: true,
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
+            downloads: 0,
+            comments: apkToEdit?.comments || {}
+          };
+        }
+
+        // Save to Firebase under 'apkProducts' node (CHANGED FROM 'apks' to 'apkProducts')
+        const apkRef = ref(db, `apkProducts/${apkId}`);
+        await set(apkRef, apkData);
+        
+        showUploadStatus(isEditing ? 'APK updated successfully!' : 'APK uploaded successfully!', 'success');
+        
+        setTimeout(() => {
+          hideUploadStatus();
+          apkSubmitBtn.disabled = false;
+          apkSubmitBtn.classList.remove('loading');
+          resetApkForm();
+          closeApkModal();
+          showSuccessPopup(isEditing ? 'APK updated successfully!' : 'APK uploaded successfully!');
+          
+        }, 1500);
+        
+      } catch (error) {
+        console.error('Upload error:', error);
+        apkSubmitBtn.classList.remove('loading');
+        showUploadStatus('Error: ' + error.message, 'error');
+        apkSubmitBtn.disabled = false;
+        setTimeout(hideUploadStatus, 3000);
+      }
+    });
+
+    // Confirm delete APK
+    window.confirmDeleteApk = function(apkId, apkTitle) {
+      apkToDelete = apkId;
+      deleteConfirmationText.textContent = `Are you sure you want to delete "${apkTitle}"? This action cannot be undone.`;
+      deleteConfirmationDialog.classList.add('active');
+    };
+
+    // Close delete confirmation
+    function closeDeleteConfirmation() {
+      deleteConfirmationDialog.classList.remove('active');
+      apkToDelete = null;
+    }
+
+    // Handle delete confirmation
+    confirmDeleteBtn.addEventListener('click', async () => {
+      if (!apkToDelete || !isAdmin) {
+        closeDeleteConfirmation();
+        return;
+      }
+
+      try {
+        // Delete from Firebase - CHANGED PATH to apkProducts
+        const apkRef = ref(db, `apkProducts/${apkToDelete}`);
+        await remove(apkRef);
+        
+        showToast('APK deleted successfully!', 'success');
+        closeDeleteConfirmation();
+        
+      } catch (error) {
+        console.error('Delete error:', error);
+        showToast('Error deleting APK: ' + error.message, 'error');
+        closeDeleteConfirmation();
+      }
+    });
+
+    // Sidebar functions
+    function toggleSidebar() {
+      sidebarOpen = !sidebarOpen;
+      if (sidebarOpen) {
+        sidebar.classList.add('open');
+        sidebarOverlay.classList.add('active');
+      } else {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('active');
+      }
+    }
+
+    hamburgerBtn.addEventListener('click', toggleSidebar);
+    sidebarOverlay.addEventListener('click', toggleSidebar);
+
+    // Logout function
+    function logout() {
+      if (confirm("Are you sure you want to logout?")) {
+        signOut(auth).then(() => {
+          window.location.href = "../index.html";
+        }).catch((error) => {
+          showToast("Logout failed: " + error.message, "error");
+        });
+      }
+    }
+
+    // Auth state listener
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        currentUserId = user.uid;
+        console.log('User authenticated:', currentUserId);
+        
+        // Load APKs data after authentication
+        loadApksData();
+        
+      } else {
+        window.location.href = "../index.html";
+      }
+    });
+
+    // Load APKs data from Firebase - UPDATED PATH to apkProducts
+    function loadApksData() {
+      console.log('Loading APKs data from apkProducts...');
+      
+      // Check if user is authenticated
+      if (!currentUserId) {
+        console.log('Waiting for authentication...');
+        setTimeout(loadApksData, 1000);
+        return;
+      }
+      
+      try {
+        // CHANGED PATH from "apks" to "apkProducts"
+        const apksRef = ref(db, "apkProducts");
+        
+        onValue(apksRef, (snapshot) => {
+          clearLoadingAnimation();
+          
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            console.log('Firebase data loaded successfully from apkProducts:', Object.keys(data).length, 'APKs');
+            allApksData = [];
+            
+            Object.keys(data).forEach(apkKey => {
+              try {
+                const apk = data[apkKey];
+                
+                // Skip if APK is null or missing basic info
+                if (!apk || typeof apk !== 'object') {
+                  console.warn('Skipping invalid APK:', apkKey);
+                  return;
+                }
+                
+                // Calculate comment count
+                let commentCount = 0;
+                if (apk.comments && typeof apk.comments === 'object') {
+                  commentCount = Object.keys(apk.comments).length;
+                }
+                
+                // Create APK object with all required properties
+                const apkObject = {
+                  ...apk,
+                  key: apkKey,
+                  description: apk.description || "",
+                  authorName: apk.authorName || "Admin",
+                  createdAt: apk.createdAt || Date.now(),
+                  updatedAt: apk.updatedAt || apk.createdAt || Date.now(),
+                  downloads: apk.downloads || 0,
+                  comments: apk.comments || {},
+                  commentCount: commentCount,
+                  aspectRatio: apk.aspectRatio || '1:1'
+                };
+                
+                allApksData.push(apkObject);
+                
+              } catch (apkError) {
+                console.error('Error processing APK:', apkKey, apkError);
+              }
+            });
+            
+            if (allApksData.length === 0) {
+              showNoApksMessage();
+              return;
+            }
+            
+            // Sort by creation date (newest first)
+            allApksData.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+            
+            // Render all APKs
+            renderApks();
+            
+          } else {
+            // No data in Firebase
+            showNoApksMessage();
+          }
+        }, (error) => {
+          console.error('Firebase read error from apkProducts:', error);
+          clearLoadingAnimation();
+          showErrorMessage('Connection error. Please check your internet connection and refresh.');
+        });
+        
+      } catch (error) {
+        console.error('Error setting up Firebase listener for apkProducts:', error);
+        clearLoadingAnimation();
+        showErrorMessage('Failed to load APKs. Please refresh the page.');
+      }
+    }
+    
+    // Helper function for no APKs message
+    function showNoApksMessage() {
+      apkContainer.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">
+            <i class="fas fa-box-open"></i>
+          </div>
+          <h3>No APKs Available</h3>
+          <p>No APKs have been shared yet. Check back soon!</p>
+        </div>
+      `;
+    }
+    
+    // Helper function for error message
+    function showErrorMessage(message) {
+      apkContainer.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+          <h3>Connection Issue</h3>
+          <p>${message}</p>
+          <button class="admin-form-submit" onclick="location.reload()" style="margin-top: 20px;">
+            <i class="fas fa-redo"></i> Refresh Page
+          </button>
+        </div>
+      `;
+    }
+
+    // Loading animation
+    function showLoadingAnimation() {
+      apkContainer.innerHTML = `
+        <div class="loading-container">
+          <div class="loading-spinner"></div>
+          <div class="loading-text">Loading APKs...</div>
+        </div>
+      `;
+    }
+
+    function clearLoadingAnimation() {
+      apkContainer.innerHTML = '';
+    }
+
+    // Render APKs
+    async function renderApks() {
+      apkContainer.innerHTML = '';
+      
+      if (allApksData.length === 0) {
+        showNoApksMessage();
+        return;
+      }
+      
+      for (const apk of allApksData) {
+        await createApkCard(apk);
+      }
+    }
+
+    async function createApkCard(apk) {
+      const commentCount = apk.commentCount || 0;
+      
+      const card = document.createElement('div');
+      card.className = `apk-card`;
+      card.id = `apk-${apk.key}`;
+      
+      const shareLink = `${window.location.origin}${window.location.pathname}#apk-${apk.key}`;
+      
+      card.innerHTML = `
+        <div class="apk-img-wrapper">
+          ${isAdmin ? `
+            <div class="apk-admin-controls">
+              <button class="card-admin-btn edit" onclick="editApk('${apk.key}')" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="card-admin-btn delete" onclick="confirmDeleteApk('${apk.key}', '${apk.title}')" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          ` : ''}
+          
+          <img src="${apk.image || 'https://via.placeholder.com/400x250/1a1a2e/00bcd4?text=APK+Image'}" 
+               alt="${apk.title}" 
+               class="apk-img"
+               onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/00bcd4?text=APK+Image'}">
+        </div>
+        
+        <div class="apk-info">
+          <div class="apk-header-info">
+            <div class="apk-title">
+              <h3>${apk.title}</h3>
+            </div>
+            <div class="apk-date">
+              ${getTimeAgo(apk.createdAt || Date.now())}
+            </div>
+          </div>
+          
+          <div class="apk-description">
+            ${linkify(apk.description)}
+          </div>
+          
+          <div class="share-link-container">
+            <div class="share-link" title="${shareLink}">
+              <i class="fas fa-hashtag"></i> ${apk.key.substring(0, 8)}...
+            </div>
+            <button class="copy-link-btn" onclick="copyToClipboard('${shareLink}', 'APK link copied!')">
+              <i class="fas fa-copy"></i> Copy Link
+            </button>
+          </div>
+          
+          <div class="apk-meta">
+            <div class="apk-author">
+              <i class="fas fa-user"></i> ${apk.authorName}
+              ${apk.authorIsAdmin ? '<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>' : ''}
+            </div>
+            <div style="color: var(--color-text-muted);">
+              <i class="fas fa-download"></i> ${apk.downloads || 0}
+            </div>
+          </div>
+          
+          <button class="download-btn" onclick="downloadApk('${apk.key}', '${apk.downloadLink}', '${apk.title}')">
+            <i class="fas fa-download"></i> Download APK
+          </button>
+          
+          <button class="toggle-comments-btn" onclick="toggleComments('${apk.key}')">
+            <i class="fas fa-comments"></i> Comments
+            ${commentCount > 0 ? `<span class="comment-count">${commentCount}</span>` : ''}
+          </button>
+          
+          <div class="comments-section" id="comments-${apk.key}">
+            <div class="comments-title">
+              <i class="fas fa-comments"></i> Comments
+              ${commentCount > 0 ? `<span class="comment-count">${commentCount}</span>` : ''}
+            </div>
+            <div class="comments-list" id="comments-list-${apk.key}">
+              <!-- Comments will be loaded here -->
+            </div>
+            <div class="add-comment">
+              <textarea class="comment-input" id="comment-input-${apk.key}" placeholder="Add a comment..."></textarea>
+              <button class="comment-submit" onclick="addComment('${apk.key}')">Post</button>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      apkContainer.appendChild(card);
+      
+      // Load comments
+      await loadComments(apk.key);
+    }
+
+    // Utility functions
+    function getTimeAgo(timestamp) {
+      const now = Date.now();
+      const diff = now - timestamp;
+      const seconds = Math.floor(diff / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      const days = Math.floor(hours / 24);
+      
+      if (days > 0) return `${days}d ago`;
+      if (hours > 0) return `${hours}h ago`;
+      if (minutes > 0) return `${minutes}m ago`;
+      return 'Just now';
+    }
+
+    // Download APK function - UPDATED PATH to apkProducts
+    window.downloadApk = async function(apkId, downloadLink, apkTitle) {
+      try {
+        // Increment download count in Firebase - CHANGED PATH to apkProducts
+        const downloadCountRef = ref(db, `apkProducts/${apkId}/downloads`);
+        const currentCount = await get(downloadCountRef);
+        const newCount = (currentCount.val() || 0) + 1;
+        await set(downloadCountRef, newCount);
+        
+        // Update local data
+        const apkIndex = allApksData.findIndex(a => a.key === apkId);
+        if (apkIndex !== -1) {
+          allApksData[apkIndex].downloads = newCount;
+        }
+        
+        // Open download link
+        window.open(downloadLink, '_blank');
+        showToast(`Downloading ${apkTitle}...`, 'success');
+        
+      } catch (error) {
+        console.error('Error tracking download:', error);
+        window.open(downloadLink, '_blank');
+      }
+    };
+
+    // Edit APK function
+    window.editApk = function(apkId) {
+      const apk = allApksData.find(a => a.key === apkId);
+      if (apk) {
+        openEditModal(apk);
+      }
+    };
+
+    // Toggle comments section
+    window.toggleComments = function(apkId) {
+      const commentsSection = document.getElementById(`comments-${apkId}`);
+      commentsSection.classList.toggle('active');
+      
+      if (commentsSection.classList.contains('active')) {
+        loadComments(apkId);
+        // Focus on comment input
+        const commentInput = document.getElementById(`comment-input-${apkId}`);
+        if (commentInput) {
+          commentInput.focus();
+        }
+      }
+    };
+
+    // Load comments for an APK - UPDATED PATH to apkProducts
+    async function loadComments(apkId) {
+      const apk = allApksData.find(a => a.key === apkId);
+      if (!apk || !apk.comments) return;
+      
+      const commentsList = document.getElementById(`comments-list-${apkId}`);
+      if (!commentsList) return;
+      
+      commentsList.innerHTML = '';
+      
+      const comments = Object.values(apk.comments);
+      
+      if (comments.length === 0) {
+        commentsList.innerHTML = `
+          <div style="text-align: center; color: var(--color-text-muted); padding: 20px;">
+            No comments yet. Be the first to comment!
+          </div>
+        `;
+        return;
+      }
+      
+      // Sort comments by timestamp (newest first)
+      comments.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+      
+      // Show comment count in title
+      const commentsTitle = document.querySelector(`#comments-${apkId} .comments-title`);
+      if (commentsTitle) {
+        const countSpan = commentsTitle.querySelector('.comment-count');
+        if (countSpan) {
+          countSpan.textContent = comments.length;
+        } else if (comments.length > 0) {
+          const newCountSpan = document.createElement('span');
+          newCountSpan.className = 'comment-count';
+          newCountSpan.textContent = comments.length;
+          commentsTitle.appendChild(newCountSpan);
+        }
+      }
+      
+      comments.forEach(comment => {
+        const commentItem = document.createElement('div');
+        commentItem.className = 'comment-item';
+        
+        // Get profile image URL or use default avatar
+        const profileImage = comment.profileImage || 
+                           `https://ui-avatars.com/api/?name=${encodeURIComponent(comment.userName)}&background=00bcd4&color=fff`;
+        
+        commentItem.innerHTML = `
+          <div class="comment-header" onclick="visitUserProfile('${comment.userId}', '${comment.userName}')">
+            <img src="${profileImage}" 
+                 class="comment-avatar" 
+                 alt="${comment.userName}"
+                 onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(comment.userName)}&background=1a1a2e&color=fff'}">
+            <span class="comment-author">${comment.userName}</span>
+            <span class="comment-time">${getTimeAgo(comment.timestamp)}</span>
+          </div>
+          <div class="comment-text">${comment.text}</div>
+        `;
+        
+        commentsList.appendChild(commentItem);
+      });
+    }
+
+    // Add comment - UPDATED PATH to apkProducts
+    window.addComment = async function(apkId) {
+      if (!currentUserId) {
+        showToast('Please login to comment', 'error');
+        return;
+      }
+      
+      const commentInput = document.getElementById(`comment-input-${apkId}`);
+      if (!commentInput) {
+        showToast('Comment input not found', 'error');
+        return;
+      }
+      
+      const commentText = commentInput.value.trim();
+      
+      if (!commentText) {
+        showToast('Please enter a comment', 'error');
+        return;
+      }
+      
+      if (commentText.length > 500) {
+        showToast('Comment too long (max 500 characters)', 'error');
+        return;
+      }
+      
+      // Get current user data
+      let userName = 'User';
+      if (currentUserData) {
+        if (currentUserData.nickname) {
+          userName = currentUserData.nickname;
+        } else if (currentUserData.username) {
+          userName = currentUserData.username;
+        } else if (currentUserData.displayName) {
+          userName = currentUserData.displayName;
+        } else if (currentUserData.email) {
+          userName = currentUserData.email.split('@')[0];
+        }
+      } else {
+        userName = `User${currentUserId.substring(0, 6)}`;
+      }
+      
+      const commentId = 'comment_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      const commentData = {
+        id: commentId,
+        text: commentText,
+        userId: currentUserId,
+        userName: userName,
+        timestamp: Date.now()
+      };
+      
+      try {
+        // Add comment to Firebase - CHANGED PATH to apkProducts
+        const commentRef = ref(db, `apkProducts/${apkId}/comments/${commentId}`);
+        await set(commentRef, commentData);
+        
+        // Update local data
+        const apkIndex = allApksData.findIndex(a => a.key === apkId);
+        if (apkIndex !== -1) {
+          if (!allApksData[apkIndex].comments) {
+            allApksData[apkIndex].comments = {};
+          }
+          allApksData[apkIndex].comments[commentId] = commentData;
+          // Update comment count
+          allApksData[apkIndex].commentCount = Object.keys(allApksData[apkIndex].comments).length;
+        }
+        
+        // Clear input and show success
+        commentInput.value = '';
+        showToast('Comment posted!', 'success');
+        
+        // Reload comments
+        await loadComments(apkId);
+        
+        // Update comment count on button
+        const commentBtn = document.querySelector(`[onclick="toggleComments('${apkId}')"]`);
+        if (commentBtn) {
+          const commentCount = allApksData[apkIndex]?.commentCount || 0;
+          const countSpan = commentBtn.querySelector('.comment-count');
+          if (countSpan) {
+            countSpan.textContent = commentCount;
+          } else if (commentCount > 0) {
+            const newCountSpan = document.createElement('span');
+            newCountSpan.className = 'comment-count';
+            newCountSpan.textContent = commentCount;
+            commentBtn.appendChild(newCountSpan);
+          }
+        }
+        
+      } catch (error) {
+        console.error('Error posting comment:', error);
+        showToast('Error posting comment: ' + error.message, 'error');
+      }
+    };
+
+    // Visit user profile
+    window.visitUserProfile = function(userId, userName) {
+      window.location.href = `../profile/profile.html?user=${userId}`;
+    };
+
+    // Copy to clipboard
+    window.copyToClipboard = (text, message = 'Copied to clipboard!') => {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(message, 'success');
+      }).catch(err => {
+        showToast('Failed to copy', 'error');
+      });
+    };
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('APK Share page loaded');
+      showLoadingAnimation();
+    });
+
+    // Make functions available globally
+    window.toggleSidebar = toggleSidebar;
+    window.logout = logout;
+    window.closeAdminModal = closeAdminModal;
+    window.closeApkModal = closeApkModal;
+    window.openApkModal = openApkModal;
+    window.closeDeleteConfirmation = closeDeleteConfirmation;
+  </script>
+</body>
+</html>
