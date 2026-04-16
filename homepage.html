@@ -237,7 +237,7 @@
       opacity: 0.3;
     }
 
-    /* --- ADMIN MODALS - WIDER AND IMPROVED --- */
+    /* --- ADMIN MODALS --- */
     .admin-modal-overlay {
       position: fixed;
       top: 0;
@@ -272,7 +272,6 @@
       position: relative;
     }
 
-    /* Back to Home Button - IMPROVED STYLING */
     .back-to-home-btn {
       position: fixed;
       top: 20px;
@@ -299,14 +298,8 @@
     }
 
     @keyframes modalSlideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .admin-form-group {
@@ -344,7 +337,6 @@
       resize: vertical;
     }
     
-    /* Password visibility toggle */
     .password-wrapper {
       position: relative;
       width: 100%;
@@ -369,7 +361,6 @@
       color: var(--color-primary);
     }
 
-    /* Logout Dialog Styles - FROM PROFILE.HTML */
     .logout-dialog {
       display: none;
       position: fixed;
@@ -423,20 +414,10 @@
       color: #ffffff;
     }
 
-    .logout-confirm-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
-    }
-
     .logout-cancel-btn {
       background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
       border: 1px solid rgba(0, 188, 212, 0.2);
-    }
-
-    .logout-cancel-btn:hover {
-      background: rgba(0, 188, 212, 0.1);
-      border-color: var(--color-accent);
     }
 
     /* Image Size Selector */
@@ -458,10 +439,6 @@
       font-size: 0.9rem;
     }
 
-    .image-size-option:hover {
-      background: rgba(0, 188, 212, 0.2);
-    }
-
     .image-size-option.selected {
       background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
       color: white;
@@ -474,7 +451,6 @@
       gap: 10px;
     }
     
-    /* File input styling with preview */
     .file-input-wrapper {
       display: flex;
       align-items: center;
@@ -528,10 +504,6 @@
       white-space: nowrap;
     }
     
-    .file-input-label:hover {
-      background: rgba(0, 188, 212, 0.2);
-    }
-    
     .file-input-hidden {
       position: absolute;
       opacity: 0;
@@ -560,10 +532,6 @@
       transition: var(--transition);
       flex-shrink: 0;
     }
-    
-    .remove-image-btn:hover {
-      background: rgba(239, 68, 68, 0.3);
-    }
 
     .add-image-btn {
       background: rgba(0, 188, 212, 0.1);
@@ -580,18 +548,10 @@
       font-size: 0.9rem;
     }
 
-    .add-image-btn:hover {
-      background: rgba(0, 188, 212, 0.2);
-    }
-
     .price-container {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 15px;
-    }
-
-    .price-container.hidden {
-      display: none;
     }
 
     .admin-form-buttons {
@@ -614,22 +574,11 @@
       overflow: hidden;
     }
     
-    /* Disabled state for save button */
     .admin-form-submit:disabled {
       opacity: 0.5;
       cursor: not-allowed;
       transform: none;
       box-shadow: none;
-    }
-    
-    .admin-form-submit:disabled:hover {
-      transform: none;
-      box-shadow: none;
-    }
-
-    .admin-form-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
     }
 
     .admin-form-submit.loading {
@@ -661,11 +610,6 @@
       font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
-    }
-
-    .admin-form-cancel:hover {
-      background: rgba(0, 188, 212, 0.1);
-      border-color: var(--color-primary);
     }
 
     /* Admin Products Management Section */
@@ -701,10 +645,6 @@
       transition: var(--transition);
     }
 
-    .admin-product-item:hover {
-      background: rgba(0, 188, 212, 0.1);
-    }
-
     .admin-product-info {
       flex: 1;
     }
@@ -713,44 +653,6 @@
       font-weight: 600;
       color: var(--color-text);
       margin-bottom: 5px;
-    }
-
-    .admin-product-id {
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-    }
-
-    .admin-product-details {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      margin-top: 5px;
-    }
-
-    .admin-product-type {
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-    }
-
-    .admin-product-code {
-      font-size: 0.75rem;
-      color: var(--color-success);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      transition: var(--transition);
-      padding: 4px 8px;
-      background: rgba(16, 185, 129, 0.1);
-      border-radius: 6px;
-      border: 1px solid rgba(16, 185, 129, 0.2);
-      user-select: none;
-    }
-
-    .admin-product-code:hover {
-      color: #0d9488;
-      background: rgba(16, 185, 129, 0.2);
-      transform: scale(1.05);
     }
 
     .admin-product-actions {
@@ -776,28 +678,10 @@
       border: 1px solid var(--color-primary);
     }
 
-    .admin-product-edit:hover {
-      background: rgba(0, 188, 212, 0.3);
-    }
-
     .admin-product-delete {
       background: rgba(239, 68, 68, 0.2);
       color: var(--color-error);
       border: 1px solid var(--color-error);
-    }
-
-    .admin-product-delete:hover {
-      background: rgba(239, 68, 68, 0.3);
-    }
-
-    .admin-product-generate-key {
-      background: rgba(245, 158, 11, 0.2);
-      color: var(--color-warning);
-      border: 1px solid var(--color-warning);
-    }
-
-    .admin-product-generate-key:hover {
-      background: rgba(245, 158, 11, 0.3);
     }
 
     /* Upload Status Indicator */
@@ -937,11 +821,6 @@
       transition: all 0.3s ease;
     }
 
-    .search-container:hover, .filter-container:hover {
-      border-color: rgba(0, 188, 212, 0.2);
-      box-shadow: 0 10px 40px rgba(0, 188, 212, 0.2);
-    }
-
     .filter-label {
       display: block;
       color: var(--color-text);
@@ -983,11 +862,6 @@
       transition: all 0.3s ease;
     }
 
-    .search-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
-    }
-
     .custom-select-filter {
       position: relative;
       z-index: 101;
@@ -1005,10 +879,6 @@
       align-items: center;
       cursor: pointer;
       transition: all 0.3s ease;
-    }
-
-    .select-trigger-filter:hover {
-      border-color: var(--color-accent);
     }
 
     .select-dropdown-filter {
@@ -1040,16 +910,11 @@
       color: var(--color-text);
     }
 
-    .select-option-filter:hover {
-      background: rgba(0, 188, 212, 0.1);
-      color: var(--color-accent);
-    }
-
     .select-option-filter:last-child {
       border-bottom: none;
     }
 
-    /* Pinterest-Style Masonry Layout - UPDATED */
+    /* Masonry Layout */
     .market-container {
       column-count: 3;
       column-gap: 25px;
@@ -1111,7 +976,6 @@
       letter-spacing: 1px;
     }
 
-    /* Image Carousel - UPDATED FOR NATURAL SCALING */
     .product-img-wrapper {
       position: relative;
       overflow: hidden;
@@ -1132,7 +996,6 @@
       transform: scale(1.05);
     }
 
-    /* Carousel Navigation - FIXED: Always visible */
     .carousel-nav {
       position: absolute;
       top: 50%;
@@ -1161,11 +1024,6 @@
       backdrop-filter: blur(10px);
       font-size: 1.1rem;
       z-index: 3;
-    }
-
-    .carousel-btn:hover {
-      background: rgba(0, 188, 212, 0.9);
-      transform: scale(1.2);
     }
 
     .carousel-dots {
@@ -1214,12 +1072,6 @@
       backdrop-filter: blur(10px);
     }
 
-    .video-preview-btn:hover {
-      background: rgba(0, 188, 212, 0.9);
-      transform: translateY(-2px);
-    }
-
-    /* Product Info - UPDATED WITH DESCRIPTION */
     .product-info {
       padding: 20px;
       flex: 1;
@@ -1241,7 +1093,6 @@
       margin-bottom: 5px;
     }
 
-    /* Product Description in Card */
     .product-description {
       color: var(--color-text-muted);
       font-size: 0.9em;
@@ -1257,12 +1108,7 @@
       text-decoration: none;
       word-break: break-all;
     }
-    
-    .product-description a:hover {
-      text-decoration: underline;
-    }
 
-    /* Price Display - UPDATED */
     .price-display {
       display: flex;
       flex-direction: column;
@@ -1306,7 +1152,7 @@
       gap: 10px;
     }
 
-    .copy-icon {
+    .copy-icon, .view-count-icon {
       cursor: pointer;
       color: var(--color-accent);
       transition: all 0.3s ease;
@@ -1315,9 +1161,9 @@
       gap: 5px;
     }
 
-    .copy-icon:hover {
-      color: var(--color-accent-alt);
-      transform: scale(1.1);
+    .view-count-icon {
+      color: var(--color-success);
+      cursor: default;
     }
 
     .share-icon {
@@ -1327,11 +1173,6 @@
       display: flex;
       align-items: center;
       gap: 5px;
-    }
-
-    .share-icon:hover {
-      color: #0d9488;
-      transform: scale(1.1);
     }
 
     .user-info {
@@ -1358,12 +1199,6 @@
       gap: 5px;
     }
 
-    .admin-name {
-      color: var(--color-warning);
-      font-weight: 600;
-    }
-
-    /* Admin Badge - Updated styling */
     .admin-badge {
       background: linear-gradient(135deg, var(--color-warning), #d97706);
       color: white;
@@ -1392,7 +1227,7 @@
       padding-top: 15px;
     }
 
-    .purchase-btn, .info-btn, .download-btn, .activate-btn {
+    .purchase-btn, .info-btn, .download-btn, .activate-btn, .comment-btn {
       padding: 12px;
       border: none;
       border-radius: 10px;
@@ -1411,25 +1246,10 @@
       color: white;
     }
 
-    .purchase-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
-    }
-
-    .purchase-btn.paid {
-      background: linear-gradient(135deg, var(--color-warning), #d97706);
-    }
-
     .info-btn {
       background: rgba(255, 255, 255, 0.1);
       color: var(--color-text);
       border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .info-btn:hover {
-      background: rgba(0, 188, 212, 0.1);
-      border-color: var(--color-accent);
-      color: var(--color-accent);
     }
 
     .download-btn {
@@ -1437,19 +1257,123 @@
       color: white;
     }
 
-    .download-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
-    }
-
     .activate-btn {
       background: linear-gradient(135deg, #8b5cf6, #7c3aed);
       color: white;
     }
 
-    .activate-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+    .comment-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--color-text);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      grid-column: span 2;
+      margin-top: 10px;
+    }
+
+    .comment-count {
+      background: var(--color-primary);
+      color: white;
+      font-size: 0.7em;
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-left: 5px;
+    }
+
+    /* Comments Section */
+    .comments-section {
+      display: none;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .comments-section.active {
+      display: block;
+    }
+
+    .comments-list {
+      max-height: 250px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+      padding-right: 10px;
+    }
+
+    .comment-item {
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .comment-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--color-primary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .comment-author {
+      font-weight: 600;
+      font-size: 0.85em;
+      color: var(--color-primary);
+      cursor: pointer;
+    }
+
+    .comment-time {
+      font-size: 0.7em;
+      color: var(--color-text-muted);
+      margin-left: auto;
+    }
+
+    .comment-text {
+      font-size: 0.85em;
+      line-height: 1.5;
+      color: var(--color-text);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .add-comment {
+      display: flex;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .comment-input {
+      flex: 1;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      color: var(--color-text);
+      font-size: 0.9em;
+      resize: none;
+      min-height: 40px;
+      max-height: 100px;
+      font-family: var(--font-body);
+    }
+
+    .comment-submit {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      white-space: nowrap;
     }
 
     /* --- BOTTOM NAVIGATION --- */
@@ -1468,8 +1392,6 @@
       right: 0;
       z-index: 100;
       touch-action: pan-y;
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior: contain;
       overflow: hidden;
       max-width: 100%;
       width: 100%;
@@ -1498,23 +1420,12 @@
       color: var(--color-primary);
     }
 
-    .nav-item.active i {
-      color: var(--color-primary);
-      text-shadow: 0 0 15px var(--color-primary);
-      transform: translateY(-2px);
-    }
-
-    .nav-item:hover:not(.active) {
-      color: var(--color-text);
-    }
-
     .nav-item i {
       font-size: 1.3rem;
       transition: var(--transition);
       position: relative;
     }
 
-    /* Smart Notification Dot - FROM PROFILE.HTML */
     .notification-dot {
       position: absolute;
       top: 0;
@@ -1557,33 +1468,18 @@
       gap: 10px;
       animation: slideUp 0.3s ease;
       max-width: 90%;
-      overflow-x: hidden;
     }
 
     .toast.show {
       display: flex;
     }
 
-    .toast.success {
-      border-color: rgba(16, 185, 129, 0.3);
-    }
-
-    .toast.error {
-      border-color: rgba(239, 68, 68, 0.3);
-    }
-
     @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-      }
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to { opacity: 1; transform: translateX(-50%) translateY(0); }
     }
 
-    /* Loading Animation - FIXED FOR PC SIZE */
+    /* Loading Animation */
     .loading-container {
       display: flex;
       flex-direction: column;
@@ -1605,17 +1501,12 @@
       margin-bottom: 20px;
     }
 
-    .loading-text {
-      color: var(--color-text-muted);
-      font-size: 1.1em;
-    }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
 
-    /* Empty State - UPDATED MESSAGE */
+    /* Empty State */
     .empty-state {
       text-align: center;
       padding: 80px 20px;
@@ -1630,18 +1521,7 @@
       margin-bottom: 20px;
     }
 
-    .empty-state h3 {
-      font-size: 1.5em;
-      margin-bottom: 10px;
-      color: var(--color-text);
-    }
-
-    .empty-state p {
-      font-size: 1.1em;
-      opacity: 0.8;
-    }
-
-    /* Fullscreen Image Viewer - UPDATED FOR SWIPE */
+    /* Fullscreen Image Viewer */
     .image-viewer-overlay {
       position: fixed;
       top: 0;
@@ -1667,7 +1547,6 @@
       max-width: 90%;
       max-height: 90%;
       text-align: center;
-      touch-action: pan-y pinch-zoom;
     }
 
     .image-viewer-img {
@@ -1676,42 +1555,6 @@
       object-fit: contain;
       border-radius: 10px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      user-select: none;
-      -webkit-user-select: none;
-    }
-
-    /* Image Viewer Navigation - FIXED: Always visible */
-    .image-viewer-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 20px;
-      z-index: 2;
-      opacity: 1;
-    }
-
-    .image-viewer-btn {
-      width: 50px;
-      height: 50px;
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
-      font-size: 1.2rem;
-    }
-
-    .image-viewer-btn:hover {
-      background: rgba(0, 188, 212, 0.9);
-      transform: scale(1.2);
     }
 
     .image-viewer-close {
@@ -1732,9 +1575,31 @@
       backdrop-filter: blur(10px);
     }
 
-    .image-viewer-close:hover {
-      background: rgba(239, 68, 68, 0.9);
-      transform: scale(1.2);
+    .image-viewer-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 2;
+    }
+
+    .image-viewer-btn {
+      width: 50px;
+      height: 50px;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      font-size: 1.2rem;
     }
 
     .image-viewer-dots {
@@ -1762,7 +1627,7 @@
       transform: scale(1.3);
     }
 
-    /* Info Dialog Styles */
+    /* Info Dialog */
     .info-dialog {
       position: fixed;
       top: 0;
@@ -1796,46 +1661,7 @@
       animation: modalSlideIn 0.3s ease;
     }
 
-    /* Delete Confirmation Modal */
-    .delete-confirmation {
-      text-align: center;
-      padding: 30px;
-    }
-
-    .delete-icon {
-      font-size: 4em;
-      color: var(--color-error);
-      margin-bottom: 20px;
-    }
-
-    .delete-title {
-      color: var(--color-error);
-      font-size: 1.8em;
-      margin-bottom: 15px;
-    }
-
-    .delete-message {
-      color: var(--color-text);
-      margin-bottom: 25px;
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
-
-    .product-to-delete {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid rgba(239, 68, 68, 0.3);
-      border-radius: 10px;
-      padding: 15px;
-      margin: 20px 0;
-    }
-
-    .product-to-delete h4 {
-      color: var(--color-error);
-      margin-bottom: 10px;
-      font-size: 1.2em;
-    }
-
-    /* Activation Page Styles */
+    /* Activation Dialog */
     .activation-page {
       text-align: center;
       padding: 30px;
@@ -1853,41 +1679,6 @@
       margin-bottom: 10px;
     }
 
-    .activation-description {
-      color: var(--color-text);
-      margin-bottom: 30px;
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
-
-    .activation-instructions {
-      background: rgba(249, 115, 22, 0.1);
-      border-radius: 10px;
-      padding: 20px;
-      margin: 25px 0;
-      border: 1px solid rgba(249, 115, 22, 0.3);
-      text-align: left;
-    }
-
-    .activation-instructions h4 {
-      color: var(--color-warning);
-      margin-bottom: 10px;
-      font-size: 1.2em;
-    }
-
-    .activation-instructions ol {
-      margin-left: 20px;
-      color: var(--color-text);
-    }
-
-    .activation-instructions li {
-      margin-bottom: 10px;
-    }
-
-    .activation-input-group {
-      margin: 30px 0;
-    }
-
     .activation-input {
       width: 100%;
       padding: 15px;
@@ -1900,19 +1691,6 @@
       letter-spacing: 2px;
       font-weight: 600;
       transition: var(--transition);
-    }
-
-    .activation-input:focus {
-      outline: none;
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
-    }
-
-    .activation-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 30px;
     }
 
     .telegram-btn {
@@ -1931,269 +1709,34 @@
       text-decoration: none;
     }
 
-    .telegram-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 136, 204, 0.3);
-    }
-
-    .back-btn {
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--color-text);
-      border: 1px solid var(--border);
-      padding: 15px;
-      border-radius: var(--radius-sm);
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .back-btn:hover {
-      background: rgba(0, 188, 212, 0.1);
-      border-color: var(--color-primary);
-    }
-
-    /* Download Page Styles */
-    .download-page {
-      text-align: center;
-      padding: 30px;
-    }
-
-    .download-success-icon {
-      font-size: 3em;
-      color: var(--color-success);
-      margin-bottom: 15px;
-    }
-
-    .download-link {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
-      color: white;
-      padding: 15px 30px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      margin: 10px 0;
-      transition: var(--transition);
-    }
-
-    .download-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
-    }
-
-    /* Admin Settings Section */
-    .admin-settings-section {
-      margin-top: 40px;
-      padding-top: 30px;
-      border-top: 1px solid var(--border);
-    }
-
-    .admin-settings-section h3 {
-      color: var(--color-primary);
-      margin-bottom: 20px;
-      text-align: center;
-      font-size: 1.5rem;
-    }
-
-    /* Video Preview Modal */
-    .video-modal video {
-      width: 100%;
-      border-radius: 10px;
-    }
-
     /* Responsive Design */
     @media (max-width: 768px) {
-      .top-nav {
-        height: 65px;
-        padding: 0 1rem;
-      }
-
-      .hamburger {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-      }
-
-      .brand {
-        font-size: 1.1rem;
-      }
-
-      .main-content {
-        padding: 70px 15px 100px;
-      }
-      
-      .search-container, .filter-container {
-        padding: 20px;
-      }
-      
-      .market-container {
-        column-count: 1;
-        gap: 20px;
-      }
-      
-      .buttons {
-        grid-template-columns: 1fr;
-      }
-      
-      .download-link {
-        padding: 12px 20px;
-        font-size: 1.1em;
-      }
-
-      .sidebar {
-        width: 280px;
-      }
-
-      .price-container {
-        grid-template-columns: 1fr;
-      }
-
-      .back-to-home-btn {
-        top: 10px;
-        right: 10px;
-        padding: 10px 16px;
-        font-size: 0.8rem;
-      }
-
-      .admin-modal-content {
-        max-width: 95%;
-        padding: 20px;
-      }
-
-      .image-size-selector {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .file-input-wrapper {
-        flex-wrap: wrap;
-      }
-      
-      .file-preview {
-        width: 40px;
-        height: 40px;
-      }
+      .top-nav { height: 65px; padding: 0 1rem; }
+      .brand { font-size: 1.1rem; }
+      .main-content { padding: 70px 15px 100px; }
+      .market-container { column-count: 1; }
+      .buttons { grid-template-columns: 1fr; }
+      .comment-btn { grid-column: span 1; }
+      .sidebar { width: 280px; }
+      .file-input-wrapper { flex-wrap: wrap; }
     }
 
     @media (max-width: 480px) {
-      .top-nav {
-        height: 60px;
-        padding: 0 0.8rem;
-      }
-
-      .hamburger {
-        width: 34px;
-        height: 34px;
-        font-size: 0.9rem;
-      }
-
-      .brand {
-        font-size: 1rem;
-      }
-
-      .main-content {
-        padding: 65px 10px 90px;
-      }
-      
-      .market-container {
-        column-count: 1;
-      }
-
-      .search-input {
-        padding: 12px 14px;
-        font-size: 0.9em;
-      }
-
-      .search-btn {
-        padding: 12px 18px;
-        font-size: 0.9em;
-      }
-
-      .product-info {
-        padding: 15px;
-      }
-
-      .purchase-btn, .info-btn, .download-btn, .activate-btn {
-        padding: 10px;
-        font-size: 0.9em;
-      }
-
-      .bottom-nav {
-        height: 55px;
-      }
-
-      .nav-item {
-        padding: 6px;
-        font-size: 0.65rem;
-      }
-
-      .nav-item i {
-        font-size: 1.2rem;
-      }
-
-      .back-to-home-btn {
-        top: 5px;
-        right: 5px;
-        padding: 8px 12px;
-        font-size: 0.7rem;
-      }
-
-      .admin-product-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .admin-product-actions {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .image-size-selector {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .market-container {
-        column-count: 1;
-        gap: 15px;
-      }
-
-      .product-id {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-
-      .product-id-left {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .search-box {
-        flex-direction: column;
-      }
-
-      .search-input {
-        width: 100%;
-      }
-
-      .search-btn {
-        width: 100%;
-      }
+      .top-nav { height: 60px; padding: 0 0.8rem; }
+      .brand { font-size: 1rem; }
+      .main-content { padding: 65px 10px 90px; }
+      .bottom-nav { height: 55px; }
+      .nav-item { padding: 6px; font-size: 0.65rem; }
+      .nav-item i { font-size: 1.2rem; }
     }
   </style>
 </head>
 <body>
   <!-- Success Popup -->
   <div class="success-popup" id="successPopup">
-    <div class="success-icon">
-      <i class="fas fa-check-circle"></i>
-    </div>
+    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
     <h2 class="success-message">Product Uploaded Successfully!</h2>
-    <button class="admin-form-submit" onclick="closeSuccessPopup()">
-      <i class="fas fa-check"></i> OK
-    </button>
+    <button class="admin-form-submit" onclick="closeSuccessPopup()"><i class="fas fa-check"></i> OK</button>
   </div>
 
   <!-- Top Navigation -->
@@ -2208,15 +1751,12 @@
   <div class="sidebar-overlay" id="sidebarOverlay"></div>
   
   <!-- Sidebar -->
-   <div class="sidebar" id="sidebar">
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-user-info">
-        <h3 style="font-size: 1.5rem; color: var(--color-primary); text-align: center; width: 100%;">
-          MOTION FLOW
-        </h3>
+        <h3 style="font-size: 1.5rem; color: var(--color-primary); text-align: center; width: 100%;">MOTION FLOW</h3>
       </div>
     </div>
-
     <ul class="sidebar-menu">
       <li><a href="homepage.html" class="active"><i class="fa-solid fa-home"></i> Home</a></li>
       <li><a href="apk/apk.html"><i class="fa-solid fa-download"></i> APK Share</a></li>
@@ -2225,9 +1765,7 @@
       <li><a href="tutorial.html"><i class="fa-solid fa-graduation-cap"></i> Tutorials</a></li>
       <li><a href="Settings/settings.html"><i class="fa-solid fa-cog"></i> Settings</a></li>
     </ul>
-
     <div class="sidebar-divider"></div>
-
     <ul class="sidebar-menu">
       <li onclick="showLogoutDialog()" style="color: #ef4444; cursor: pointer;"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
     </ul>
@@ -2236,53 +1774,35 @@
   <!-- Image Viewer Modal -->
   <div class="image-viewer-overlay" id="imageViewer">
     <div class="image-viewer-content">
-      <button class="image-viewer-close" onclick="closeImageViewer()">
-        <i class="fas fa-times"></i>
-      </button>
+      <button class="image-viewer-close" onclick="closeImageViewer()"><i class="fas fa-times"></i></button>
       <img class="image-viewer-img" id="viewerImage" src="" alt="Fullscreen view">
       <div class="image-viewer-nav">
-        <button class="image-viewer-btn" onclick="viewerPrevImage()">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="image-viewer-btn" onclick="viewerNextImage()">
-          <i class="fas fa-chevron-right"></i>
-        </button>
+        <button class="image-viewer-btn" onclick="viewerPrevImage()"><i class="fas fa-chevron-left"></i></button>
+        <button class="image-viewer-btn" onclick="viewerNextImage()"><i class="fas fa-chevron-right"></i></button>
       </div>
-      <div class="image-viewer-dots" id="viewerDots">
-      </div>
+      <div class="image-viewer-dots" id="viewerDots"></div>
     </div>
   </div>
 
   <!-- Admin Login Modal -->
   <div class="admin-modal-overlay" id="adminLoginModal">
     <div class="admin-modal-content">
-      <h2 style="margin-bottom: 20px; color: var(--color-primary); text-align: center;">
-        <i class="fa-solid fa-lock"></i> Admin Login
-      </h2>
-      
+      <h2 style="margin-bottom: 20px; color: var(--color-primary); text-align: center;"><i class="fa-solid fa-lock"></i> Admin Login</h2>
       <div class="admin-form-group">
         <label class="admin-form-label">Email</label>
         <input type="email" id="adminEmail" class="admin-form-input" placeholder="adminEmail">
       </div>
-      
       <div class="admin-form-group">
         <label class="admin-form-label">Password</label>
         <div class="password-wrapper">
           <input type="password" id="adminPassword" class="admin-form-input" placeholder="adminPassword" style="padding-right: 40px;">
-          <button type="button" class="password-toggle" id="adminPasswordToggle">
-            <i class="fa-solid fa-eye"></i>
-          </button>
+          <button type="button" class="password-toggle" id="adminPasswordToggle"><i class="fa-solid fa-eye"></i></button>
         </div>
       </div>
-      
       <div class="admin-form-group" id="twoFactorSection" style="display: none;">
         <label class="admin-form-label">2FA Access Code</label>
         <input type="text" id="admin2FACode" class="admin-form-input" placeholder="accessCode">
-        <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 5px;">
-          
-        </p>
       </div>
-      
       <div class="admin-form-buttons">
         <button class="admin-form-submit" id="adminLoginSubmit">Login</button>
         <button class="admin-form-cancel" onclick="closeAdminModal()">Cancel</button>
@@ -2292,252 +1812,69 @@
 
   <!-- Admin Upload Modal -->
   <div class="admin-modal-overlay" id="adminUploadModal">
-    <button class="back-to-home-btn" onclick="closeUploadModal()">
-      <i class="fa-solid fa-arrow-left"></i> Back to Home
-    </button>
-    
+    <button class="back-to-home-btn" onclick="closeUploadModal()"><i class="fa-solid fa-arrow-left"></i> Back to Home</button>
     <div class="admin-modal-content">
-      <h2 style="margin-bottom: 20px; color: var(--color-primary); text-align: center;" id="uploadModalTitle">
-        <i class="fa-solid fa-plus"></i> Add New Product
-      </h2>
-      
-      <div class="upload-status" id="uploadStatus">
-        <i class="fas fa-spinner fa-spin"></i>
-        <span id="uploadStatusText">Uploading product...</span>
-      </div>
-      
+      <h2 style="margin-bottom: 20px; color: var(--color-primary); text-align: center;" id="uploadModalTitle"><i class="fa-solid fa-plus"></i> Add New Product</h2>
+      <div class="upload-status" id="uploadStatus"><i class="fas fa-spinner fa-spin"></i><span id="uploadStatusText">Uploading product...</span></div>
       <form id="productUploadForm">
-        <div class="admin-form-group">
-          <label class="admin-form-label">Admin Name *</label>
-          <input type="text" id="adminName" class="admin-form-input" placeholder="Admin Moonlight" required>
-          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 5px;">
-            This name will be displayed as the uploader
-          </p>
-        </div>
-        
-        <div class="admin-form-group">
-          <label class="admin-form-label">Product Name *</label>
-          <input type="text" id="productName" class="admin-form-input" required>
-        </div>
-        
-        <div class="admin-form-group">
-          <label class="admin-form-label">Description *</label>
-          <textarea id="productDescription" class="admin-form-input admin-form-textarea" required placeholder="Describe your product. You can include links like https://example.com"></textarea>
-        </div>
-        
-        <div class="admin-form-group">
-          <label class="admin-form-label">Category *</label>
-          <select id="productCategory" class="admin-form-input" required>
-            <option value="">Select Category</option>
-            <option value="CC">Color Correction</option>
-            <option value="Animation">Animation</option>
-            <option value="Presets">Presets</option>
-            <option value="Plugins">Plugins</option>
-            <option value="Templates">Templates</option>
-            <option value="Tutorials">Tutorials</option>
-            <option value="EditingPacks">Editing Packs</option>
-          </select>
-        </div>
-        
-        <div class="admin-form-group">
-          <label class="admin-form-label">Product Type *</label>
-          <select id="productType" class="admin-form-input" required>
-            <option value="free">Free</option>
-            <option value="paid">Paid</option>
-          </select>
-        </div>
-        
-        <div class="admin-form-group price-container" id="priceFields" style="display: none;">
-          <div>
-            <label class="admin-form-label">Original Price</label>
-            <input type="text" id="originalPrice" class="admin-form-input" placeholder="$99.99">
-          </div>
-          <div>
-            <label class="admin-form-label">Current Price *</label>
-            <input type="text" id="currentPrice" class="admin-form-input" placeholder="$49.99" required>
-          </div>
-        </div>
-        
-        <div class="admin-settings-section" id="adminSettingsSection">
-          <h3>Admin Settings</h3>
-          
-          <div class="admin-form-group">
-            <label class="admin-form-label">Telegram Link for Paid Products</label>
-            <input type="url" id="adminTelegramLink" class="admin-form-input" placeholder="https://t.me/eclipsia_techs">
-            <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 5px;">
-              This link will be shown to users when they click "Unlock" on paid products
-            </p>
-          </div>
-        </div>
-        
-        <div class="admin-form-group">
-          <label class="admin-form-label">Image Aspect Ratio *</label>
-          <div class="image-size-selector">
-            <div class="image-size-option selected" data-ratio="16:9">16:9 (Default)</div>
-            <div class="image-size-option" data-ratio="1:1">1:1 (Square)</div>
-            <div class="image-size-option" data-ratio="4:3">4:3 (Classic)</div>
-          </div>
-        </div>
-        
-        <div class="admin-form-group">
-          <label class="admin-form-label">Product Images (Local Upload, max 5) *</label>
-          <div class="image-urls-container" id="imageUrlsContainer">
-          </div>
-          <button type="button" class="add-image-btn" onclick="addImageFileField()">
-            <i class="fa-solid fa-plus"></i> Add Another Image
-          </button>
-          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 5px;">
-            Images will be converted to Base64 and stored in the database.
-          </p>
-        </div>
-        
-        <div class="admin-form-group">
-          <label class="admin-form-label">Video Preview URL (Optional)</label>
-          <input type="url" id="videoUrl" class="admin-form-input" placeholder="https://files.catbox.moe/example.mp4">
-          <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 5px;">
-            Videos will play without mute by default
-          </p>
-        </div>
-        
-        <div class="admin-form-group">
-          <label class="admin-form-label">Download Link *</label>
-          <input type="url" id="downloadLink" class="admin-form-input" placeholder="https://drive.google.com/file/..." required>
-        </div>
-        
-        <div class="admin-form-group">
-          <label class="admin-form-label">Usage Instructions</label>
-          <textarea id="usageInstructions" class="admin-form-input admin-form-textarea" placeholder="How to use this product..."></textarea>
-        </div>
-        
-        <div class="admin-form-buttons">
-          <button type="submit" class="admin-form-submit" id="uploadSubmitBtn" disabled>
-            <i class="fas fa-upload"></i> Upload Product
-          </button>
-          <button type="button" class="admin-form-cancel" onclick="closeUploadModal()">Cancel</button>
-        </div>
+        <div class="admin-form-group"><label class="admin-form-label">Admin Name *</label><input type="text" id="adminName" class="admin-form-input" placeholder="Admin Moonlight" required></div>
+        <div class="admin-form-group"><label class="admin-form-label">Product Name *</label><input type="text" id="productName" class="admin-form-input" required></div>
+        <div class="admin-form-group"><label class="admin-form-label">Description *</label><textarea id="productDescription" class="admin-form-input admin-form-textarea" required placeholder="Describe your product. You can include links like https://example.com"></textarea></div>
+        <div class="admin-form-group"><label class="admin-form-label">Category *</label><select id="productCategory" class="admin-form-input" required><option value="">Select Category</option><option value="CC">Color Correction</option><option value="Animation">Animation</option><option value="Presets">Presets</option><option value="Plugins">Plugins</option><option value="Templates">Templates</option><option value="Tutorials">Tutorials</option><option value="EditingPacks">Editing Packs</option></select></div>
+        <div class="admin-form-group"><label class="admin-form-label">Product Type *</label><select id="productType" class="admin-form-input" required><option value="free">Free</option><option value="paid">Paid</option></select></div>
+        <div class="admin-form-group price-container" id="priceFields" style="display: none;"><div><label class="admin-form-label">Original Price</label><input type="text" id="originalPrice" class="admin-form-input" placeholder="$99.99"></div><div><label class="admin-form-label">Current Price *</label><input type="text" id="currentPrice" class="admin-form-input" placeholder="$49.99" required></div></div>
+        <div class="admin-settings-section" id="adminSettingsSection"><h3>Admin Settings</h3><div class="admin-form-group"><label class="admin-form-label">Telegram Link for Paid Products</label><input type="url" id="adminTelegramLink" class="admin-form-input" placeholder="https://t.me/eclipsia_techs"></div></div>
+        <div class="admin-form-group"><label class="admin-form-label">Image Aspect Ratio *</label><div class="image-size-selector"><div class="image-size-option selected" data-ratio="16:9">16:9 (Default)</div><div class="image-size-option" data-ratio="1:1">1:1 (Square)</div><div class="image-size-option" data-ratio="4:3">4:3 (Classic)</div></div></div>
+        <div class="admin-form-group"><label class="admin-form-label">Product Images (Local Upload, max 5) *</label><div class="image-urls-container" id="imageUrlsContainer"></div><button type="button" class="add-image-btn" onclick="addImageFileField()"><i class="fa-solid fa-plus"></i> Add Another Image</button></div>
+        <div class="admin-form-group"><label class="admin-form-label">Video Preview URL (Optional)</label><input type="url" id="videoUrl" class="admin-form-input" placeholder="https://files.catbox.moe/example.mp4"></div>
+        <div class="admin-form-group"><label class="admin-form-label">Download Link *</label><input type="url" id="downloadLink" class="admin-form-input" placeholder="https://drive.google.com/file/..." required></div>
+        <div class="admin-form-group"><label class="admin-form-label">Usage Instructions</label><textarea id="usageInstructions" class="admin-form-input admin-form-textarea" placeholder="How to use this product..."></textarea></div>
+        <div class="admin-form-buttons"><button type="submit" class="admin-form-submit" id="uploadSubmitBtn" disabled><i class="fas fa-upload"></i> Upload Product</button><button type="button" class="admin-form-cancel" onclick="closeUploadModal()">Cancel</button></div>
       </form>
-
-      <div class="admin-products-section" id="adminProductsSection" style="display: none;">
-        <h3>Manage Products</h3>
-        <div class="admin-products-list" id="adminProductsList">
-          <div style="text-align: center; color: var(--color-text-muted); padding: 20px;">
-            Loading products...
-          </div>
-        </div>
-      </div>
+      <div class="admin-products-section" id="adminProductsSection" style="display: none;"><h3>Manage Products</h3><div class="admin-products-list" id="adminProductsList"><div style="text-align: center; color: var(--color-text-muted); padding: 20px;">Loading products...</div></div></div>
     </div>
   </div>
 
   <!-- Main Content -->
   <div class="main-content" id="mainContent">
-    <div class="market-header">
-      <h1>Motion-Flow Creative Market</h1>
-      <p>Discover amazing After Effects projects, templates, and tools from our creative community</p>
-    </div>
-    
+    <div class="market-header"><h1>Motion-Flow Creative Market</h1><p>Discover amazing After Effects projects, templates, and tools from our creative community</p></div>
     <div class="search-filter-section">
-      <div class="search-container">
-        <label class="filter-label">Search Products</label>
-        <div class="search-box">
-          <input type="text" class="search-input" id="searchInput" placeholder="Search by name, description, or creator...">
-          <button class="search-btn" id="searchBtn">Search</button>
-        </div>
-      </div>
-      
-      <div class="filter-container">
-        <label class="filter-label">Filter by Category</label>
-        <div class="custom-select-filter">
-          <div class="select-trigger-filter" id="categoryTrigger">
-            <span class="placeholder">All Categories</span>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="select-dropdown-filter" id="categoryDropdown">
-            <div class="select-option-filter" data-value="all">All Categories</div>
-            <div class="select-option-filter" data-value="CC">Color Correction</div>
-            <div class="select-option-filter" data-value="Animation">Animation</div>
-            <div class="select-option-filter" data-value="Presets">Presets</div>
-            <div class="select-option-filter" data-value="Plugins">Plugins</div>
-            <div class="select-option-filter" data-value="Templates">Templates</div>
-            <div class="select-option-filter" data-value="Tutorials">Tutorials</div>
-            <div class="select-option-filter" data-value="EditingPacks">Editing Packs</div>
-          </div>
-        </div>
-      </div>
+      <div class="search-container"><label class="filter-label">Search Products</label><div class="search-box"><input type="text" class="search-input" id="searchInput" placeholder="Search by name, description, or creator..."><button class="search-btn" id="searchBtn">Search</button></div></div>
+      <div class="filter-container"><label class="filter-label">Filter by Category</label><div class="custom-select-filter"><div class="select-trigger-filter" id="categoryTrigger"><span class="placeholder">All Categories</span><i class="fas fa-chevron-down"></i></div><div class="select-dropdown-filter" id="categoryDropdown"><div class="select-option-filter" data-value="all">All Categories</div><div class="select-option-filter" data-value="CC">Color Correction</div><div class="select-option-filter" data-value="Animation">Animation</div><div class="select-option-filter" data-value="Presets">Presets</div><div class="select-option-filter" data-value="Plugins">Plugins</div><div class="select-option-filter" data-value="Templates">Templates</div><div class="select-option-filter" data-value="Tutorials">Tutorials</div><div class="select-option-filter" data-value="EditingPacks">Editing Packs</div></div></div></div>
     </div>
-    
-    <div class="market-container" id="marketContainer">
-      <div class="loading-container">
-        <div class="loading-spinner"></div>
-        <div class="loading-text">Loading products...</div>
-      </div>
-    </div>
+    <div class="market-container" id="marketContainer"><div class="loading-container"><div class="loading-spinner"></div><div class="loading-text">Loading products...</div></div></div>
   </div>
 
   <!-- Bottom Navigation -->
   <nav class="bottom-nav">
-    <a href="homepage.html" class="nav-item active">
-      <i class="fa-solid fa-house"></i>
-      <span>Home</span>
-    </a>
-    
-    <a href="updates/updates.html" class="nav-item">
-      <i class="fa-solid fa-bell"></i>
-      <span>Updates</span>
-      <div class="notification-dot" id="updates-notification"></div>
-    </a>
-    
-    <a href="Live_Chat/live.html" class="nav-item">
-      <i class="fa-solid fa-comments"></i>
-      <span>Live Chat</span>
-      <div class="notification-dot" id="livechat-notification"></div>
-    </a>
-    
-    <a href="profile/profile.html" class="nav-item">
-      <i class="fa-solid fa-user"></i>
-      <span>profile</span>
-    </a>
+    <a href="homepage.html" class="nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+    <a href="updates/updates.html" class="nav-item"><i class="fa-solid fa-bell"></i><span>Updates</span><div class="notification-dot" id="updates-notification"></div></a>
+    <a href="Live_Chat/live.html" class="nav-item"><i class="fa-solid fa-comments"></i><span>Live Chat</span><div class="notification-dot" id="livechat-notification"></div></a>
+    <a href="profile/profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>profile</span></a>
   </nav>
 
   <!-- Toast Notification -->
-  <div class="toast" id="toast">
-    <i class="fas fa-check-circle" id="toastIcon"></i>
-    <span id="toastMessage">Copied to clipboard!</span>
-  </div>
+  <div class="toast" id="toast"><i class="fas fa-check-circle" id="toastIcon"></i><span id="toastMessage">Copied to clipboard!</span></div>
 
   <!-- Info Dialog -->
-  <div class="info-dialog" id="infoDialog">
-    <div class="info-content" id="infoContent">
-    </div>
-  </div>
+  <div class="info-dialog" id="infoDialog"><div class="info-content" id="infoContent"></div></div>
 
   <!-- Activation Dialog -->
-  <div class="admin-modal-overlay" id="activationModal">
-    <div class="admin-modal-content" id="activationContent">
-    </div>
-  </div>
+  <div class="admin-modal-overlay" id="activationModal"><div class="admin-modal-content" id="activationContent"></div></div>
 
   <!-- Delete Confirmation Dialog -->
-  <div class="admin-modal-overlay" id="deleteConfirmationModal">
-    <div class="admin-modal-content" id="deleteConfirmationContent">
-    </div>
-  </div>
+  <div class="admin-modal-overlay" id="deleteConfirmationModal"><div class="admin-modal-content" id="deleteConfirmationContent"></div></div>
 
   <!-- Logout Dialog -->
   <div class="logout-dialog" id="logoutDialog">
-    <div class="logout-content">
-      <h2>Logout Confirmation</h2>
-      <p>Are you sure you want to logout of your account?</p>
-      <div class="logout-buttons">
-        <button class="logout-confirm-btn" id="logoutConfirm">Yes, Logout</button>
-        <button class="logout-cancel-btn" id="logoutCancel">Cancel</button>
-      </div>
-    </div>
+    <div class="logout-content"><h2>Logout Confirmation</h2><p>Are you sure you want to logout of your account?</p><div class="logout-buttons"><button class="logout-confirm-btn" id="logoutConfirm">Yes, Logout</button><button class="logout-cancel-btn" id="logoutCancel">Cancel</button></div></div>
   </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { ref, set, getDatabase, push, onValue, get, update, remove } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
     import { onAuthStateChanged, getAuth, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCy5uQGcg1cALqFSa1xAQOL6lX8Gz5nFNU",
@@ -2553,6 +1890,7 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getDatabase();
+    const firestore = getFirestore(app);
 
     // DOM Elements
     const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -2595,16 +1933,15 @@
     const deleteConfirmationContent = document.getElementById('deleteConfirmationContent');
     const successPopup = document.getElementById('successPopup');
     const uploadModalTitle = document.getElementById('uploadModalTitle');
-    
     const logoutDialog = document.getElementById('logoutDialog');
     const logoutConfirm = document.getElementById('logoutConfirm');
     const logoutCancel = document.getElementById('logoutCancel');
-    
     const liveChatNotification = document.getElementById('livechat-notification');
     const updatesNotification = document.getElementById('updates-notification');
 
     // Global State
     let currentUserId = null;
+    let currentUserData = null;
     let allToolsData = [];
     let sidebarOpen = false;
     let currentFilterCategory = 'all';
@@ -2619,13 +1956,10 @@
     let currentEditProductId = null;
     let originalFormData = {};
     let hasUnsavedChanges = false;
-    let imageFiles = new Map(); // Store file data by field ID
-    
     let viewerImages = [];
     let viewerCurrentIndex = 0;
     let touchStartX = 0;
     let touchEndX = 0;
-
     let lastReadTimestamp = 0;
     let unreadCount = 0;
     let liveChatListener = null;
@@ -2633,7 +1967,7 @@
     const ADMIN_EMAIL = "motionflow.admins@gmail.com";
     const ADMIN_PASSWORD = "MOTION-FLOW-ADMIN";
 
-    // Password visibility toggle
+    // Password toggle
     if (adminPasswordToggle) {
       adminPasswordToggle.addEventListener('click', function() {
         const type = adminPassword.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -2642,17 +1976,24 @@
       });
     }
 
-    // Helper: Convert URLs in text to clickable links
     function linkify(text) {
       if (!text) return '';
       const urlRegex = /(https?:\/\/[^\s]+)/g;
       return text.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
     }
 
-    // Check for form changes
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      });
+    }
+
     function checkFormChanges() {
       if (!currentEditProductId) {
-        // For new products, enable if required fields are filled
         const hasRequired = document.getElementById('productName').value.trim() &&
                            document.getElementById('productDescription').value.trim() &&
                            document.getElementById('productCategory').value &&
@@ -2661,8 +2002,6 @@
         uploadSubmitBtn.disabled = !hasRequired;
         return;
       }
-      
-      // For editing, compare with original data
       const currentData = {
         adminName: document.getElementById('adminName').value.trim(),
         productName: document.getElementById('productName').value.trim(),
@@ -2676,25 +2015,14 @@
         currentPrice: document.getElementById('currentPrice')?.value.trim() || '',
         imageAspectRatio: imageAspectRatio
       };
-      
-      // Check if any field changed
       let changed = false;
-      for (let key in currentData) {
-        if (currentData[key] !== originalFormData[key]) {
-          changed = true;
-          break;
-        }
-      }
-      
-      // Also check if new images were added
+      for (let key in currentData) if (currentData[key] !== originalFormData[key]) { changed = true; break; }
       const fileInputs = document.querySelectorAll('.file-input-hidden');
       const hasNewImages = Array.from(fileInputs).some(input => input.files[0]);
-      
       hasUnsavedChanges = changed || hasNewImages;
       uploadSubmitBtn.disabled = !hasUnsavedChanges;
     }
 
-    // Save original form data for edit mode
     function saveOriginalFormData() {
       originalFormData = {
         adminName: document.getElementById('adminName').value.trim(),
@@ -2713,61 +2041,27 @@
       uploadSubmitBtn.disabled = true;
     }
 
-    // Setup form change listeners
     function setupFormChangeListeners() {
-      const formInputs = [
-        'adminName', 'productName', 'productDescription', 'productCategory',
-        'productType', 'videoUrl', 'downloadLink', 'usageInstructions',
-        'originalPrice', 'currentPrice'
-      ];
-      
-      formInputs.forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.addEventListener('input', checkFormChanges);
-          element.addEventListener('change', checkFormChanges);
-        }
-      });
-      
-      // Watch for image file changes
-      document.addEventListener('change', (e) => {
-        if (e.target.classList.contains('file-input-hidden')) {
-          checkFormChanges();
-        }
-      });
+      const formInputs = ['adminName', 'productName', 'productDescription', 'productCategory', 'productType', 'videoUrl', 'downloadLink', 'usageInstructions', 'originalPrice', 'currentPrice'];
+      formInputs.forEach(id => { const el = document.getElementById(id); if (el) { el.addEventListener('input', checkFormChanges); el.addEventListener('change', checkFormChanges); } });
+      document.addEventListener('change', (e) => { if (e.target.classList.contains('file-input-hidden')) checkFormChanges(); });
     }
 
     window.triggerDirectDownload = (url, productName) => {
       try {
-        if (!url || url === '#') {
-          showToast('Download link not available', 'error');
-          return;
-        }
-        
+        if (!url || url === '#') { showToast('Download link not available', 'error'); return; }
         const link = document.createElement('a');
         link.href = url;
-        
-        const safeName = productName
-          .replace(/[^a-z0-9\s-]/gi, '_')
-          .replace(/\s+/g, '_')
-          .toLowerCase()
-          .substring(0, 50);
-        
-        const fileName = `${safeName}.zip`;
-        
-        link.download = fileName;
+        const safeName = productName.replace(/[^a-z0-9\s-]/gi, '_').replace(/\s+/g, '_').toLowerCase().substring(0, 50);
+        link.download = `${safeName}.zip`;
         link.target = '_blank';
-        
         document.body.appendChild(link);
         link.click();
         setTimeout(() => document.body.removeChild(link), 100);
-        
-        showToast(`Downloading ${productName} as ${fileName}`, 'success');
-        return fileName;
+        showToast(`Downloading ${productName} as ${safeName}.zip`, 'success');
       } catch (error) {
         window.open(url, '_blank');
         showToast(`Downloading ${productName}`, 'success');
-        return null;
       }
     };
 
@@ -2780,11 +2074,9 @@
     }
 
     function showSuccessPopup(message) {
-      const messageElement = successPopup.querySelector('.success-message');
-      messageElement.textContent = message;
+      successPopup.querySelector('.success-message').textContent = message;
       successPopup.classList.add('active');
     }
-
     window.closeSuccessPopup = () => successPopup.classList.remove('active');
 
     function showUploadStatus(message, type = 'loading') {
@@ -2792,60 +2084,28 @@
       uploadStatusText.textContent = message;
       uploadStatus.style.display = 'flex';
     }
+    function hideUploadStatus() { uploadStatus.style.display = 'none'; uploadStatus.className = 'upload-status'; }
 
-    function hideUploadStatus() {
-      uploadStatus.style.display = 'none';
-      uploadStatus.className = 'upload-status';
-    }
-
-    function showLogoutDialog() {
-      logoutDialog.classList.add('active');
-    }
-
-    function closeLogoutDialog() {
-      logoutDialog.classList.remove('active');
-    }
+    function showLogoutDialog() { logoutDialog.classList.add('active'); }
+    function closeLogoutDialog() { logoutDialog.classList.remove('active'); }
 
     async function confirmLogout() {
-      try {
-        if (liveChatListener) liveChatListener();
-        await signOut(auth);
-        window.location.href = "index.html";
-      } catch (error) {
-        showToast("Logout failed: " + error.message, "error");
-        closeLogoutDialog();
-      }
+      try { if (liveChatListener) liveChatListener(); await signOut(auth); window.location.href = "index.html"; }
+      catch (error) { showToast("Logout failed: " + error.message, "error"); closeLogoutDialog(); }
     }
-
     logoutConfirm.addEventListener('click', confirmLogout);
     logoutCancel.addEventListener('click', closeLogoutDialog);
-    logoutDialog.addEventListener('click', (e) => {
-      if (e.target === logoutDialog) closeLogoutDialog();
-    });
+    logoutDialog.addEventListener('click', (e) => { if (e.target === logoutDialog) closeLogoutDialog(); });
 
     brandLogo.addEventListener('click', () => {
       adminClickCount++;
       if (adminClickTimer) clearTimeout(adminClickTimer);
       adminClickTimer = setTimeout(() => adminClickCount = 0, 2000);
-      if (adminClickCount >= 3) {
-        adminClickCount = 0;
-        clearTimeout(adminClickTimer);
-        openAdminLogin();
-      }
+      if (adminClickCount >= 3) { adminClickCount = 0; clearTimeout(adminClickTimer); openAdminLogin(); }
     });
 
-    function openAdminLogin() {
-      adminLoginModal.classList.add('active');
-      adminEmail.focus();
-    }
-
-    function closeAdminModal() {
-      adminLoginModal.classList.remove('active');
-      adminEmail.value = '';
-      adminPassword.value = '';
-      admin2FACode.value = '';
-      twoFactorSection.style.display = 'none';
-    }
+    function openAdminLogin() { adminLoginModal.classList.add('active'); adminEmail.focus(); }
+    function closeAdminModal() { adminLoginModal.classList.remove('active'); adminEmail.value = ''; adminPassword.value = ''; admin2FACode.value = ''; twoFactorSection.style.display = 'none'; }
 
     async function openUploadModal() {
       adminUploadModal.classList.add('active');
@@ -2868,94 +2128,45 @@
     }
 
     async function loadAdminTelegramLink() {
-      try {
-        const snapshot = await get(ref(db, 'admin/telegramLink'));
-        if (snapshot.exists()) {
-          adminTelegramLink = snapshot.val();
-          adminTelegramLinkInput.value = adminTelegramLink;
-        }
-      } catch (error) {
-        console.error('Error loading Telegram link:', error);
-      }
+      try { const snap = await get(ref(db, 'admin/telegramLink')); if (snap.exists()) { adminTelegramLink = snap.val(); adminTelegramLinkInput.value = adminTelegramLink; } }
+      catch (error) { console.error('Error loading Telegram link:', error); }
     }
 
     async function saveAdminTelegramLink() {
       const link = adminTelegramLinkInput.value.trim();
-      if (link) {
-        try {
-          await set(ref(db, 'admin/telegramLink'), link);
-          adminTelegramLink = link;
-        } catch (error) {
-          console.error('Error saving Telegram link:', error);
-        }
-      }
+      if (link) { try { await set(ref(db, 'admin/telegramLink'), link); adminTelegramLink = link; } catch (error) { console.error('Error saving Telegram link:', error); } }
     }
 
     adminLoginSubmit.addEventListener('click', async () => {
       const email = adminEmail.value.trim();
       const password = adminPassword.value.trim();
       const twoFACode = admin2FACode.value.trim();
-
-      if (!email || !password) {
-        showToast('Please enter email and password', 'error');
-        return;
-      }
-
-      if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) {
-        showToast('Wrong login info.', 'error');
-        return;
-      }
-
-      if (twoFactorSection.style.display === 'none') {
-        twoFactorSection.style.display = 'block';
-        admin2FACode.focus();
-        showToast('Please enter 2FA access code', 'info');
-        return;
-      }
-
-      if (!twoFACode) {
-        showToast('Please enter 2FA access code', 'error');
-        return;
-      }
-
+      if (!email || !password) { showToast('Please enter email and password', 'error'); return; }
+      if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) { showToast('Wrong login info.', 'error'); return; }
+      if (twoFactorSection.style.display === 'none') { twoFactorSection.style.display = 'block'; admin2FACode.focus(); showToast('Please enter 2FA access code', 'info'); return; }
+      if (!twoFACode) { showToast('Please enter 2FA access code', 'error'); return; }
       const originalText = adminLoginSubmit.innerHTML;
       adminLoginSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
       adminLoginSubmit.disabled = true;
-
       try {
-        const snapshot = await get(ref(db, 'admin/accessCode'));
-        if (snapshot.exists() && snapshot.val() === twoFACode) {
-          isAdmin = true;
-          closeAdminModal();
-          showToast('Admin login successful!', 'success');
-          setTimeout(() => openUploadModal(), 500);
-        } else {
-          showToast('Invalid Access Code.', 'error');
-        }
-      } catch (error) {
-        showToast('Error verifying access code', 'error');
-      } finally {
-        adminLoginSubmit.innerHTML = originalText;
-        adminLoginSubmit.disabled = false;
-      }
+        const snap = await get(ref(db, 'admin/accessCode'));
+        if (snap.exists() && snap.val() === twoFACode) { isAdmin = true; closeAdminModal(); showToast('Admin login successful!', 'success'); setTimeout(() => openUploadModal(), 500); }
+        else { showToast('Invalid Access Code.', 'error'); }
+      } catch (error) { showToast('Error verifying access code', 'error'); }
+      finally { adminLoginSubmit.innerHTML = originalText; adminLoginSubmit.disabled = false; }
     });
 
     productType.addEventListener('change', () => {
-      if (productType.value === 'paid') {
-        priceFields.style.display = 'grid';
-        document.getElementById('currentPrice').required = true;
-      } else {
-        priceFields.style.display = 'none';
-        document.getElementById('currentPrice').required = false;
-      }
+      if (productType.value === 'paid') { priceFields.style.display = 'grid'; document.getElementById('currentPrice').required = true; }
+      else { priceFields.style.display = 'none'; document.getElementById('currentPrice').required = false; }
       checkFormChanges();
     });
 
-    document.querySelectorAll('.image-size-option').forEach(option => {
-      option.addEventListener('click', () => {
-        document.querySelectorAll('.image-size-option').forEach(opt => opt.classList.remove('selected'));
-        option.classList.add('selected');
-        imageAspectRatio = option.dataset.ratio;
+    document.querySelectorAll('.image-size-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.image-size-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        imageAspectRatio = opt.dataset.ratio;
         checkFormChanges();
       });
     });
@@ -2969,117 +2180,79 @@
       });
     }
 
-    // Create file input field with preview
     function createFileInputField(removable = true) {
       const wrapper = document.createElement('div');
       wrapper.className = 'file-input-wrapper';
-      
       const fieldId = 'imageFile_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
-      
-      // Preview container
       const previewDiv = document.createElement('div');
       previewDiv.className = 'file-preview';
       previewDiv.id = 'preview_' + fieldId;
       previewDiv.innerHTML = '<i class="fas fa-image"></i>';
-      
-      // Input controls container
       const controlDiv = document.createElement('div');
       controlDiv.className = 'file-input-control';
-      
       const inputId = fieldId + '_input';
-      
       const label = document.createElement('label');
       label.className = 'file-input-label';
       label.setAttribute('for', inputId);
       label.innerHTML = '<i class="fas fa-folder-open"></i> Choose Image';
-      
       const input = document.createElement('input');
       input.type = 'file';
       input.id = inputId;
       input.className = 'file-input-hidden';
       input.accept = 'image/*';
-      
       const fileNameSpan = document.createElement('div');
       fileNameSpan.className = 'file-name';
       fileNameSpan.id = 'filename_' + fieldId;
       fileNameSpan.textContent = 'No file chosen';
-      
       input.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
           fileNameSpan.textContent = file.name;
-          
-          // Show image preview
           const reader = new FileReader();
-          reader.onload = (event) => {
-            previewDiv.innerHTML = `<img src="${event.target.result}" alt="Preview">`;
-          };
+          reader.onload = (event) => { previewDiv.innerHTML = `<img src="${event.target.result}" alt="Preview">`; };
           reader.readAsDataURL(file);
-        } else {
-          fileNameSpan.textContent = 'No file chosen';
-          previewDiv.innerHTML = '<i class="fas fa-image"></i>';
-        }
+        } else { fileNameSpan.textContent = 'No file chosen'; previewDiv.innerHTML = '<i class="fas fa-image"></i>'; }
         checkFormChanges();
       });
-      
       controlDiv.appendChild(input);
       controlDiv.appendChild(label);
       controlDiv.appendChild(fileNameSpan);
-      
       wrapper.appendChild(previewDiv);
       wrapper.appendChild(controlDiv);
-      
-      // Remove button
       if (removable) {
         const removeBtn = document.createElement('button');
         removeBtn.type = 'button';
         removeBtn.className = 'remove-image-btn';
         removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
-        removeBtn.onclick = () => {
-          wrapper.remove();
-          imageFileCount--;
-          checkFormChanges();
-        };
+        removeBtn.onclick = () => { wrapper.remove(); imageFileCount--; checkFormChanges(); };
         wrapper.appendChild(removeBtn);
       }
-      
       return { wrapper, input, fieldId };
     }
 
     window.addImageFileField = function() {
-      if (imageFileCount >= 5) {
-        showToast('Maximum 5 images allowed', 'error');
-        return;
-      }
-      
+      if (imageFileCount >= 5) { showToast('Maximum 5 images allowed', 'error'); return; }
       const { wrapper } = createFileInputField();
       imageUrlsContainer.appendChild(wrapper);
       imageFileCount++;
     };
 
-    // Update image preview from existing Base64 (for edit mode)
     function setImagePreviewFromBase64(fieldId, base64) {
       const previewDiv = document.getElementById('preview_' + fieldId);
-      if (previewDiv) {
-        previewDiv.innerHTML = `<img src="${base64}" alt="Preview">`;
-      }
+      if (previewDiv) previewDiv.innerHTML = `<img src="${base64}" alt="Preview">`;
     }
 
     function resetUploadForm() {
       productUploadForm.reset();
-      
       imageUrlsContainer.innerHTML = '';
       const { wrapper } = createFileInputField(true);
       imageUrlsContainer.appendChild(wrapper);
       imageFileCount = 1;
-      
       priceFields.style.display = 'none';
       document.getElementById('currentPrice').required = false;
-      
-      document.querySelectorAll('.image-size-option').forEach(opt => opt.classList.remove('selected'));
+      document.querySelectorAll('.image-size-option').forEach(o => o.classList.remove('selected'));
       document.querySelector('.image-size-option[data-ratio="16:9"]').classList.add('selected');
       imageAspectRatio = '16:9';
-      
       uploadSubmitBtn.innerHTML = '<i class="fas fa-upload"></i> Upload Product';
       uploadSubmitBtn.disabled = true;
       currentEditProductId = null;
@@ -3096,203 +2269,77 @@
 
     async function loadAdminProducts() {
       try {
-        const snapshot = await get(ref(db, 'tools'));
+        const snap = await get(ref(db, 'tools'));
         adminProductsList.innerHTML = '';
-        
-        if (snapshot.exists()) {
-          const products = snapshot.val();
+        if (snap.exists()) {
+          const products = snap.val();
           adminProducts = [];
-          
-          Object.keys(products).forEach(productKey => {
-            const product = products[productKey];
-            if (!product) return;
-            
-            adminProducts.push({ id: productKey, ...product });
-            
-            const productItem = document.createElement('div');
-            productItem.className = 'admin-product-item';
-            
-            let activeKeyHtml = '';
-            if (product.activeKey) {
-              activeKeyHtml = `
-                <div class="admin-product-code" onclick="copyToClipboard('${product.activeKey}', 'Activation key copied!')">
-                  <i class="fas fa-key"></i> Code: ${product.activeKey}
-                </div>
-              `;
-            }
-            
-            productItem.innerHTML = `
-              <div class="admin-product-info">
-                <div class="admin-product-name">${product.name || 'Unnamed Product'}</div>
-                <div class="admin-product-id">ID: ${productKey.substring(0, 8)}...</div>
-                <div class="admin-product-details">
-                  <div class="admin-product-type">Type: ${product.type === 'paid' ? 'Paid' : 'Free'}</div>
-                  ${activeKeyHtml}
-                </div>
-              </div>
-              <div class="admin-product-actions">
-                ${product.type === 'paid' ? `
-                  <button class="admin-product-generate-key" onclick="generateActivationKeyForProduct('${productKey}', '${product.name || 'this product'}')">
-                    <i class="fas fa-key"></i> Generate Key
-                  </button>
-                ` : ''}
-                <button class="admin-product-edit" onclick="editProduct('${productKey}')">
-                  <i class="fas fa-edit"></i> Edit
-                </button>
-                <button class="admin-product-delete" onclick="showDeleteConfirmation('${productKey}', '${product.name || 'this product'}')">
-                  <i class="fas fa-trash"></i> Delete
-                </button>
-              </div>
-            `;
-            
-            adminProductsList.appendChild(productItem);
+          Object.keys(products).forEach(key => {
+            const p = products[key];
+            if (!p) return;
+            adminProducts.push({ id: key, ...p });
+            const item = document.createElement('div');
+            item.className = 'admin-product-item';
+            item.innerHTML = `<div class="admin-product-info"><div class="admin-product-name">${p.name || 'Unnamed'}</div><div class="admin-product-id">ID: ${key.substring(0,8)}...</div></div><div class="admin-product-actions">${p.type==='paid'?`<button class="admin-product-generate-key" onclick="generateActivationKeyForProduct('${key}','${p.name||'this product'}')"><i class="fas fa-key"></i> Generate Key</button>`:''}<button class="admin-product-edit" onclick="editProduct('${key}')"><i class="fas fa-edit"></i> Edit</button><button class="admin-product-delete" onclick="showDeleteConfirmation('${key}','${p.name||'this product'}')"><i class="fas fa-trash"></i> Delete</button></div>`;
+            adminProductsList.appendChild(item);
           });
-        } else {
-          adminProductsList.innerHTML = '<div style="text-align: center; color: var(--color-text-muted); padding: 20px;">No products uploaded yet</div>';
-        }
-      } catch (error) {
-        adminProductsList.innerHTML = '<div style="text-align: center; color: var(--color-error); padding: 20px;">Error loading products. Please try again.</div>';
-      }
+        } else { adminProductsList.innerHTML = '<div style="text-align:center;color:var(--color-text-muted);padding:20px;">No products uploaded yet</div>'; }
+      } catch (e) { adminProductsList.innerHTML = '<div style="text-align:center;color:var(--color-error);padding:20px;">Error loading products</div>'; }
     }
 
     window.showDeleteConfirmation = function(productId, productName) {
-      deleteConfirmationContent.innerHTML = `
-        <div class="delete-confirmation">
-          <div class="delete-icon"><i class="fas fa-trash-alt"></i></div>
-          <h2 class="delete-title">Delete Product</h2>
-          <p class="delete-message">Are you sure you want to delete this product? This action cannot be undone.</p>
-          <div class="product-to-delete">
-            <h4>Product to delete:</h4>
-            <p><strong>Name:</strong> ${productName}</p>
-            <p><strong>ID:</strong> ${productId.substring(0, 12)}...</p>
-            <p style="color: var(--color-warning); margin-top: 10px;">
-              <i class="fas fa-exclamation-triangle"></i> This will also delete any activation keys associated with this product.
-            </p>
-          </div>
-          <div class="admin-form-buttons">
-            <button class="admin-form-submit" style="background: linear-gradient(135deg, var(--color-error), #dc2626);" onclick="confirmDeleteProduct('${productId}', '${productName}')">
-              <i class="fas fa-trash"></i> Yes, Delete Product
-            </button>
-            <button class="admin-form-cancel" onclick="closeDeleteConfirmation()">
-              <i class="fas fa-times"></i> Cancel
-            </button>
-          </div>
-        </div>
-      `;
+      deleteConfirmationContent.innerHTML = `<div class="delete-confirmation"><div class="delete-icon"><i class="fas fa-trash-alt"></i></div><h2 class="delete-title">Delete Product</h2><p class="delete-message">Are you sure you want to delete "${productName}"?</p><div class="admin-form-buttons"><button class="admin-form-submit" style="background:#dc2626" onclick="confirmDeleteProduct('${productId}','${productName}')">Delete</button><button class="admin-form-cancel" onclick="closeDeleteConfirmation()">Cancel</button></div></div>`;
       deleteConfirmationModal.classList.add('active');
     };
-
     window.closeDeleteConfirmation = () => deleteConfirmationModal.classList.remove('active');
-
     window.confirmDeleteProduct = async function(productId, productName) {
-      try {
-        await remove(ref(db, `tools/${productId}`));
-        closeDeleteConfirmation();
-        showToast(`"${productName}" deleted successfully`, 'success');
-        loadAdminProducts();
-        loadMarketData();
-      } catch (error) {
-        showToast('Error deleting product: ' + error.message, 'error');
-      }
+      try { await remove(ref(db, `tools/${productId}`)); closeDeleteConfirmation(); showToast(`"${productName}" deleted`, 'success'); loadAdminProducts(); loadMarketData(); }
+      catch (e) { showToast('Error: ' + e.message, 'error'); }
     };
 
     window.generateActivationKeyForProduct = async function(productId, productName) {
-      if (!isAdmin) {
-        showToast('Admin access required', 'error');
-        return;
-      }
-      const activationKey = generateActivationKey();
-      try {
-        await set(ref(db, `tools/${productId}/activeKey`), activationKey);
-        loadAdminProducts();
-        showToast(`Activation key generated! Click on the code to copy it.`, 'success');
-      } catch (error) {
-        showToast('Error generating activation key', 'error');
-      }
+      if (!isAdmin) { showToast('Admin access required', 'error'); return; }
+      try { await set(ref(db, `tools/${productId}/activeKey`), generateActivationKey()); loadAdminProducts(); showToast('Key generated!', 'success'); }
+      catch (e) { showToast('Error generating key', 'error'); }
     };
 
     window.editProduct = function(productId) {
-      const product = adminProducts.find(p => p.id === productId);
-      if (product) {
+      const p = adminProducts.find(x => x.id === productId);
+      if (p) {
         currentEditProductId = productId;
-        
-        document.getElementById('adminName').value = product.adminName || product.uploaderName || '';
-        document.getElementById('productName').value = product.name || '';
-        document.getElementById('productDescription').value = product.description || '';
-        document.getElementById('productCategory').value = product.category || '';
-        document.getElementById('productType').value = product.type || 'free';
-        
-        if (product.type === 'paid') {
-          priceFields.style.display = 'grid';
-          document.getElementById('originalPrice').value = product.originalPrice || '';
-          document.getElementById('currentPrice').value = product.price || '';
-          document.getElementById('currentPrice').required = true;
-        } else {
-          priceFields.style.display = 'none';
-          document.getElementById('currentPrice').required = false;
-        }
-        
-        const aspectRatio = product.imageAspectRatio || '16:9';
-        document.querySelectorAll('.image-size-option').forEach(opt => {
-          opt.classList.remove('selected');
-          if (opt.dataset.ratio === aspectRatio) opt.classList.add('selected');
-        });
-        imageAspectRatio = aspectRatio;
-        
-        // Clear and rebuild image container
+        document.getElementById('adminName').value = p.adminName || p.uploaderName || '';
+        document.getElementById('productName').value = p.name || '';
+        document.getElementById('productDescription').value = p.description || '';
+        document.getElementById('productCategory').value = p.category || '';
+        document.getElementById('productType').value = p.type || 'free';
+        if (p.type === 'paid') { priceFields.style.display = 'grid'; document.getElementById('originalPrice').value = p.originalPrice || ''; document.getElementById('currentPrice').value = p.price || ''; document.getElementById('currentPrice').required = true; }
+        else { priceFields.style.display = 'none'; }
+        document.querySelectorAll('.image-size-option').forEach(o => { o.classList.remove('selected'); if (o.dataset.ratio === (p.imageAspectRatio||'16:9')) o.classList.add('selected'); });
+        imageAspectRatio = p.imageAspectRatio || '16:9';
         imageUrlsContainer.innerHTML = '';
         imageFileCount = 0;
-        
-        // Show existing images with preview (non-removable placeholders for edit mode)
-        if (product.images && Array.isArray(product.images)) {
-          product.images.forEach((base64, index) => {
+        if (p.images && Array.isArray(p.images)) {
+          p.images.forEach((b64) => {
             const { wrapper, fieldId } = createFileInputField(false);
             imageUrlsContainer.appendChild(wrapper);
             imageFileCount++;
-            
-            // Set preview from Base64
-            setTimeout(() => setImagePreviewFromBase64(fieldId, base64), 10);
-            
-            // Add a note that this is existing
-            const note = document.createElement('div');
-            note.style.fontSize = '0.7rem';
-            note.style.color = 'var(--color-text-muted)';
-            note.style.marginTop = '5px';
-            note.style.gridColumn = '1 / -1';
-            note.innerHTML = '<i class="fas fa-check-circle" style="color: var(--color-success);"></i> Existing image (upload new to replace)';
-            wrapper.appendChild(note);
+            setTimeout(() => setImagePreviewFromBase64(fieldId, b64), 10);
           });
         }
-        
-        // Add one empty field for new images
-        if (imageFileCount < 5) {
-          const { wrapper } = createFileInputField(true);
-          imageUrlsContainer.appendChild(wrapper);
-          imageFileCount++;
-        }
-        
-        document.getElementById('videoUrl').value = product.videoPreview || '';
-        document.getElementById('downloadLink').value = product.downloadLink || '';
-        document.getElementById('usageInstructions').value = product.tool_usage || '';
-        
+        if (imageFileCount < 5) { const { wrapper } = createFileInputField(true); imageUrlsContainer.appendChild(wrapper); imageFileCount++; }
+        document.getElementById('videoUrl').value = p.videoPreview || '';
+        document.getElementById('downloadLink').value = p.downloadLink || '';
+        document.getElementById('usageInstructions').value = p.tool_usage || '';
         uploadModalTitle.innerHTML = '<i class="fas fa-edit"></i> Edit Product';
         uploadSubmitBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
-        
-        // Save original data for change detection
         saveOriginalFormData();
-        
         showToast('Product loaded for editing', 'success');
       }
     };
 
     productUploadForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
-      if (!currentUserId || !isAdmin) {
-        showToast('Admin access required', 'error');
-        return;
-      }
-
+      if (!currentUserId || !isAdmin) { showToast('Admin access required', 'error'); return; }
       const adminName = document.getElementById('adminName').value.trim();
       const productName = document.getElementById('productName').value.trim();
       const description = document.getElementById('productDescription').value.trim();
@@ -3301,318 +2348,137 @@
       const videoUrl = document.getElementById('videoUrl').value.trim();
       const downloadLink = document.getElementById('downloadLink').value.trim();
       const usageInstructions = document.getElementById('usageInstructions').value.trim();
-      
       const fileInputs = document.querySelectorAll('.file-input-hidden');
-      const imageFiles = Array.from(fileInputs)
-        .map(input => input.files[0])
-        .filter(file => file !== undefined && file !== null);
-      
-      if (!adminName || !productName || !description || !category || !downloadLink) {
-        showToast('Please fill all required fields', 'error');
-        return;
-      }
-
-      if (type === 'paid') {
-        const currentPrice = document.getElementById('currentPrice').value.trim();
-        if (!currentPrice) {
-          showToast('Current price is required for paid products', 'error');
-          return;
-        }
-      }
-
+      const imageFiles = Array.from(fileInputs).map(i => i.files[0]).filter(f => f);
+      if (!adminName || !productName || !description || !category || !downloadLink) { showToast('Fill all required fields', 'error'); return; }
+      if (type === 'paid' && !document.getElementById('currentPrice').value.trim()) { showToast('Current price required', 'error'); return; }
       uploadSubmitBtn.classList.add('loading');
       uploadSubmitBtn.disabled = true;
-      showUploadStatus(currentEditProductId ? 'Saving changes...' : 'Uploading product...', 'loading');
-
+      showUploadStatus(currentEditProductId ? 'Saving...' : 'Uploading...', 'loading');
       try {
         let imageUrls = [];
-        
-        if (imageFiles.length > 0) {
-          showUploadStatus('Processing images...', 'loading');
-          for (const file of imageFiles) {
-            const base64 = await fileToBase64(file);
-            imageUrls.push(base64);
-          }
-        }
-        
-        const productData = {
-          adminName, name: productName, description, category, type,
-          videoPreview: videoUrl || null,
-          downloadLink,
-          tool_usage: usageInstructions || "How to use: Open in After Effects and customize as needed.",
-          uploaderName: adminName,
-          uploaderId: currentUserId,
-          updatedAt: Date.now(),
-          isPaid: type === 'paid',
-          imageAspectRatio
-        };
-
-        if (imageUrls.length > 0) {
-          productData.images = imageUrls;
-        } else if (!currentEditProductId) {
-          showToast('At least one image is required', 'error');
-          uploadSubmitBtn.classList.remove('loading');
-          uploadSubmitBtn.disabled = false;
-          hideUploadStatus();
-          return;
-        }
-
-        if (type === 'paid') {
-          productData.price = document.getElementById('currentPrice').value.trim();
-          const originalPrice = document.getElementById('originalPrice').value.trim();
-          if (originalPrice) productData.originalPrice = originalPrice;
-        } else {
-          productData.price = "Free";
-        }
-
+        if (imageFiles.length > 0) { showUploadStatus('Processing images...', 'loading'); for (const f of imageFiles) imageUrls.push(await fileToBase64(f)); }
+        const productData = { adminName, name: productName, description, category, type, videoPreview: videoUrl || null, downloadLink, tool_usage: usageInstructions || "How to use: Open in After Effects and customize as needed.", uploaderName: adminName, uploaderId: currentUserId, updatedAt: Date.now(), isPaid: type === 'paid', imageAspectRatio };
+        if (imageUrls.length > 0) productData.images = imageUrls;
+        else if (!currentEditProductId) { showToast('At least one image required', 'error'); throw new Error('No images'); }
+        if (type === 'paid') { productData.price = document.getElementById('currentPrice').value.trim(); const op = document.getElementById('originalPrice').value.trim(); if (op) productData.originalPrice = op; }
+        else productData.price = "Free";
         await saveAdminTelegramLink();
-        
         if (currentEditProductId) {
           await update(ref(db, `tools/${currentEditProductId}`), productData);
-          showUploadStatus('Product updated successfully!', 'success');
-          
-          setTimeout(() => {
-            hideUploadStatus();
-            uploadSubmitBtn.disabled = false;
-            uploadSubmitBtn.classList.remove('loading');
-            loadAdminProducts();
-            loadMarketData();
-            closeUploadModal();
-            showSuccessPopup('Product updated successfully!');
-          }, 1500);
+          showUploadStatus('Updated!', 'success');
+          setTimeout(() => { hideUploadStatus(); uploadSubmitBtn.disabled = false; uploadSubmitBtn.classList.remove('loading'); loadAdminProducts(); loadMarketData(); closeUploadModal(); showSuccessPopup('Product updated!'); }, 1500);
         } else {
-          const newProductRef = push(ref(db, 'tools'));
+          const newRef = push(ref(db, 'tools'));
           productData.createdAt = Date.now();
           productData.uploadedAt = Date.now();
-          await set(newProductRef, productData);
-          
-          showUploadStatus('Product uploaded successfully!', 'success');
-          
-          setTimeout(() => {
-            hideUploadStatus();
-            uploadSubmitBtn.disabled = false;
-            uploadSubmitBtn.classList.remove('loading');
-            loadAdminProducts();
-            loadMarketData();
-            resetUploadForm();
-            showSuccessPopup('Product uploaded successfully!');
-          }, 1500);
+          // Initialize view count structure
+          productData.viewCount = { uniqueUsers: {}, totalUniqueViews: 0 };
+          productData.comments = {};
+          await set(newRef, productData);
+          showUploadStatus('Uploaded!', 'success');
+          setTimeout(() => { hideUploadStatus(); uploadSubmitBtn.disabled = false; uploadSubmitBtn.classList.remove('loading'); loadAdminProducts(); loadMarketData(); resetUploadForm(); showSuccessPopup('Product uploaded!'); }, 1500);
         }
-        
-      } catch (error) {
-        uploadSubmitBtn.classList.remove('loading');
-        uploadSubmitBtn.disabled = false;
-        showUploadStatus('Error: ' + error.message, 'error');
-        setTimeout(hideUploadStatus, 3000);
-      }
+      } catch (error) { uploadSubmitBtn.classList.remove('loading'); uploadSubmitBtn.disabled = false; showUploadStatus('Error: ' + error.message, 'error'); setTimeout(hideUploadStatus, 3000); }
     });
 
-    function toggleSidebar() {
-      sidebarOpen = !sidebarOpen;
-      sidebar.classList.toggle('open', sidebarOpen);
-      sidebarOverlay.classList.toggle('active', sidebarOpen);
-    }
-
+    function toggleSidebar() { sidebarOpen = !sidebarOpen; sidebar.classList.toggle('open', sidebarOpen); sidebarOverlay.classList.toggle('active', sidebarOpen); }
     hamburgerBtn.addEventListener('click', toggleSidebar);
     sidebarOverlay.addEventListener('click', toggleSidebar);
 
-    categoryTrigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      categoryTrigger.classList.toggle('active');
-      categoryDropdown.classList.toggle('active');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!categoryTrigger.contains(e.target) && !categoryDropdown.contains(e.target)) {
-        categoryTrigger.classList.remove('active');
-        categoryDropdown.classList.remove('active');
-      }
-    });
-
-    categoryOptions.forEach(option => {
-      option.addEventListener('click', async function() {
-        currentFilterCategory = this.getAttribute('data-value');
-        categoryTrigger.querySelector('.placeholder').textContent = this.textContent;
-        categoryTrigger.classList.remove('active');
-        categoryDropdown.classList.remove('active');
-        showLoadingAnimation();
-        setTimeout(async () => await renderTools(currentFilterCategory, currentSearchQuery), 300);
-      });
-    });
-
-    searchBtn.addEventListener('click', performSearch);
-    searchInput.addEventListener('keyup', (e) => {
-      if (e.key === 'Enter') performSearch();
-    });
-
-    function performSearch() {
-      currentSearchQuery = searchInput.value.trim().toLowerCase();
+    categoryTrigger.addEventListener('click', (e) => { e.stopPropagation(); categoryTrigger.classList.toggle('active'); categoryDropdown.classList.toggle('active'); });
+    document.addEventListener('click', (e) => { if (!categoryTrigger.contains(e.target) && !categoryDropdown.contains(e.target)) { categoryTrigger.classList.remove('active'); categoryDropdown.classList.remove('active'); } });
+    categoryOptions.forEach(opt => opt.addEventListener('click', async function() {
+      currentFilterCategory = this.dataset.value;
+      categoryTrigger.querySelector('.placeholder').textContent = this.textContent;
+      categoryTrigger.classList.remove('active');
+      categoryDropdown.classList.remove('active');
       showLoadingAnimation();
       setTimeout(async () => await renderTools(currentFilterCategory, currentSearchQuery), 300);
-    }
+    }));
+
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') performSearch(); });
+    function performSearch() { currentSearchQuery = searchInput.value.trim().toLowerCase(); showLoadingAnimation(); setTimeout(async () => await renderTools(currentFilterCategory, currentSearchQuery), 300); }
 
     function setupLiveChatNotifications() {
       if (!currentUserId) return;
-      
       const savedTimestamp = localStorage.getItem('liveChatLastRead');
       lastReadTimestamp = savedTimestamp ? parseInt(savedTimestamp) : Date.now();
       localStorage.setItem('liveChatLastRead', lastReadTimestamp.toString());
-      
       const savedUnread = localStorage.getItem('liveChatUnreadCount');
       unreadCount = savedUnread ? parseInt(savedUnread) : 0;
       updateNotificationBadges();
-      
       const messagesRef = ref(db, `artifacts/motion-flow-47450/public/data/liveChat/messages`);
-      liveChatListener = onValue(messagesRef, (snapshot) => {
-        if (!snapshot.exists()) return;
-        
-        const messages = snapshot.val();
-        Object.values(messages).forEach(message => {
-          if (message.timestamp > lastReadTimestamp && message.userId !== currentUserId) {
-            unreadCount++;
-          }
-        });
-        
-        if (unreadCount > 0) {
-          localStorage.setItem('liveChatUnreadCount', unreadCount.toString());
-          updateNotificationBadges();
-        }
+      liveChatListener = onValue(messagesRef, (snap) => {
+        if (!snap.exists()) return;
+        const messages = snap.val();
+        Object.values(messages).forEach(m => { if (m.timestamp > lastReadTimestamp && m.userId !== currentUserId) unreadCount++; });
+        if (unreadCount > 0) { localStorage.setItem('liveChatUnreadCount', unreadCount.toString()); updateNotificationBadges(); }
       });
     }
+    function updateNotificationBadges() { liveChatNotification.classList.toggle('active', unreadCount > 0); }
 
-    function updateNotificationBadges() {
-      liveChatNotification.classList.toggle('active', unreadCount > 0);
+    // Load user profile data for comments
+    async function loadUserProfileData(userId) {
+      try {
+        const possiblePaths = [doc(firestore, "artifacts", "motion-flow-v1", "users", userId, "profile", "settings"), doc(firestore, "users", userId)];
+        let userData = null;
+        for (const userDocRef of possiblePaths) {
+          try { const userDoc = await getDoc(userDocRef); if (userDoc.exists()) { userData = userDoc.data(); break; } }
+          catch (err) {}
+        }
+        if (userData) currentUserData = userData;
+        else currentUserData = { username: `User${userId.substring(0,6)}`, nickname: `User${userId.substring(0,6)}`, profileImage: null, userId };
+      } catch (error) { currentUserData = { username: `User${userId.substring(0,6)}`, nickname: `User${userId.substring(0,6)}`, profileImage: null, userId }; }
     }
 
     onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        currentUserId = user.uid;
-        loadMarketData();
-        setTimeout(setupLiveChatNotifications, 1000);
-        setupFormChangeListeners();
-      } else {
-        window.location.href = "index.html";
-      }
+      if (user) { currentUserId = user.uid; await loadUserProfileData(currentUserId); loadMarketData(); setTimeout(setupLiveChatNotifications, 1000); setupFormChangeListeners(); }
+      else { window.location.href = "index.html"; }
     });
 
     function loadMarketData() {
-      if (!currentUserId) {
-        setTimeout(loadMarketData, 1000);
-        return;
-      }
-      
+      if (!currentUserId) { setTimeout(loadMarketData, 1000); return; }
       const toolsRef = ref(db, "tools");
-      onValue(toolsRef, (snapshot) => {
+      onValue(toolsRef, (snap) => {
         clearLoadingAnimation();
-        
-        if (snapshot.exists()) {
-          const data = snapshot.val();
+        if (snap.exists()) {
+          const data = snap.val();
           allToolsData = [];
-          
-          Object.keys(data).forEach(productKey => {
-            const tool = data[productKey];
-            if (!tool || typeof tool !== 'object') return;
-            
-            let images = tool.images || (tool.image ? [tool.image] : ["https://via.placeholder.com/300x200/1a1a2e/00bcd4?text=No+Image"]);
-            
-            allToolsData.push({
-              ...tool,
-              key: productKey,
-              toolId: productKey,
-              name: tool.name || "Unnamed Tool",
-              category: tool.category || "uncategorized",
-              description: tool.description || "No description available.",
-              images,
-              image: images[0],
-              videoPreview: tool.videoPreview || null,
-              uploaderName: tool.adminName || tool.uploaderName || "Admin Moonlight",
-              uploadedAt: tool.uploadedAt || tool.createdAt || Date.now(),
-              tool_usage: tool.tool_usage || "How to use: Open in After Effects and customize as needed.",
-              downloadLink: tool.downloadLink || "#",
-              isPaid: tool.isPaid || tool.type === 'paid',
-              price: tool.price || (tool.type === 'paid' ? '$0.00' : 'Free'),
-              originalPrice: tool.originalPrice || null,
-              imageAspectRatio: tool.imageAspectRatio || '16:9'
-            });
+          Object.keys(data).forEach(key => {
+            const t = data[key];
+            if (!t) return;
+            let images = t.images || (t.image ? [t.image] : ["https://via.placeholder.com/300x200/1a1a2e/00bcd4?text=No+Image"]);
+            const viewCount = t.viewCount || { uniqueUsers: {}, totalUniqueViews: 0 };
+            const totalViews = Object.keys(viewCount.uniqueUsers || {}).length;
+            const comments = t.comments || {};
+            const commentCount = Object.keys(comments).length;
+            allToolsData.push({ ...t, key, toolId: key, name: t.name || "Unnamed", category: t.category || "uncategorized", description: t.description || "", images, image: images[0], videoPreview: t.videoPreview || null, uploaderName: t.adminName || t.uploaderName || "Admin Moonlight", uploadedAt: t.uploadedAt || t.createdAt || Date.now(), tool_usage: t.tool_usage || "", downloadLink: t.downloadLink || "#", isPaid: t.isPaid || t.type === 'paid', price: t.price || (t.type==='paid'?'$0.00':'Free'), originalPrice: t.originalPrice || null, imageAspectRatio: t.imageAspectRatio || '16:9', viewCount: viewCount, totalViews: totalViews, comments: comments, commentCount: commentCount });
           });
-          
-          if (allToolsData.length === 0) {
-            showNoProductsMessage();
-            return;
-          }
-          
-          allToolsData.sort((a, b) => (b.uploadedAt || 0) - (a.uploadedAt || 0));
+          allToolsData.sort((a,b) => (b.uploadedAt||0) - (a.uploadedAt||0));
           renderTools('all', '');
-        } else {
-          showNoProductsMessage();
-        }
-      }, (error) => {
-        clearLoadingAnimation();
-        showErrorMessage('Connection error. Please check your internet connection and refresh.');
-      });
+        } else { showNoProductsMessage(); }
+      }, (error) => { clearLoadingAnimation(); showErrorMessage('Connection error.'); });
     }
     
     function showNoProductsMessage() {
-      marketContainer.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon"><i class="fas fa-box-open"></i></div>
-          <h3>No Products Yet</h3>
-          <p>Be the first to upload a product or check back soon!</p>
-          ${isAdmin ? `<button class="admin-form-submit" onclick="openUploadModal()" style="margin-top: 20px;"><i class="fas fa-upload"></i> Upload First Product</button>` : ''}
-        </div>
-      `;
+      marketContainer.innerHTML = `<div class="empty-state"><div class="empty-icon"><i class="fas fa-box-open"></i></div><h3>No Products Yet</h3><p>Be the first to upload a product!</p>${isAdmin?`<button class="admin-form-submit" onclick="openUploadModal()" style="margin-top:20px;">Upload First Product</button>`:''}</div>`;
     }
-    
-    function showErrorMessage(message) {
-      marketContainer.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon"><i class="fas fa-exclamation-triangle"></i></div>
-          <h3>Connection Issue</h3>
-          <p>${message}</p>
-          <button class="admin-form-submit" onclick="location.reload()" style="margin-top: 20px;"><i class="fas fa-redo"></i> Refresh Page</button>
-        </div>
-      `;
-    }
-
-    function showLoadingAnimation() {
-      marketContainer.innerHTML = `
-        <div class="loading-container">
-          <div class="loading-spinner"></div>
-          <div class="loading-text">Loading products...</div>
-        </div>
-      `;
-    }
-
+    function showErrorMessage(msg) { marketContainer.innerHTML = `<div class="empty-state"><div class="empty-icon"><i class="fas fa-exclamation-triangle"></i></div><h3>Connection Issue</h3><p>${msg}</p></div>`; }
+    function showLoadingAnimation() { marketContainer.innerHTML = `<div class="loading-container"><div class="loading-spinner"></div><div class="loading-text">Loading...</div></div>`; }
     function clearLoadingAnimation() {}
 
     function filterToolsBySearch(tools, query) {
       if (!query) return tools;
-      return tools.filter(tool => 
-        tool.name.toLowerCase().includes(query) ||
-        (tool.description && tool.description.toLowerCase().includes(query)) ||
-        (tool.uploaderName && tool.uploaderName.toLowerCase().includes(query)) ||
-        (tool.category && tool.category.toLowerCase().includes(query)) ||
-        (tool.tool_usage && tool.tool_usage.toLowerCase().includes(query))
-      );
+      return tools.filter(t => t.name.toLowerCase().includes(query) || (t.description||'').toLowerCase().includes(query) || (t.uploaderName||'').toLowerCase().includes(query));
     }
 
     async function renderTools(filterCategory = 'all', searchQuery = '') {
-      let toolsToDisplay = filterCategory === 'all' ? allToolsData : allToolsData.filter(tool => tool.category === filterCategory);
+      let toolsToDisplay = filterCategory === 'all' ? allToolsData : allToolsData.filter(t => t.category === filterCategory);
       if (searchQuery) toolsToDisplay = filterToolsBySearch(toolsToDisplay, searchQuery);
-      
       marketContainer.innerHTML = '';
-      
-      if (toolsToDisplay.length === 0) {
-        marketContainer.innerHTML = `
-          <div class="empty-state">
-            <div class="empty-icon"><i class="fas fa-search"></i></div>
-            <h3>No products found</h3>
-            <p>Try a different search or check back later for new products.</p>
-          </div>
-        `;
-        return;
-      }
-      
+      if (toolsToDisplay.length === 0) { marketContainer.innerHTML = `<div class="empty-state"><div class="empty-icon"><i class="fas fa-search"></i></div><h3>No products found</h3><p>Try a different search.</p></div>`; return; }
       for (const tool of toolsToDisplay) await createToolCard(tool);
     }
 
@@ -3621,149 +2487,150 @@
       const hasMultipleImages = tool.images && tool.images.length > 1;
       const isUnlocked = tool.isPaid ? localStorage.getItem(tool.toolId + '_unlocked') === 'true' : true;
       const isAdminUploader = tool.uploaderName && (tool.uploaderName.includes('Admin') || tool.uploaderName.includes('Moonlight'));
-      
       const card = document.createElement('div');
       card.className = `product-card ${tool.isPaid ? 'paid' : ''}`;
       card.dataset.toolId = tool.key;
-      
       const shareLink = `${window.location.origin}${window.location.pathname}#product-${tool.toolId}`;
-      
-      // Linkify description
-      const linkedDescription = linkify(tool.description || '');
+      const linkedDescription = linkify(escapeHtml(tool.description || ''));
+      const commentCount = tool.commentCount || 0;
+      const totalViews = tool.totalViews || 0;
       
       card.innerHTML = `
         <div class="product-img-wrapper">
-          <img src="${tool.images[0] || tool.image}" alt="${tool.name}" class="product-img" data-current-index="0">
-          ${hasMultipleImages ? `
-            <div class="carousel-nav">
-              <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-              <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="carousel-dots">
-              ${tool.images.map((_, index) => `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></button>`).join('')}
-            </div>
-          ` : ''}
+          <img src="${tool.images[0]}" alt="${escapeHtml(tool.name)}" class="product-img" data-current-index="0">
+          ${hasMultipleImages ? `<div class="carousel-nav"><button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button><button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button></div><div class="carousel-dots">${tool.images.map((_,i)=>`<button class="carousel-dot ${i===0?'active':''}" data-index="${i}"></button>`).join('')}</div>` : ''}
           ${hasVideoPreview ? `<button class="video-preview-btn"><i class="fas fa-play"></i> Video Preview</button>` : ''}
         </div>
         <div class="product-info">
-          <div class="product-header">
-            <div class="product-title">
-              <h3>${tool.name}</h3>
-              <small style="color: var(--color-text-muted); font-size: 0.8em;">${tool.category || 'Uncategorized'}</small>
-            </div>
-            <div class="price-display">
-              ${tool.isPaid ? `
-                <div class="current-price paid">${tool.price || '$0.00'}</div>
-                ${tool.originalPrice ? `<div class="original-price">${tool.originalPrice}</div>` : ''}
-              ` : `<div class="current-price">${tool.price || 'Free'}</div>`}
-            </div>
-          </div>
-          
-          <!-- Description displayed in card -->
+          <div class="product-header"><div class="product-title"><h3>${escapeHtml(tool.name)}</h3><small style="color:var(--color-text-muted);">${escapeHtml(tool.category)}</small></div><div class="price-display">${tool.isPaid?`<div class="current-price paid">${tool.price}</div>${tool.originalPrice?`<div class="original-price">${tool.originalPrice}</div>`:''}`:`<div class="current-price">Free</div>`}</div></div>
           <div class="product-description">${linkedDescription}</div>
-          
           <div class="product-id">
             <div class="product-id-left">
-              <span>${tool.isPaid ? '🔒 PAID' : '🆓 FREE'}</span>
-              <span class="copy-icon" onclick="copyToClipboard('${tool.toolId}', 'Product ID copied!')">
-                <i class="fas fa-copy"></i> Copy ID
-              </span>
+              <span>${tool.isPaid?'🔒 PAID':'🆓 FREE'}</span>
+              <span class="copy-icon" onclick="copyToClipboard('${tool.toolId}','Product ID copied!')"><i class="fas fa-copy"></i> Copy ID</span>
+              <span class="view-count-icon"><i class="fas fa-eye"></i> ${totalViews}</span>
             </div>
-            <span class="share-icon" onclick="shareProduct('${tool.toolId}', '${tool.name.replace(/'/g, "\\'")}', '${shareLink}')">
-              <i class="fas fa-share-alt"></i> Share
-            </span>
+            <span class="share-icon" onclick="shareProduct('${tool.toolId}','${escapeHtml(tool.name).replace(/'/g,"\\'")}','${shareLink}')"><i class="fas fa-share-alt"></i> Share</span>
           </div>
-          
-          <div class="user-info">
-            <div class="user-details">
-              <span class="username">
-                ${tool.uploaderName || 'Admin Moonlight'}
-                ${isAdminUploader ? `<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>` : ''}
-              </span>
-            </div>
-            <span class="time">${getTimeAgo(tool.uploadedAt || Date.now())}</span>
-          </div>
-          
+          <div class="user-info"><div class="user-details"><span class="username">${escapeHtml(tool.uploaderName)}${isAdminUploader?`<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>`:''}</span></div><span class="time">${getTimeAgo(tool.uploadedAt)}</span></div>
           <div class="buttons">
-            ${tool.isPaid ? 
-              (isUnlocked ? 
-                `<button class="download-btn" onclick="handleDownload('${tool.downloadLink}', '${tool.key}', '${tool.name.replace(/'/g, "\\'")}')">
-                  <i class="fas fa-download"></i> Download
-                </button>` :
-                `<button class="activate-btn" onclick="handleActivation('${tool.key}', '${tool.name.replace(/'/g, "\\'")}')">
-                  <i class="fas fa-lock-open"></i> Unlock
-                </button>`
-              ) :
-              `<button class="purchase-btn" onclick="handleFreeProduct('${tool.downloadLink}', '${tool.key}', '${tool.name.replace(/'/g, "\\'")}')">
-                <i class="fas fa-shopping-cart"></i> Get Now
-              </button>`
-            }
-            <button class="info-btn" onclick="showToolInfo('${tool.key}')">
-              <i class="fas fa-info-circle"></i> Info
-            </button>
+            ${tool.isPaid?(isUnlocked?`<button class="download-btn" onclick="handleDownload('${tool.downloadLink}','${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-download"></i> Download</button>`:`<button class="activate-btn" onclick="handleActivation('${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-lock-open"></i> Unlock</button>`):`<button class="purchase-btn" onclick="handleFreeProduct('${tool.downloadLink}','${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-shopping-cart"></i> Get Now</button>`}
+            <button class="info-btn" onclick="showToolInfo('${tool.key}')"><i class="fas fa-info-circle"></i> Info</button>
+          </div>
+          <button class="comment-btn" onclick="toggleProductComments('${tool.key}')"><i class="fas fa-comment"></i> Comments${commentCount>0?`<span class="comment-count">${commentCount}</span>`:''}</button>
+          <div class="comments-section" id="product-comments-${tool.key}">
+            <div class="comments-list" id="comments-list-${tool.key}"></div>
+            <div class="add-comment"><textarea class="comment-input" id="comment-input-${tool.key}" placeholder="Add a comment..."></textarea><button class="comment-submit" onclick="addProductComment('${tool.key}')">Post</button></div>
           </div>
         </div>
       `;
-      
       marketContainer.appendChild(card);
       
       if (hasMultipleImages) {
         const imgWrapper = card.querySelector('.product-img-wrapper');
-        const imgElement = imgWrapper.querySelector('.product-img');
+        const imgEl = imgWrapper.querySelector('.product-img');
         const prevBtn = imgWrapper.querySelector('.prev-btn');
         const nextBtn = imgWrapper.querySelector('.next-btn');
         const dots = imgWrapper.querySelectorAll('.carousel-dot');
-        let currentIndex = 0;
-        
-        function updateCarousel() {
-          imgElement.src = tool.images[currentIndex];
-          dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-        }
-        
-        prevBtn?.addEventListener('click', (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex - 1 + tool.images.length) % tool.images.length;
-          updateCarousel();
-        });
-        
-        nextBtn?.addEventListener('click', (e) => {
-          e.stopPropagation();
-          currentIndex = (currentIndex + 1) % tool.images.length;
-          updateCarousel();
-        });
-        
-        dots.forEach((dot, i) => {
-          dot.addEventListener('click', (e) => {
-            e.stopPropagation();
-            currentIndex = i;
-            updateCarousel();
-          });
-        });
-        
-        imgWrapper.addEventListener('click', (e) => {
-          if (!e.target.classList.contains('carousel-btn') && !e.target.classList.contains('carousel-dot') && !e.target.classList.contains('video-preview-btn')) {
-            openImageViewer(tool.images, currentIndex, tool);
-          }
-        });
+        let idx = 0;
+        function update() { imgEl.src = tool.images[idx]; dots.forEach((d,i)=>d.classList.toggle('active',i===idx)); }
+        prevBtn?.addEventListener('click',(e)=>{e.stopPropagation(); idx=(idx-1+tool.images.length)%tool.images.length; update();});
+        nextBtn?.addEventListener('click',(e)=>{e.stopPropagation(); idx=(idx+1)%tool.images.length; update();});
+        dots.forEach((d,i)=>d.addEventListener('click',(e)=>{e.stopPropagation(); idx=i; update();}));
+        imgWrapper.addEventListener('click',(e)=>{if(!e.target.classList.contains('carousel-btn')&&!e.target.classList.contains('carousel-dot')&&!e.target.classList.contains('video-preview-btn'))openImageViewer(tool.images,idx,tool);});
       } else {
-        card.querySelector('.product-img-wrapper').addEventListener('click', (e) => {
-          if (!e.target.classList.contains('video-preview-btn')) {
-            openImageViewer([tool.images[0] || tool.image], 0, tool);
-          }
-        });
+        card.querySelector('.product-img-wrapper').addEventListener('click',(e)=>{if(!e.target.classList.contains('video-preview-btn'))openImageViewer([tool.images[0]],0,tool);});
       }
+      if (hasVideoPreview) card.querySelector('.video-preview-btn')?.addEventListener('click',(e)=>{e.stopPropagation(); showVideoPreview(tool.videoPreview,tool.name);});
       
-      if (hasVideoPreview) {
-        card.querySelector('.video-preview-btn')?.addEventListener('click', (e) => {
-          e.stopPropagation();
-          showVideoPreview(tool.videoPreview, tool.name);
-        });
-      }
+      // Load comments
+      await loadProductComments(tool.key);
     }
 
-    function openImageViewer(images, startIndex, product) {
+    // Product Comments Functions
+    window.toggleProductComments = function(productId) {
+      const section = document.getElementById(`product-comments-${productId}`);
+      section.classList.toggle('active');
+      if (section.classList.contains('active')) loadProductComments(productId);
+    };
+
+    async function loadProductComments(productId) {
+      const tool = allToolsData.find(t => t.key === productId);
+      if (!tool) return;
+      const commentsList = document.getElementById(`comments-list-${productId}`);
+      if (!commentsList) return;
+      commentsList.innerHTML = '';
+      const comments = Object.values(tool.comments || {});
+      if (comments.length === 0) { commentsList.innerHTML = `<div style="text-align:center;color:var(--color-text-muted);padding:15px;">No comments yet.</div>`; return; }
+      comments.sort((a,b) => (b.timestamp||0) - (a.timestamp||0));
+      comments.forEach(c => {
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        const avatar = c.profileImage || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.userName)}&background=00bcd4&color=fff`;
+        item.innerHTML = `<div class="comment-header"><img src="${avatar}" class="comment-avatar" alt="${escapeHtml(c.userName)}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(c.userName)}&background=1a1a2e&color=fff'"><span class="comment-author">${escapeHtml(c.userName)}</span><span class="comment-time">${getTimeAgo(c.timestamp)}</span></div><div class="comment-text">${escapeHtml(c.text)}</div>`;
+        commentsList.appendChild(item);
+      });
+    }
+
+    window.addProductComment = async function(productId) {
+      if (!currentUserId) { showToast('Please login to comment', 'error'); return; }
+      const input = document.getElementById(`comment-input-${productId}`);
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) { showToast('Enter a comment', 'error'); return; }
+      if (text.length > 500) { showToast('Comment too long (max 500)', 'error'); return; }
+      let userName = 'User';
+      let profileImage = null;
+      if (currentUserData) {
+        userName = currentUserData.nickname || currentUserData.username || currentUserData.displayName || (currentUserData.email?currentUserData.email.split('@')[0]:`User${currentUserId.substring(0,6)}`);
+        profileImage = currentUserData.profileImage || currentUserData.profilePicture || null;
+      } else { userName = `User${currentUserId.substring(0,6)}`; }
+      const commentId = 'comment_' + Date.now() + '_' + Math.random().toString(36).substr(2,9);
+      const commentData = { id: commentId, text, userId: currentUserId, userName, profileImage, timestamp: Date.now() };
+      try {
+        await set(ref(db, `tools/${productId}/comments/${commentId}`), commentData);
+        input.value = '';
+        showToast('Comment posted!', 'success');
+        await loadProductComments(productId);
+      } catch (e) { showToast('Error: ' + e.message, 'error'); }
+    };
+
+    // Track unique view when Get Now is clicked
+    async function trackProductView(productId) {
+      if (!currentUserId) return;
+      try {
+        const viewRef = ref(db, `tools/${productId}/viewCount/uniqueUsers/${currentUserId}`);
+        const snap = await get(viewRef);
+        if (!snap.exists()) {
+          await set(viewRef, true);
+          // Update total unique views
+          const totalRef = ref(db, `tools/${productId}/viewCount/totalUniqueViews`);
+          const totalSnap = await get(totalRef);
+          const currentTotal = totalSnap.exists() ? totalSnap.val() : 0;
+          await set(totalRef, currentTotal + 1);
+        }
+      } catch (e) { console.error('Error tracking view:', e); }
+    }
+
+    // Modified free product handler with view tracking
+    window.handleFreeProduct = async (downloadLink, toolKey, productName) => {
+      await trackProductView(toolKey);
+      if (downloadLink && downloadLink !== '#') {
+        triggerDirectDownload(downloadLink, productName);
+        try { const cnt = (await get(ref(db, `tools/${toolKey}/downloadCount`))).val() || 0; await set(ref(db, `tools/${toolKey}/downloadCount`), cnt + 1); } catch(e){}
+      } else { showToast('Download link not available', 'error'); }
+    };
+
+    window.handleDownload = async (downloadLink, toolKey, productName) => {
+      if (downloadLink && downloadLink !== '#') {
+        triggerDirectDownload(downloadLink, productName);
+        try { const cnt = (await get(ref(db, `tools/${toolKey}/downloadCount`))).val() || 0; await set(ref(db, `tools/${toolKey}/downloadCount`), cnt + 1); } catch(e){}
+      } else { showToast('Download link not available', 'error'); }
+    };
+
+    function openImageViewer(images, idx, product) {
       viewerImages = images;
-      viewerCurrentIndex = startIndex;
+      viewerCurrentIndex = idx;
       updateImageViewer();
       imageViewer.classList.add('active');
       document.body.style.overflow = 'hidden';
@@ -3771,7 +2638,6 @@
       viewerImage.addEventListener('touchmove', handleTouchMove);
       viewerImage.addEventListener('touchend', handleTouchEnd);
     }
-
     function closeImageViewer() {
       imageViewer.classList.remove('active');
       document.body.style.overflow = 'auto';
@@ -3779,250 +2645,91 @@
       viewerImage.removeEventListener('touchmove', handleTouchMove);
       viewerImage.removeEventListener('touchend', handleTouchEnd);
     }
-
     function handleTouchStart(e) { touchStartX = e.touches[0].clientX; }
     function handleTouchMove(e) { touchEndX = e.touches[0].clientX; }
-    function handleTouchEnd() {
-      if (touchStartX - touchEndX > 50) viewerNextImage();
-      else if (touchEndX - touchStartX > 50) viewerPrevImage();
-    }
-
+    function handleTouchEnd() { if (touchStartX - touchEndX > 50) viewerNextImage(); else if (touchEndX - touchStartX > 50) viewerPrevImage(); }
     function updateImageViewer() {
       viewerImage.src = viewerImages[viewerCurrentIndex];
-      viewerDots.innerHTML = viewerImages.map((_, i) => 
-        `<button class="image-viewer-dot ${i === viewerCurrentIndex ? 'active' : ''}" onclick="viewerCurrentIndex = ${i}; updateImageViewer()"></button>`
-      ).join('');
+      viewerDots.innerHTML = viewerImages.map((_,i)=>`<button class="image-viewer-dot ${i===viewerCurrentIndex?'active':''}" onclick="viewerCurrentIndex=${i};updateImageViewer()"></button>`).join('');
     }
-
-    function viewerPrevImage() {
-      viewerCurrentIndex = (viewerCurrentIndex - 1 + viewerImages.length) % viewerImages.length;
-      updateImageViewer();
-    }
-
-    function viewerNextImage() {
-      viewerCurrentIndex = (viewerCurrentIndex + 1) % viewerImages.length;
-      updateImageViewer();
-    }
-
+    function viewerPrevImage() { viewerCurrentIndex = (viewerCurrentIndex - 1 + viewerImages.length) % viewerImages.length; updateImageViewer(); }
+    function viewerNextImage() { viewerCurrentIndex = (viewerCurrentIndex + 1) % viewerImages.length; updateImageViewer(); }
     window.viewerPrevImage = viewerPrevImage;
     window.viewerNextImage = viewerNextImage;
     window.closeImageViewer = closeImageViewer;
 
-    function getTimeAgo(timestamp) {
-      const diff = Date.now() - timestamp;
-      const seconds = Math.floor(diff / 1000);
-      const minutes = Math.floor(seconds / 60);
-      const hours = Math.floor(minutes / 60);
-      const days = Math.floor(hours / 24);
-      if (days > 0) return `${days}d ago`;
-      if (hours > 0) return `${hours}h ago`;
-      if (minutes > 0) return `${minutes}m ago`;
+    function getTimeAgo(ts) {
+      const diff = Date.now() - ts;
+      const s = Math.floor(diff/1000), m = Math.floor(s/60), h = Math.floor(m/60), d = Math.floor(h/24);
+      if (d>0) return `${d}d ago`;
+      if (h>0) return `${h}h ago`;
+      if (m>0) return `${m}m ago`;
       return 'Just now';
     }
 
-    window.showVideoPreview = (videoUrl, productName) => {
-      if (!videoUrl || videoUrl === '#') {
-        showToast('Video preview not available', 'error');
-        return;
-      }
-      
-      const videoDialog = document.createElement('div');
-      videoDialog.className = 'admin-modal-overlay active';
-      videoDialog.innerHTML = `
-        <div class="admin-modal-content" style="max-width: 800px;">
-          <h2 style="margin-bottom: 20px; color: var(--color-primary); text-align: center;">
-            <i class="fas fa-play-circle"></i> ${productName} - Video Preview
-          </h2>
-          <div style="width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 10px; overflow: hidden;">
-            <video src="${videoUrl}" controls autoplay playsinline style="width: 100%; height: 100%;"></video>
-          </div>
-          <div class="admin-form-buttons" style="margin-top: 20px;">
-            <button class="admin-form-cancel" onclick="this.closest('.admin-modal-overlay').remove()">Close</button>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(videoDialog);
-      videoDialog.addEventListener('click', (e) => {
-        if (e.target === videoDialog) videoDialog.remove();
-      });
+    window.showVideoPreview = (url, name) => {
+      if (!url||url==='#') { showToast('Video not available','error'); return; }
+      const dlg = document.createElement('div');
+      dlg.className = 'admin-modal-overlay active';
+      dlg.innerHTML = `<div class="admin-modal-content" style="max-width:800px;"><h2 style="color:var(--color-primary);"><i class="fas fa-play-circle"></i> ${escapeHtml(name)}</h2><div style="aspect-ratio:16/9;background:#000;"><video src="${url}" controls autoplay playsinline style="width:100%;height:100%;"></video></div><div class="admin-form-buttons" style="margin-top:20px;"><button class="admin-form-cancel" onclick="this.closest('.admin-modal-overlay').remove()">Close</button></div></div>`;
+      document.body.appendChild(dlg);
+      dlg.addEventListener('click',(e)=>{if(e.target===dlg)dlg.remove();});
     };
 
     window.handleActivation = (toolKey, productName) => {
-      if (!currentUserId) {
-        showToast('Please login to unlock products', 'error');
-        return;
-      }
+      if (!currentUserId) { showToast('Please login','error'); return; }
       showActivationPage(toolKey, productName);
     };
 
     function showActivationPage(toolKey, productName) {
-      activationContent.innerHTML = `
-        <div class="activation-page">
-          <div class="activation-icon"><i class="fas fa-lock"></i></div>
-          <h2 class="activation-title">Premium Product</h2>
-          <h3 style="color: var(--color-accent); margin-bottom: 15px;">${productName}</h3>
-          <p class="activation-description">This is a premium product that requires purchase and activation.</p>
-          <div class="activation-instructions">
-            <h4>How to unlock this product:</h4>
-            <ol>
-              <li>Click the "Contact on Telegram" button below</li>
-              <li>Send the product name: <strong>${productName}</strong></li>
-              <li>Request purchase and payment instructions</li>
-              <li>After payment, the admin will send you a 10-digit activation code</li>
-              <li>Return here and enter your activation code below</li>
-            </ol>
-            <p style="color: var(--color-warning); margin-top: 10px; font-weight: 600;">
-              <i class="fas fa-exclamation-circle"></i> Each activation code can only be used once!
-            </p>
-          </div>
-          <div class="activation-input-group">
-            <input type="text" class="activation-input" id="activationCodeInput" placeholder="Enter your 10-digit activation code" maxlength="10" style="text-transform: uppercase;">
-          </div>
-          <div class="activation-actions">
-            <a href="${adminTelegramLink}" target="_blank" class="telegram-btn"><i class="fab fa-telegram"></i> Contact on Telegram</a>
-            <button class="admin-form-submit" onclick="verifyActivationCode('${toolKey}', '${productName}')"><i class="fas fa-key"></i> Verify Activation Code</button>
-            <button class="back-btn" onclick="closeActivationModal()"><i class="fas fa-arrow-left"></i> Back to Products</button>
-          </div>
-        </div>
-      `;
+      activationContent.innerHTML = `<div class="activation-page"><div class="activation-icon"><i class="fas fa-lock"></i></div><h2 class="activation-title">Premium Product</h2><h3 style="color:var(--color-accent);">${escapeHtml(productName)}</h3><p class="activation-description">This product requires purchase and activation.</p><div class="activation-instructions"><h4>How to unlock:</h4><ol><li>Contact on Telegram</li><li>Send product name: <strong>${escapeHtml(productName)}</strong></li><li>Request purchase instructions</li><li>Enter activation code below</li></ol></div><div class="activation-input-group"><input type="text" class="activation-input" id="activationCodeInput" placeholder="Enter 10-digit code" maxlength="10" style="text-transform:uppercase;"></div><div class="activation-actions"><a href="${adminTelegramLink}" target="_blank" class="telegram-btn"><i class="fab fa-telegram"></i> Contact on Telegram</a><button class="admin-form-submit" onclick="verifyActivationCode('${toolKey}','${escapeHtml(productName)}')"><i class="fas fa-key"></i> Verify</button><button class="back-btn" onclick="closeActivationModal()">Back</button></div></div>`;
       activationModal.classList.add('active');
     }
 
     window.verifyActivationCode = async (toolKey, productName) => {
       const code = document.getElementById('activationCodeInput').value.trim().toUpperCase();
-      if (!code || code.length !== 10) {
-        showToast('Please enter a valid 10-digit activation code', 'error');
-        return;
-      }
-      
-      const submitBtn = document.querySelector('#activationContent .admin-form-submit');
-      const originalText = submitBtn.innerHTML;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-      submitBtn.disabled = true;
-      
+      if (!code||code.length!==10) { showToast('Enter valid 10-digit code','error'); return; }
+      const btn = document.querySelector('#activationContent .admin-form-submit');
+      const orig = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+      btn.disabled = true;
       try {
-        const snapshot = await get(ref(db, `tools/${toolKey}/activeKey`));
-        if (!snapshot.exists() || code !== snapshot.val()) {
-          showToast('Invalid or incorrect activation code', 'error');
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-          return;
-        }
-        
+        const snap = await get(ref(db, `tools/${toolKey}/activeKey`));
+        if (!snap.exists()||code!==snap.val()) { showToast('Invalid code','error'); btn.innerHTML=orig; btn.disabled=false; return; }
         await remove(ref(db, `tools/${toolKey}/activeKey`));
-        localStorage.setItem(toolKey + '_unlocked', 'true');
+        localStorage.setItem(toolKey+'_unlocked','true');
         closeActivationModal();
         showDownloadPage(toolKey, productName, code);
-      } catch (error) {
-        showToast('Error verifying code', 'error');
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-      }
+      } catch(e) { showToast('Error','error'); btn.innerHTML=orig; btn.disabled=false; }
     };
 
-    function closeActivationModal() {
-      activationModal.classList.remove('active');
-    }
+    function closeActivationModal() { activationModal.classList.remove('active'); }
     window.closeActivationModal = closeActivationModal;
 
-    window.handleFreeProduct = async (downloadLink, toolKey, productName) => {
-      if (downloadLink && downloadLink !== '#') {
-        triggerDirectDownload(downloadLink, productName);
-        try {
-          const currentCount = (await get(ref(db, `tools/${toolKey}/downloadCount`))).val() || 0;
-          await set(ref(db, `tools/${toolKey}/downloadCount`), currentCount + 1);
-        } catch (error) {}
-      } else {
-        showToast('Download link not available', 'error');
-      }
-    };
-
-    window.handleDownload = async (downloadLink, toolKey, productName) => {
-      if (downloadLink && downloadLink !== '#') {
-        triggerDirectDownload(downloadLink, productName);
-        try {
-          const currentCount = (await get(ref(db, `tools/${toolKey}/downloadCount`))).val() || 0;
-          await set(ref(db, `tools/${toolKey}/downloadCount`), currentCount + 1);
-        } catch (error) {}
-      } else {
-        showToast('Download link not available', 'error');
-      }
-    };
-
-    window.showDownloadPage = async function(toolKey, productName, activationCode = '') {
+    window.showDownloadPage = async function(toolKey, productName, code='') {
       try {
-        const tool = (await get(ref(db, `tools/${toolKey}`))).val();
-        if (!tool) { showToast('Product not found', 'error'); return; }
-        
+        const tool = (await get(ref(db,`tools/${toolKey}`))).val();
+        if (!tool) { showToast('Product not found','error'); return; }
         const content = document.getElementById('infoContent');
-        content.innerHTML = `
-          <div class="download-page">
-            <div class="download-success-icon"><i class="fas fa-download"></i></div>
-            <h2 style="margin-bottom: 10px; color: var(--color-success);"><i class="fas fa-unlock-alt"></i> Download Ready!</h2>
-            <h3 style="margin-bottom: 20px; color: var(--color-accent);">${productName}</h3>
-            <div style="margin-bottom: 25px;">
-              <button class="download-link" onclick="triggerDirectDownload('${tool.downloadLink}', '${productName}')">
-                <i class="fas fa-external-link-alt"></i> Download Now
-              </button>
-            </div>
-            ${activationCode ? `
-              <div style="margin-top: 20px; padding: 15px; background: rgba(16, 185, 129, 0.1); border-radius: 10px;">
-                <p style="color: var(--color-success);"><i class="fas fa-key"></i> Activation Code Used: ${activationCode}</p>
-                <p style="color: var(--color-text-muted); font-size: 0.9em;">This code has been burned and cannot be used again</p>
-              </div>
-            ` : ''}
-            <div class="admin-form-buttons" style="margin-top: 30px;">
-              <button class="admin-form-submit" onclick="copyToClipboard('${tool.downloadLink}', 'Download link copied!')"><i class="fas fa-copy"></i> Copy Link</button>
-              <button class="admin-form-cancel" onclick="document.getElementById('infoDialog').classList.remove('active')">Close</button>
-            </div>
-          </div>
-        `;
+        content.innerHTML = `<div class="download-page"><div class="download-success-icon"><i class="fas fa-download"></i></div><h2 style="color:var(--color-success);"><i class="fas fa-unlock-alt"></i> Download Ready!</h2><h3 style="color:var(--color-accent);">${escapeHtml(productName)}</h3><button class="download-link" onclick="triggerDirectDownload('${tool.downloadLink}','${escapeHtml(productName)}')"><i class="fas fa-external-link-alt"></i> Download Now</button>${code?`<div style="margin-top:20px;padding:15px;background:rgba(16,185,129,0.1);border-radius:10px;"><p style="color:var(--color-success);"><i class="fas fa-key"></i> Code Used: ${code}</p></div>`:''}<div class="admin-form-buttons" style="margin-top:30px;"><button class="admin-form-submit" onclick="copyToClipboard('${tool.downloadLink}','Link copied!')"><i class="fas fa-copy"></i> Copy Link</button><button class="admin-form-cancel" onclick="document.getElementById('infoDialog').classList.remove('active')">Close</button></div></div>`;
         document.getElementById('infoDialog').classList.add('active');
-      } catch (error) {
-        showToast('Error loading download information', 'error');
-      }
+      } catch(e) { showToast('Error loading download','error'); }
     };
 
     window.showToolInfo = (toolKey) => {
-      const tool = allToolsData.find(t => t.key === toolKey);
+      const tool = allToolsData.find(t=>t.key===toolKey);
       if (tool) {
         const content = document.getElementById('infoContent');
-        const isAdminUploader = tool.uploaderName && (tool.uploaderName.includes('Admin') || tool.uploaderName.includes('Moonlight'));
-        const linkedDescription = linkify(tool.description || '');
-        const linkedUsage = linkify(tool.tool_usage || '');
-        
-        content.innerHTML = `
-          <h2 style="margin-bottom: 15px; color: var(--color-accent);">${tool.name}</h2>
-          <div style="margin-bottom: 20px; padding: 10px; background: rgba(0, 188, 212, 0.1); border-radius: 8px;">
-            <strong>Category:</strong> ${tool.category || 'Uncategorized'}<br>
-            <strong>Price:</strong> ${tool.isPaid ? tool.price : 'Free'}<br>
-            ${tool.originalPrice ? `<strong>Original Price:</strong> <span style="text-decoration: line-through;">${tool.originalPrice}</span><br>` : ''}
-            <strong>Uploaded by:</strong> ${tool.uploaderName || 'Admin Moonlight'} ${isAdminUploader ? '<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>' : ''}<br>
-            <strong>Uploaded:</strong> ${new Date(tool.uploadedAt || Date.now()).toLocaleDateString()}<br>
-          </div>
-          <p><strong>Description:</strong></p>
-          <div style="margin-bottom: 15px;">${linkedDescription}</div>
-          ${tool.tool_usage ? `<p><strong>How to use:</strong></p><div>${linkedUsage}</div>` : ''}
-          <button class="admin-form-submit" onclick="document.getElementById('infoDialog').classList.remove('active')" style="margin-top: 20px;">Close</button>
-        `;
+        const isAdminUploader = tool.uploaderName && (tool.uploaderName.includes('Admin')||tool.uploaderName.includes('Moonlight'));
+        content.innerHTML = `<h2 style="color:var(--color-accent);">${escapeHtml(tool.name)}</h2><div style="margin-bottom:20px;padding:10px;background:rgba(0,188,212,0.1);border-radius:8px;"><strong>Category:</strong> ${escapeHtml(tool.category)}<br><strong>Price:</strong> ${tool.isPaid?tool.price:'Free'}<br>${tool.originalPrice?`<strong>Original:</strong> <span style="text-decoration:line-through;">${tool.originalPrice}</span><br>`:''}<strong>Uploaded by:</strong> ${escapeHtml(tool.uploaderName)} ${isAdminUploader?'<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>':''}<br><strong>Uploaded:</strong> ${new Date(tool.uploadedAt).toLocaleDateString()}<br><strong><i class="fas fa-eye"></i> Views:</strong> ${tool.totalViews||0}</div><p><strong>Description:</strong></p><div>${linkify(escapeHtml(tool.description||''))}</div>${tool.tool_usage?`<p><strong>How to use:</strong></p><div>${linkify(escapeHtml(tool.tool_usage))}</div>`:''}<button class="admin-form-submit" onclick="document.getElementById('infoDialog').classList.remove('active')" style="margin-top:20px;">Close</button>`;
         document.getElementById('infoDialog').classList.add('active');
       }
     };
 
-    window.copyToClipboard = (text, message) => {
-      navigator.clipboard.writeText(text).then(() => showToast(message, 'success')).catch(() => showToast('Failed to copy', 'error'));
-    };
-
+    window.copyToClipboard = (text, msg) => { navigator.clipboard.writeText(text).then(()=>showToast(msg,'success')).catch(()=>showToast('Failed to copy','error')); };
     window.shareProduct = (toolId, productName, shareLink) => {
-      if (navigator.share) {
-        navigator.share({
-          title: `Check out ${productName} on Motion-Flow`,
-          text: `I found this amazing product on Motion-Flow: ${productName}`,
-          url: shareLink,
-        }).catch(() => copyToClipboard(shareLink, 'Product link copied!'));
-      } else {
-        copyToClipboard(shareLink, 'Product link copied! Share this link with others.');
-      }
+      if (navigator.share) { navigator.share({title:`Check out ${productName}`,text:`I found this on Motion-Flow: ${productName}`,url:shareLink}).catch(()=>copyToClipboard(shareLink,'Link copied!')); }
+      else { copyToClipboard(shareLink,'Link copied!'); }
     };
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -4034,10 +2741,11 @@
 
     window.toggleSidebar = toggleSidebar;
     window.showLogoutDialog = showLogoutDialog;
-    window.closeLogoutDialog = closeLogoutDialog;
     window.closeAdminModal = closeAdminModal;
     window.closeUploadModal = closeUploadModal;
     window.openUploadModal = openUploadModal;
+    window.addProductComment = addProductComment;
+    window.toggleProductComments = toggleProductComments;
   </script>
 </body>
 </html>
