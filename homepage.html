@@ -110,11 +110,6 @@
       transition: var(--transition);
     }
 
-    .hamburger:hover {
-      background: rgba(0, 188, 212, 0.2);
-      transform: rotate(90deg);
-    }
-
     .brand {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.3rem;
@@ -178,19 +173,6 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .sidebar-user-info h3 {
-      font-size: 1.1rem;
-      color: var(--color-text);
-      margin-bottom: 4px;
-    }
-
-    .sidebar-username {
-      color: var(--color-primary);
-      font-size: 0.75rem;
-      margin-top: 2px;
-      font-weight: 500;
-    }
-
     .sidebar-menu { 
       list-style: none; 
     }
@@ -216,18 +198,6 @@
       align-items: center;
       gap: 18px;
       width: 100%;
-    }
-    
-    .sidebar-menu li:hover { 
-      background: rgba(0, 188, 212, 0.1);
-      color: var(--color-primary);
-      transform: translateX(5px);
-    }
-
-    .sidebar-menu li i {
-      width: 24px;
-      text-align: center;
-      font-size: 1.1rem;
     }
 
     .sidebar-divider {
@@ -292,11 +262,6 @@
       box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
     }
 
-    .back-to-home-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4);
-    }
-
     @keyframes modalSlideIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -315,7 +280,7 @@
       font-size: 0.95rem;
     }
 
-    .admin-form-input {
+    .admin-form-input, .admin-form-select {
       width: 100%;
       padding: 12px 16px;
       background: var(--bg-input);
@@ -326,7 +291,7 @@
       transition: var(--transition);
     }
 
-    .admin-form-input:focus {
+    .admin-form-input:focus, .admin-form-select:focus {
       outline: none;
       border-color: var(--color-primary);
       box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
@@ -356,9 +321,34 @@
       transition: var(--transition);
       z-index: 2;
     }
+
+    /* Currency Selector */
+    .currency-selector {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
     
-    .password-toggle:hover {
-      color: var(--color-primary);
+    .currency-select {
+      flex: 1;
+      padding: 12px 16px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+      font-size: 0.95rem;
+    }
+    
+    .price-input-wrapper {
+      flex: 2;
+      display: flex;
+      align-items: center;
+    }
+    
+    .currency-symbol {
+      padding: 0 10px;
+      color: var(--color-text-muted);
+      font-weight: 600;
     }
 
     .logout-dialog {
@@ -371,8 +361,6 @@
       z-index: 9999;
       padding: 20px;
       backdrop-filter: blur(10px);
-      max-width: 100%;
-      overflow-x: hidden;
     }
 
     .logout-dialog.active {
@@ -402,7 +390,6 @@
       padding: 12px 24px;
       border: none;
       border-radius: 8px;
-      font-family: var(--font-body);
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -479,11 +466,6 @@
       object-fit: cover;
     }
     
-    .file-preview i {
-      font-size: 1.5rem;
-      color: var(--color-text-muted);
-    }
-    
     .file-input-control {
       flex: 1;
       min-width: 0;
@@ -512,15 +494,6 @@
       overflow: hidden;
     }
     
-    .file-name {
-      color: var(--color-text-muted);
-      font-size: 0.8rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      margin-top: 5px;
-    }
-    
     .remove-image-btn {
       background: rgba(239, 68, 68, 0.2);
       color: var(--color-error);
@@ -546,6 +519,11 @@
       gap: 8px;
       transition: var(--transition);
       font-size: 0.9rem;
+    }
+
+    .add-image-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     .price-container {
@@ -577,13 +555,6 @@
     .admin-form-submit:disabled {
       opacity: 0.5;
       cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .admin-form-submit.loading {
-      cursor: not-allowed;
-      opacity: 0.8;
     }
 
     .admin-form-submit.loading:after {
@@ -612,7 +583,7 @@
       transition: var(--transition);
     }
 
-    /* Admin Products Management Section */
+    /* Admin Products Section */
     .admin-products-section {
       margin-top: 40px;
       padding-top: 30px;
@@ -642,17 +613,6 @@
       background: rgba(255, 255, 255, 0.05);
       border-radius: var(--radius-sm);
       margin-bottom: 10px;
-      transition: var(--transition);
-    }
-
-    .admin-product-info {
-      flex: 1;
-    }
-
-    .admin-product-name {
-      font-weight: 600;
-      color: var(--color-text);
-      margin-bottom: 5px;
     }
 
     .admin-product-actions {
@@ -669,7 +629,6 @@
       cursor: pointer;
       font-size: 0.8rem;
       font-weight: 600;
-      transition: var(--transition);
     }
 
     .admin-product-edit {
@@ -684,7 +643,7 @@
       border: 1px solid var(--color-error);
     }
 
-    /* Upload Status Indicator */
+    /* Upload Status */
     .upload-status {
       display: none;
       align-items: center;
@@ -735,7 +694,6 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      animation: modalSlideIn 0.3s ease;
     }
 
     .success-popup.active {
@@ -746,12 +704,6 @@
       font-size: 3.5em;
       color: var(--color-success);
       margin-bottom: 15px;
-    }
-
-    .success-message {
-      color: var(--color-text);
-      font-size: 1.2em;
-      margin-bottom: 20px;
     }
 
     /* --- Main Content --- */
@@ -770,7 +722,6 @@
     .market-header {
       text-align: center;
       margin-bottom: 40px;
-      padding: 0 10px;
     }
 
     .market-header h1 {
@@ -782,17 +733,6 @@
       color: transparent;
       margin-bottom: 15px;
       letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
-      line-height: 1.2;
-    }
-
-    .market-header p {
-      color: var(--color-text-muted);
-      font-size: clamp(0.9em, 3vw, 1.1em);
-      opacity: 0.8;
-      line-height: 1.5;
-      max-width: 600px;
-      margin: 0 auto;
     }
 
     /* Search and Filter */
@@ -801,8 +741,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 25px;
       margin-bottom: 40px;
-      position: relative;
-      z-index: 100;
     }
 
     @media (max-width: 768px) {
@@ -818,7 +756,6 @@
       padding: 25px;
       box-shadow: 0 8px 32px rgba(0, 188, 212, 0.1);
       backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
     }
 
     .filter-label {
@@ -826,7 +763,6 @@
       color: var(--color-text);
       font-weight: 600;
       margin-bottom: 15px;
-      font-size: 1em;
     }
 
     .search-box {
@@ -842,13 +778,6 @@
       border-radius: 10px;
       color: var(--color-text);
       font-size: 1em;
-      transition: all 0.3s ease;
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: var(--color-accent);
-      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
     }
 
     .search-btn {
@@ -859,7 +788,6 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: 600;
-      transition: all 0.3s ease;
     }
 
     .custom-select-filter {
@@ -878,7 +806,6 @@
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
 
     .select-dropdown-filter {
@@ -893,7 +820,6 @@
       display: none;
       z-index: 105;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-      overflow: hidden;
       max-height: 300px;
       overflow-y: auto;
     }
@@ -906,20 +832,13 @@
       padding: 14px 16px;
       cursor: pointer;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all 0.3s ease;
       color: var(--color-text);
-    }
-
-    .select-option-filter:last-child {
-      border-bottom: none;
     }
 
     /* Masonry Layout */
     .market-container {
       column-count: 3;
       column-gap: 25px;
-      position: relative;
-      z-index: 1;
     }
 
     @media (max-width: 1024px) {
@@ -939,25 +858,17 @@
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 16px;
       overflow: hidden;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
       break-inside: avoid;
       margin-bottom: 25px;
-      page-break-inside: avoid;
-    }
-
-    .product-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(0, 188, 212, 0.3);
-      box-shadow: 0 15px 40px rgba(0, 188, 212, 0.2);
     }
 
     .product-card.paid {
       border: 2px solid var(--color-warning);
-      position: relative;
     }
 
     .product-card.paid::before {
@@ -972,8 +883,6 @@
       font-size: 0.7em;
       font-weight: 700;
       z-index: 3;
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
     .product-img-wrapper {
@@ -989,11 +898,6 @@
       height: auto;
       display: block;
       object-fit: contain;
-      transition: transform 0.5s ease;
-    }
-
-    .product-card:hover .product-img {
-      transform: scale(1.05);
     }
 
     .carousel-nav {
@@ -1005,8 +909,6 @@
       justify-content: space-between;
       padding: 0 15px;
       z-index: 2;
-      opacity: 1;
-      transition: opacity 0.3s ease;
     }
 
     .carousel-btn {
@@ -1020,10 +922,8 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: var(--transition);
       backdrop-filter: blur(10px);
       font-size: 1.1rem;
-      z-index: 3;
     }
 
     .carousel-dots {
@@ -1043,7 +943,6 @@
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.5);
       cursor: pointer;
-      transition: var(--transition);
       border: none;
     }
 
@@ -1067,7 +966,6 @@
       gap: 8px;
       font-size: 0.9em;
       font-weight: 600;
-      transition: all 0.3s ease;
       z-index: 3;
       backdrop-filter: blur(10px);
     }
@@ -1106,7 +1004,6 @@
     .product-description a {
       color: var(--color-primary);
       text-decoration: none;
-      word-break: break-all;
     }
 
     .price-display {
@@ -1123,7 +1020,6 @@
       border-radius: 20px;
       font-size: 0.95em;
       font-weight: 700;
-      display: inline-block;
     }
 
     .current-price.paid {
@@ -1134,7 +1030,6 @@
       font-size: 0.75em;
       color: var(--color-text-muted);
       text-decoration: line-through;
-      opacity: 0.8;
     }
 
     .product-id {
@@ -1155,7 +1050,6 @@
     .copy-icon, .view-count-icon {
       cursor: pointer;
       color: var(--color-accent);
-      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       gap: 5px;
@@ -1169,7 +1063,6 @@
     .share-icon {
       cursor: pointer;
       color: var(--color-success);
-      transition: all 0.3s ease;
       display: flex;
       align-items: center;
       gap: 5px;
@@ -1183,12 +1076,6 @@
       padding: 12px;
       background: rgba(0, 0, 0, 0.2);
       border-radius: 10px;
-    }
-
-    .user-details {
-      display: flex;
-      align-items: center;
-      gap: 12px;
     }
 
     .username {
@@ -1210,7 +1097,6 @@
       align-items: center;
       gap: 3px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       margin-left: 5px;
     }
 
@@ -1233,7 +1119,6 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: 600;
-      transition: all 0.3s ease;
       text-align: center;
       display: flex;
       align-items: center;
@@ -1244,6 +1129,41 @@
     .purchase-btn {
       background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
       color: white;
+      position: relative;
+    }
+
+    .purchase-btn .view-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--color-success);
+      color: white;
+      font-size: 0.65em;
+      padding: 2px 6px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .activate-btn {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: white;
+      position: relative;
+    }
+
+    .activate-btn .view-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--color-success);
+      color: white;
+      font-size: 0.65em;
+      padding: 2px 6px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 3px;
     }
 
     .info-btn {
@@ -1254,11 +1174,6 @@
 
     .download-btn {
       background: linear-gradient(135deg, var(--color-success), #059669);
-      color: white;
-    }
-
-    .activate-btn {
-      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
       color: white;
     }
 
@@ -1320,7 +1235,6 @@
       object-fit: cover;
       border: 1px solid var(--color-primary);
       cursor: pointer;
-      transition: var(--transition);
     }
 
     .comment-author {
@@ -1372,7 +1286,6 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: 600;
-      transition: var(--transition);
       white-space: nowrap;
     }
 
@@ -1381,7 +1294,6 @@
       height: 60px;
       background: rgba(10, 10, 18, 0.95);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       border-top: 1px solid rgba(0, 188, 212, 0.3);
       display: flex;
       justify-content: space-around;
@@ -1391,10 +1303,6 @@
       left: 0;
       right: 0;
       z-index: 100;
-      touch-action: pan-y;
-      overflow: hidden;
-      max-width: 100%;
-      width: 100%;
       box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.2);
     }
 
@@ -1408,7 +1316,6 @@
       text-decoration: none;
       padding: 8px;
       border-radius: 8px;
-      transition: var(--transition);
       position: relative;
       min-width: 60px;
       flex: 1;
@@ -1422,8 +1329,6 @@
 
     .nav-item i {
       font-size: 1.3rem;
-      transition: var(--transition);
-      position: relative;
     }
 
     .notification-dot {
@@ -1437,7 +1342,6 @@
       display: none;
       box-shadow: 0 0 8px #ef4444;
       animation: pulse-red 1.5s infinite;
-      z-index: 10;
     }
 
     @keyframes pulse-red {
@@ -1449,7 +1353,7 @@
       display: block;
     }
 
-    /* Toast Notification */
+    /* Toast */
     .toast {
       position: fixed;
       bottom: 100px;
@@ -1466,7 +1370,6 @@
       display: none;
       align-items: center;
       gap: 10px;
-      animation: slideUp 0.3s ease;
       max-width: 90%;
     }
 
@@ -1474,12 +1377,7 @@
       display: flex;
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-      to { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-
-    /* Loading Animation */
+    /* Loading */
     .loading-container {
       display: flex;
       flex-direction: column;
@@ -1521,7 +1419,7 @@
       margin-bottom: 20px;
     }
 
-    /* Fullscreen Image Viewer */
+    /* Image Viewer */
     .image-viewer-overlay {
       position: fixed;
       top: 0;
@@ -1535,7 +1433,6 @@
       align-items: center;
       z-index: 4000;
       padding: 20px;
-      touch-action: pan-y pinch-zoom;
     }
 
     .image-viewer-overlay.active {
@@ -1546,7 +1443,6 @@
       position: relative;
       max-width: 90%;
       max-height: 90%;
-      text-align: center;
     }
 
     .image-viewer-img {
@@ -1554,7 +1450,6 @@
       max-height: 80vh;
       object-fit: contain;
       border-radius: 10px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
 
     .image-viewer-close {
@@ -1571,8 +1466,6 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
     }
 
     .image-viewer-nav {
@@ -1583,7 +1476,6 @@
       display: flex;
       justify-content: space-between;
       padding: 0 20px;
-      z-index: 2;
     }
 
     .image-viewer-btn {
@@ -1597,8 +1489,6 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
       font-size: 1.2rem;
     }
 
@@ -1618,7 +1508,6 @@
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.5);
       cursor: pointer;
-      transition: var(--transition);
       border: none;
     }
 
@@ -1657,8 +1546,6 @@
       max-height: 80vh;
       overflow-y: auto;
       border: 2px solid var(--color-primary);
-      box-shadow: 0 10px 40px rgba(0, 188, 212, 0.3);
-      animation: modalSlideIn 0.3s ease;
     }
 
     /* Activation Dialog */
@@ -1679,6 +1566,39 @@
       margin-bottom: 10px;
     }
 
+    .activation-description {
+      color: var(--color-text);
+      margin-bottom: 30px;
+      font-size: 1.1em;
+    }
+
+    .activation-instructions {
+      background: rgba(249, 115, 22, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 25px 0;
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      text-align: left;
+    }
+
+    .activation-instructions h4 {
+      color: var(--color-warning);
+      margin-bottom: 10px;
+    }
+
+    .activation-instructions ol {
+      margin-left: 20px;
+      color: var(--color-text);
+    }
+
+    .activation-instructions li {
+      margin-bottom: 10px;
+    }
+
+    .activation-input-group {
+      margin: 30px 0;
+    }
+
     .activation-input {
       width: 100%;
       padding: 15px;
@@ -1690,7 +1610,14 @@
       text-align: center;
       letter-spacing: 2px;
       font-weight: 600;
-      transition: var(--transition);
+      text-transform: uppercase;
+    }
+
+    .activation-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
     }
 
     .telegram-btn {
@@ -1705,11 +1632,44 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      transition: var(--transition);
       text-decoration: none;
     }
 
-    /* Responsive Design */
+    .back-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--color-text);
+      border: 1px solid var(--border);
+      padding: 15px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Download Page */
+    .download-page {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .download-success-icon {
+      font-size: 3em;
+      color: var(--color-success);
+      margin-bottom: 15px;
+    }
+
+    .download-link {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-alt));
+      color: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
       .top-nav { height: 65px; padding: 0 1rem; }
       .brand { font-size: 1.1rem; }
@@ -1822,10 +1782,34 @@
         <div class="admin-form-group"><label class="admin-form-label">Description *</label><textarea id="productDescription" class="admin-form-input admin-form-textarea" required placeholder="Describe your product. You can include links like https://example.com"></textarea></div>
         <div class="admin-form-group"><label class="admin-form-label">Category *</label><select id="productCategory" class="admin-form-input" required><option value="">Select Category</option><option value="CC">Color Correction</option><option value="Animation">Animation</option><option value="Presets">Presets</option><option value="Plugins">Plugins</option><option value="Templates">Templates</option><option value="Tutorials">Tutorials</option><option value="EditingPacks">Editing Packs</option></select></div>
         <div class="admin-form-group"><label class="admin-form-label">Product Type *</label><select id="productType" class="admin-form-input" required><option value="free">Free</option><option value="paid">Paid</option></select></div>
-        <div class="admin-form-group price-container" id="priceFields" style="display: none;"><div><label class="admin-form-label">Original Price</label><input type="text" id="originalPrice" class="admin-form-input" placeholder="$99.99"></div><div><label class="admin-form-label">Current Price *</label><input type="text" id="currentPrice" class="admin-form-input" placeholder="$49.99" required></div></div>
+        
+        <!-- Currency and Price Section -->
+        <div class="admin-form-group price-container" id="priceFields" style="display: none;">
+          <div>
+            <label class="admin-form-label">Currency *</label>
+            <select id="priceCurrency" class="admin-form-select">
+              <option value="USD" data-symbol="$">🇺🇸 USD ($)</option>
+              <option value="NGN" data-symbol="₦">🇳🇬 NGN (₦)</option>
+              <option value="EUR" data-symbol="€">🇪🇺 EUR (€)</option>
+              <option value="GBP" data-symbol="£">🇬🇧 GBP (£)</option>
+              <option value="INR" data-symbol="₹">🇮🇳 INR (₹)</option>
+              <option value="CAD" data-symbol="C$">🇨🇦 CAD (C$)</option>
+              <option value="AUD" data-symbol="A$">🇦🇺 AUD (A$)</option>
+            </select>
+          </div>
+          <div>
+            <label class="admin-form-label">Original Price</label>
+            <input type="text" id="originalPrice" class="admin-form-input" placeholder="99.99">
+          </div>
+          <div>
+            <label class="admin-form-label">Current Price *</label>
+            <input type="text" id="currentPrice" class="admin-form-input" placeholder="49.99" required>
+          </div>
+        </div>
+        
         <div class="admin-settings-section" id="adminSettingsSection"><h3>Admin Settings</h3><div class="admin-form-group"><label class="admin-form-label">Telegram Link for Paid Products</label><input type="url" id="adminTelegramLink" class="admin-form-input" placeholder="https://t.me/eclipsia_techs"></div></div>
         <div class="admin-form-group"><label class="admin-form-label">Image Aspect Ratio *</label><div class="image-size-selector"><div class="image-size-option selected" data-ratio="16:9">16:9 (Default)</div><div class="image-size-option" data-ratio="1:1">1:1 (Square)</div><div class="image-size-option" data-ratio="4:3">4:3 (Classic)</div></div></div>
-        <div class="admin-form-group"><label class="admin-form-label">Product Images (Local Upload, max 5) *</label><div class="image-urls-container" id="imageUrlsContainer"></div><button type="button" class="add-image-btn" onclick="addImageFileField()"><i class="fa-solid fa-plus"></i> Add Another Image</button></div>
+        <div class="admin-form-group"><label class="admin-form-label">Product Images (Local Upload, max 5) *</label><div class="image-urls-container" id="imageUrlsContainer"></div><button type="button" class="add-image-btn" id="addImageBtn" onclick="addImageFileField()"><i class="fa-solid fa-plus"></i> Add Another Image</button></div>
         <div class="admin-form-group"><label class="admin-form-label">Video Preview URL (Optional)</label><input type="url" id="videoUrl" class="admin-form-input" placeholder="https://files.catbox.moe/example.mp4"></div>
         <div class="admin-form-group"><label class="admin-form-label">Download Link *</label><input type="url" id="downloadLink" class="admin-form-input" placeholder="https://drive.google.com/file/..." required></div>
         <div class="admin-form-group"><label class="admin-form-label">Usage Instructions</label><textarea id="usageInstructions" class="admin-form-input admin-form-textarea" placeholder="How to use this product..."></textarea></div>
@@ -1853,7 +1837,7 @@
     <a href="profile/profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>profile</span></a>
   </nav>
 
-  <!-- Toast Notification -->
+  <!-- Toast -->
   <div class="toast" id="toast"><i class="fas fa-check-circle" id="toastIcon"></i><span id="toastMessage">Copied to clipboard!</span></div>
 
   <!-- Info Dialog -->
@@ -1862,7 +1846,7 @@
   <!-- Activation Dialog -->
   <div class="admin-modal-overlay" id="activationModal"><div class="admin-modal-content" id="activationContent"></div></div>
 
-  <!-- Delete Confirmation Dialog -->
+  <!-- Delete Confirmation -->
   <div class="admin-modal-overlay" id="deleteConfirmationModal"><div class="admin-modal-content" id="deleteConfirmationContent"></div></div>
 
   <!-- Logout Dialog -->
@@ -1913,6 +1897,7 @@
     const productType = document.getElementById('productType');
     const priceFields = document.getElementById('priceFields');
     const imageUrlsContainer = document.getElementById('imageUrlsContainer');
+    const addImageBtn = document.getElementById('addImageBtn');
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
     const toast = document.getElementById('toast');
@@ -1937,7 +1922,6 @@
     const logoutConfirm = document.getElementById('logoutConfirm');
     const logoutCancel = document.getElementById('logoutCancel');
     const liveChatNotification = document.getElementById('livechat-notification');
-    const updatesNotification = document.getElementById('updates-notification');
 
     // Global State
     let currentUserId = null;
@@ -1950,6 +1934,7 @@
     let adminClickCount = 0;
     let adminClickTimer = null;
     let imageFileCount = 1;
+    const MAX_IMAGES = 5;
     let adminProducts = [];
     let imageAspectRatio = '16:9';
     let adminTelegramLink = 'https://t.me/eclipsia_techs';
@@ -1960,9 +1945,6 @@
     let viewerCurrentIndex = 0;
     let touchStartX = 0;
     let touchEndX = 0;
-    let lastReadTimestamp = 0;
-    let unreadCount = 0;
-    let liveChatListener = null;
 
     const ADMIN_EMAIL = "motionflow.admins@gmail.com";
     const ADMIN_PASSWORD = "MOTION-FLOW-ADMIN";
@@ -2011,8 +1993,6 @@
         videoUrl: document.getElementById('videoUrl').value.trim(),
         downloadLink: document.getElementById('downloadLink').value.trim(),
         usageInstructions: document.getElementById('usageInstructions').value.trim(),
-        originalPrice: document.getElementById('originalPrice')?.value.trim() || '',
-        currentPrice: document.getElementById('currentPrice')?.value.trim() || '',
         imageAspectRatio: imageAspectRatio
       };
       let changed = false;
@@ -2033,8 +2013,6 @@
         videoUrl: document.getElementById('videoUrl').value.trim(),
         downloadLink: document.getElementById('downloadLink').value.trim(),
         usageInstructions: document.getElementById('usageInstructions').value.trim(),
-        originalPrice: document.getElementById('originalPrice')?.value.trim() || '',
-        currentPrice: document.getElementById('currentPrice')?.value.trim() || '',
         imageAspectRatio: imageAspectRatio
       };
       hasUnsavedChanges = false;
@@ -2042,7 +2020,7 @@
     }
 
     function setupFormChangeListeners() {
-      const formInputs = ['adminName', 'productName', 'productDescription', 'productCategory', 'productType', 'videoUrl', 'downloadLink', 'usageInstructions', 'originalPrice', 'currentPrice'];
+      const formInputs = ['adminName', 'productName', 'productDescription', 'productCategory', 'productType', 'videoUrl', 'downloadLink', 'usageInstructions'];
       formInputs.forEach(id => { const el = document.getElementById(id); if (el) { el.addEventListener('input', checkFormChanges); el.addEventListener('change', checkFormChanges); } });
       document.addEventListener('change', (e) => { if (e.target.classList.contains('file-input-hidden')) checkFormChanges(); });
     }
@@ -2058,7 +2036,7 @@
         document.body.appendChild(link);
         link.click();
         setTimeout(() => document.body.removeChild(link), 100);
-        showToast(`Downloading ${productName} as ${safeName}.zip`, 'success');
+        showToast(`Downloading ${productName}`, 'success');
       } catch (error) {
         window.open(url, '_blank');
         showToast(`Downloading ${productName}`, 'success');
@@ -2090,7 +2068,7 @@
     function closeLogoutDialog() { logoutDialog.classList.remove('active'); }
 
     async function confirmLogout() {
-      try { if (liveChatListener) liveChatListener(); await signOut(auth); window.location.href = "index.html"; }
+      try { await signOut(auth); window.location.href = "index.html"; }
       catch (error) { showToast("Logout failed: " + error.message, "error"); closeLogoutDialog(); }
     }
     logoutConfirm.addEventListener('click', confirmLogout);
@@ -2137,28 +2115,67 @@
       if (link) { try { await set(ref(db, 'admin/telegramLink'), link); adminTelegramLink = link; } catch (error) { console.error('Error saving Telegram link:', error); } }
     }
 
+    // Updated admin login with specific error messages
     adminLoginSubmit.addEventListener('click', async () => {
       const email = adminEmail.value.trim();
       const password = adminPassword.value.trim();
       const twoFACode = admin2FACode.value.trim();
-      if (!email || !password) { showToast('Please enter email and password', 'error'); return; }
-      if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) { showToast('Wrong login info.', 'error'); return; }
-      if (twoFactorSection.style.display === 'none') { twoFactorSection.style.display = 'block'; admin2FACode.focus(); showToast('Please enter 2FA access code', 'info'); return; }
-      if (!twoFACode) { showToast('Please enter 2FA access code', 'error'); return; }
+
+      if (!email || !password) { 
+        showToast('Please enter email and password', 'error'); 
+        return; 
+      }
+      
+      if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) { 
+        showToast('Email or password is incorrect', 'error'); 
+        return; 
+      }
+      
+      if (twoFactorSection.style.display === 'none') { 
+        twoFactorSection.style.display = 'block'; 
+        admin2FACode.focus(); 
+        showToast('Please enter 2FA access code', 'info'); 
+        return; 
+      }
+      
+      if (!twoFACode) { 
+        showToast('Please enter 2FA access code', 'error'); 
+        return; 
+      }
+
       const originalText = adminLoginSubmit.innerHTML;
       adminLoginSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
       adminLoginSubmit.disabled = true;
+
       try {
         const snap = await get(ref(db, 'admin/accessCode'));
-        if (snap.exists() && snap.val() === twoFACode) { isAdmin = true; closeAdminModal(); showToast('Admin login successful!', 'success'); setTimeout(() => openUploadModal(), 500); }
-        else { showToast('Invalid Access Code.', 'error'); }
-      } catch (error) { showToast('Error verifying access code', 'error'); }
-      finally { adminLoginSubmit.innerHTML = originalText; adminLoginSubmit.disabled = false; }
+        if (snap.exists() && snap.val() === twoFACode) { 
+          isAdmin = true; 
+          closeAdminModal(); 
+          showToast('Admin login successful!', 'success'); 
+          setTimeout(() => openUploadModal(), 500); 
+        }
+        else { 
+          showToast('Incorrect access code', 'error'); 
+        }
+      } catch (error) { 
+        showToast('Error verifying access code', 'error'); 
+      }
+      finally { 
+        adminLoginSubmit.innerHTML = originalText; 
+        adminLoginSubmit.disabled = false; 
+      }
     });
 
     productType.addEventListener('change', () => {
-      if (productType.value === 'paid') { priceFields.style.display = 'grid'; document.getElementById('currentPrice').required = true; }
-      else { priceFields.style.display = 'none'; document.getElementById('currentPrice').required = false; }
+      if (productType.value === 'paid') { 
+        priceFields.style.display = 'grid'; 
+        document.getElementById('currentPrice').required = true; 
+      }
+      else { 
+        priceFields.style.display = 'none'; 
+        document.getElementById('currentPrice').required = false; 
+      }
       checkFormChanges();
     });
 
@@ -2224,23 +2241,37 @@
         removeBtn.type = 'button';
         removeBtn.className = 'remove-image-btn';
         removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
-        removeBtn.onclick = () => { wrapper.remove(); imageFileCount--; checkFormChanges(); };
+        removeBtn.onclick = () => { 
+          wrapper.remove(); 
+          imageFileCount--; 
+          updateAddImageButtonState();
+          checkFormChanges(); 
+        };
         wrapper.appendChild(removeBtn);
       }
       return { wrapper, input, fieldId };
     }
 
+    function updateAddImageButtonState() {
+      if (imageFileCount >= MAX_IMAGES) {
+        addImageBtn.disabled = true;
+        addImageBtn.title = 'Maximum 5 images reached';
+      } else {
+        addImageBtn.disabled = false;
+        addImageBtn.title = '';
+      }
+    }
+
     window.addImageFileField = function() {
-      if (imageFileCount >= 5) { showToast('Maximum 5 images allowed', 'error'); return; }
+      if (imageFileCount >= MAX_IMAGES) { 
+        showToast(`Limit reached! Maximum ${MAX_IMAGES} images allowed.`, 'error'); 
+        return; 
+      }
       const { wrapper } = createFileInputField();
       imageUrlsContainer.appendChild(wrapper);
       imageFileCount++;
+      updateAddImageButtonState();
     };
-
-    function setImagePreviewFromBase64(fieldId, base64) {
-      const previewDiv = document.getElementById('preview_' + fieldId);
-      if (previewDiv) previewDiv.innerHTML = `<img src="${base64}" alt="Preview">`;
-    }
 
     function resetUploadForm() {
       productUploadForm.reset();
@@ -2248,6 +2279,7 @@
       const { wrapper } = createFileInputField(true);
       imageUrlsContainer.appendChild(wrapper);
       imageFileCount = 1;
+      updateAddImageButtonState();
       priceFields.style.display = 'none';
       document.getElementById('currentPrice').required = false;
       document.querySelectorAll('.image-size-option').forEach(o => o.classList.remove('selected'));
@@ -2280,7 +2312,7 @@
             adminProducts.push({ id: key, ...p });
             const item = document.createElement('div');
             item.className = 'admin-product-item';
-            item.innerHTML = `<div class="admin-product-info"><div class="admin-product-name">${p.name || 'Unnamed'}</div><div class="admin-product-id">ID: ${key.substring(0,8)}...</div></div><div class="admin-product-actions">${p.type==='paid'?`<button class="admin-product-generate-key" onclick="generateActivationKeyForProduct('${key}','${p.name||'this product'}')"><i class="fas fa-key"></i> Generate Key</button>`:''}<button class="admin-product-edit" onclick="editProduct('${key}')"><i class="fas fa-edit"></i> Edit</button><button class="admin-product-delete" onclick="showDeleteConfirmation('${key}','${p.name||'this product'}')"><i class="fas fa-trash"></i> Delete</button></div>`;
+            item.innerHTML = `<div class="admin-product-info"><div class="admin-product-name">${escapeHtml(p.name || 'Unnamed')}</div><div class="admin-product-id">ID: ${key.substring(0,8)}...</div></div><div class="admin-product-actions">${p.type==='paid'?`<button class="admin-product-generate-key" onclick="generateActivationKeyForProduct('${key}','${escapeHtml(p.name||'this product')}')"><i class="fas fa-key"></i> Generate Key</button>`:''}<button class="admin-product-edit" onclick="editProduct('${key}')"><i class="fas fa-edit"></i> Edit</button><button class="admin-product-delete" onclick="showDeleteConfirmation('${key}','${escapeHtml(p.name||'this product')}')"><i class="fas fa-trash"></i> Delete</button></div>`;
             adminProductsList.appendChild(item);
           });
         } else { adminProductsList.innerHTML = '<div style="text-align:center;color:var(--color-text-muted);padding:20px;">No products uploaded yet</div>'; }
@@ -2288,7 +2320,7 @@
     }
 
     window.showDeleteConfirmation = function(productId, productName) {
-      deleteConfirmationContent.innerHTML = `<div class="delete-confirmation"><div class="delete-icon"><i class="fas fa-trash-alt"></i></div><h2 class="delete-title">Delete Product</h2><p class="delete-message">Are you sure you want to delete "${productName}"?</p><div class="admin-form-buttons"><button class="admin-form-submit" style="background:#dc2626" onclick="confirmDeleteProduct('${productId}','${productName}')">Delete</button><button class="admin-form-cancel" onclick="closeDeleteConfirmation()">Cancel</button></div></div>`;
+      deleteConfirmationContent.innerHTML = `<div class="delete-confirmation"><div class="delete-icon"><i class="fas fa-trash-alt"></i></div><h2 class="delete-title">Delete Product</h2><p class="delete-message">Are you sure you want to delete "${escapeHtml(productName)}"?</p><div class="admin-form-buttons"><button class="admin-form-submit" style="background:#dc2626" onclick="confirmDeleteProduct('${productId}','${escapeHtml(productName)}')">Delete</button><button class="admin-form-cancel" onclick="closeDeleteConfirmation()">Cancel</button></div></div>`;
       deleteConfirmationModal.classList.add('active');
     };
     window.closeDeleteConfirmation = () => deleteConfirmationModal.classList.remove('active');
@@ -2312,8 +2344,15 @@
         document.getElementById('productDescription').value = p.description || '';
         document.getElementById('productCategory').value = p.category || '';
         document.getElementById('productType').value = p.type || 'free';
-        if (p.type === 'paid') { priceFields.style.display = 'grid'; document.getElementById('originalPrice').value = p.originalPrice || ''; document.getElementById('currentPrice').value = p.price || ''; document.getElementById('currentPrice').required = true; }
-        else { priceFields.style.display = 'none'; }
+        if (p.type === 'paid') { 
+          priceFields.style.display = 'grid'; 
+          document.getElementById('originalPrice').value = p.originalPriceAmount || ''; 
+          document.getElementById('currentPrice').value = p.priceAmount || ''; 
+          document.getElementById('priceCurrency').value = p.currency || 'USD';
+          document.getElementById('currentPrice').required = true; 
+        } else { 
+          priceFields.style.display = 'none'; 
+        }
         document.querySelectorAll('.image-size-option').forEach(o => { o.classList.remove('selected'); if (o.dataset.ratio === (p.imageAspectRatio||'16:9')) o.classList.add('selected'); });
         imageAspectRatio = p.imageAspectRatio || '16:9';
         imageUrlsContainer.innerHTML = '';
@@ -2323,10 +2362,18 @@
             const { wrapper, fieldId } = createFileInputField(false);
             imageUrlsContainer.appendChild(wrapper);
             imageFileCount++;
-            setTimeout(() => setImagePreviewFromBase64(fieldId, b64), 10);
+            setTimeout(() => {
+              const previewDiv = document.getElementById('preview_' + fieldId);
+              if (previewDiv) previewDiv.innerHTML = `<img src="${b64}" alt="Preview">`;
+            }, 10);
           });
         }
-        if (imageFileCount < 5) { const { wrapper } = createFileInputField(true); imageUrlsContainer.appendChild(wrapper); imageFileCount++; }
+        if (imageFileCount < MAX_IMAGES) { 
+          const { wrapper } = createFileInputField(true); 
+          imageUrlsContainer.appendChild(wrapper); 
+          imageFileCount++; 
+        }
+        updateAddImageButtonState();
         document.getElementById('videoUrl').value = p.videoPreview || '';
         document.getElementById('downloadLink').value = p.downloadLink || '';
         document.getElementById('usageInstructions').value = p.tool_usage || '';
@@ -2350,20 +2397,50 @@
       const usageInstructions = document.getElementById('usageInstructions').value.trim();
       const fileInputs = document.querySelectorAll('.file-input-hidden');
       const imageFiles = Array.from(fileInputs).map(i => i.files[0]).filter(f => f);
+      
       if (!adminName || !productName || !description || !category || !downloadLink) { showToast('Fill all required fields', 'error'); return; }
       if (type === 'paid' && !document.getElementById('currentPrice').value.trim()) { showToast('Current price required', 'error'); return; }
+      
       uploadSubmitBtn.classList.add('loading');
       uploadSubmitBtn.disabled = true;
       showUploadStatus(currentEditProductId ? 'Saving...' : 'Uploading...', 'loading');
+      
       try {
         let imageUrls = [];
-        if (imageFiles.length > 0) { showUploadStatus('Processing images...', 'loading'); for (const f of imageFiles) imageUrls.push(await fileToBase64(f)); }
-        const productData = { adminName, name: productName, description, category, type, videoPreview: videoUrl || null, downloadLink, tool_usage: usageInstructions || "How to use: Open in After Effects and customize as needed.", uploaderName: adminName, uploaderId: currentUserId, updatedAt: Date.now(), isPaid: type === 'paid', imageAspectRatio };
+        if (imageFiles.length > 0) { 
+          showUploadStatus('Processing images...', 'loading'); 
+          for (const f of imageFiles) imageUrls.push(await fileToBase64(f)); 
+        }
+        
+        const currency = type === 'paid' ? document.getElementById('priceCurrency').value : 'USD';
+        const currencySymbol = type === 'paid' ? document.getElementById('priceCurrency').selectedOptions[0].dataset.symbol : '$';
+        
+        const productData = { 
+          adminName, name: productName, description, category, type, 
+          videoPreview: videoUrl || null, downloadLink, 
+          tool_usage: usageInstructions || "How to use: Open in After Effects and customize as needed.", 
+          uploaderName: adminName, uploaderId: currentUserId, updatedAt: Date.now(), 
+          isPaid: type === 'paid', imageAspectRatio, currency, currencySymbol
+        };
+        
         if (imageUrls.length > 0) productData.images = imageUrls;
         else if (!currentEditProductId) { showToast('At least one image required', 'error'); throw new Error('No images'); }
-        if (type === 'paid') { productData.price = document.getElementById('currentPrice').value.trim(); const op = document.getElementById('originalPrice').value.trim(); if (op) productData.originalPrice = op; }
-        else productData.price = "Free";
+        
+        if (type === 'paid') { 
+          productData.priceAmount = document.getElementById('currentPrice').value.trim(); 
+          productData.price = `${currencySymbol}${productData.priceAmount}`;
+          const op = document.getElementById('originalPrice').value.trim(); 
+          if (op) { 
+            productData.originalPriceAmount = op; 
+            productData.originalPrice = `${currencySymbol}${op}`; 
+          }
+        } else { 
+          productData.price = "Free"; 
+          productData.priceAmount = "0";
+        }
+        
         await saveAdminTelegramLink();
+        
         if (currentEditProductId) {
           await update(ref(db, `tools/${currentEditProductId}`), productData);
           showUploadStatus('Updated!', 'success');
@@ -2372,14 +2449,18 @@
           const newRef = push(ref(db, 'tools'));
           productData.createdAt = Date.now();
           productData.uploadedAt = Date.now();
-          // Initialize view count structure
           productData.viewCount = { uniqueUsers: {}, totalUniqueViews: 0 };
           productData.comments = {};
           await set(newRef, productData);
           showUploadStatus('Uploaded!', 'success');
           setTimeout(() => { hideUploadStatus(); uploadSubmitBtn.disabled = false; uploadSubmitBtn.classList.remove('loading'); loadAdminProducts(); loadMarketData(); resetUploadForm(); showSuccessPopup('Product uploaded!'); }, 1500);
         }
-      } catch (error) { uploadSubmitBtn.classList.remove('loading'); uploadSubmitBtn.disabled = false; showUploadStatus('Error: ' + error.message, 'error'); setTimeout(hideUploadStatus, 3000); }
+      } catch (error) { 
+        uploadSubmitBtn.classList.remove('loading'); 
+        uploadSubmitBtn.disabled = false; 
+        showUploadStatus('Error: ' + error.message, 'error'); 
+        setTimeout(hideUploadStatus, 3000); 
+      }
     });
 
     function toggleSidebar() { sidebarOpen = !sidebarOpen; sidebar.classList.toggle('open', sidebarOpen); sidebarOverlay.classList.toggle('active', sidebarOpen); }
@@ -2391,8 +2472,7 @@
     categoryOptions.forEach(opt => opt.addEventListener('click', async function() {
       currentFilterCategory = this.dataset.value;
       categoryTrigger.querySelector('.placeholder').textContent = this.textContent;
-      categoryTrigger.classList.remove('active');
-      categoryDropdown.classList.remove('active');
+      categoryTrigger.classList.remove('active'); categoryDropdown.classList.remove('active');
       showLoadingAnimation();
       setTimeout(async () => await renderTools(currentFilterCategory, currentSearchQuery), 300);
     }));
@@ -2401,32 +2481,13 @@
     searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') performSearch(); });
     function performSearch() { currentSearchQuery = searchInput.value.trim().toLowerCase(); showLoadingAnimation(); setTimeout(async () => await renderTools(currentFilterCategory, currentSearchQuery), 300); }
 
-    function setupLiveChatNotifications() {
-      if (!currentUserId) return;
-      const savedTimestamp = localStorage.getItem('liveChatLastRead');
-      lastReadTimestamp = savedTimestamp ? parseInt(savedTimestamp) : Date.now();
-      localStorage.setItem('liveChatLastRead', lastReadTimestamp.toString());
-      const savedUnread = localStorage.getItem('liveChatUnreadCount');
-      unreadCount = savedUnread ? parseInt(savedUnread) : 0;
-      updateNotificationBadges();
-      const messagesRef = ref(db, `artifacts/motion-flow-47450/public/data/liveChat/messages`);
-      liveChatListener = onValue(messagesRef, (snap) => {
-        if (!snap.exists()) return;
-        const messages = snap.val();
-        Object.values(messages).forEach(m => { if (m.timestamp > lastReadTimestamp && m.userId !== currentUserId) unreadCount++; });
-        if (unreadCount > 0) { localStorage.setItem('liveChatUnreadCount', unreadCount.toString()); updateNotificationBadges(); }
-      });
-    }
-    function updateNotificationBadges() { liveChatNotification.classList.toggle('active', unreadCount > 0); }
-
-    // Load user profile data for comments
+    // Load user profile data
     async function loadUserProfileData(userId) {
       try {
         const possiblePaths = [doc(firestore, "artifacts", "motion-flow-v1", "users", userId, "profile", "settings"), doc(firestore, "users", userId)];
         let userData = null;
         for (const userDocRef of possiblePaths) {
-          try { const userDoc = await getDoc(userDocRef); if (userDoc.exists()) { userData = userDoc.data(); break; } }
-          catch (err) {}
+          try { const userDoc = await getDoc(userDocRef); if (userDoc.exists()) { userData = userDoc.data(); break; } } catch (err) {}
         }
         if (userData) currentUserData = userData;
         else currentUserData = { username: `User${userId.substring(0,6)}`, nickname: `User${userId.substring(0,6)}`, profileImage: null, userId };
@@ -2434,7 +2495,7 @@
     }
 
     onAuthStateChanged(auth, async (user) => {
-      if (user) { currentUserId = user.uid; await loadUserProfileData(currentUserId); loadMarketData(); setTimeout(setupLiveChatNotifications, 1000); setupFormChangeListeners(); }
+      if (user) { currentUserId = user.uid; await loadUserProfileData(currentUserId); loadMarketData(); setupFormChangeListeners(); }
       else { window.location.href = "index.html"; }
     });
 
@@ -2482,6 +2543,13 @@
       for (const tool of toolsToDisplay) await createToolCard(tool);
     }
 
+    // Visit user profile function
+    window.visitUserProfile = function(userId, userName) {
+      if (!userId || userId === 'unknown' || userId === 'admin') { showToast('Cannot visit this profile', 'info'); return; }
+      if (currentUserId && userId === currentUserId) { window.location.href = '../profile/profile.html'; }
+      else { window.location.href = `../Users/user-profile.html?userId=${userId}`; }
+    };
+
     async function createToolCard(tool) {
       const hasVideoPreview = tool.videoPreview && tool.videoPreview !== '#';
       const hasMultipleImages = tool.images && tool.images.length > 1;
@@ -2508,13 +2576,18 @@
             <div class="product-id-left">
               <span>${tool.isPaid?'🔒 PAID':'🆓 FREE'}</span>
               <span class="copy-icon" onclick="copyToClipboard('${tool.toolId}','Product ID copied!')"><i class="fas fa-copy"></i> Copy ID</span>
-              <span class="view-count-icon"><i class="fas fa-eye"></i> ${totalViews}</span>
             </div>
             <span class="share-icon" onclick="shareProduct('${tool.toolId}','${escapeHtml(tool.name).replace(/'/g,"\\'")}','${shareLink}')"><i class="fas fa-share-alt"></i> Share</span>
           </div>
           <div class="user-info"><div class="user-details"><span class="username">${escapeHtml(tool.uploaderName)}${isAdminUploader?`<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>`:''}</span></div><span class="time">${getTimeAgo(tool.uploadedAt)}</span></div>
           <div class="buttons">
-            ${tool.isPaid?(isUnlocked?`<button class="download-btn" onclick="handleDownload('${tool.downloadLink}','${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-download"></i> Download</button>`:`<button class="activate-btn" onclick="handleActivation('${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-lock-open"></i> Unlock</button>`):`<button class="purchase-btn" onclick="handleFreeProduct('${tool.downloadLink}','${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-shopping-cart"></i> Get Now</button>`}
+            ${tool.isPaid ? 
+              (isUnlocked ? 
+                `<button class="download-btn" onclick="handleDownload('${tool.downloadLink}','${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-download"></i> Download</button>` :
+                `<button class="activate-btn" onclick="handleActivation('${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-lock-open"></i> Unlock</button><span class="view-badge" style="position:absolute;top:-5px;right:-5px;background:var(--color-success);color:white;font-size:0.65em;padding:2px 6px;border-radius:10px;display:flex;align-items:center;gap:3px;"><i class="fas fa-eye"></i> ${totalViews}</span>`
+              ) :
+              `<button class="purchase-btn" onclick="handleFreeProduct('${tool.downloadLink}','${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')" style="position:relative;"><i class="fas fa-shopping-cart"></i> Get Now<span class="view-badge" style="position:absolute;top:-5px;right:-5px;background:var(--color-success);color:white;font-size:0.65em;padding:2px 6px;border-radius:10px;display:flex;align-items:center;gap:3px;"><i class="fas fa-eye"></i> ${totalViews}</span></button>`
+            }
             <button class="info-btn" onclick="showToolInfo('${tool.key}')"><i class="fas fa-info-circle"></i> Info</button>
           </div>
           <button class="comment-btn" onclick="toggleProductComments('${tool.key}')"><i class="fas fa-comment"></i> Comments${commentCount>0?`<span class="comment-count">${commentCount}</span>`:''}</button>
@@ -2525,6 +2598,21 @@
         </div>
       `;
       marketContainer.appendChild(card);
+      
+      // Fix button positioning for view badge
+      const activateBtn = card.querySelector('.activate-btn');
+      const purchaseBtn = card.querySelector('.purchase-btn');
+      if (activateBtn) {
+        activateBtn.style.position = 'relative';
+        const badge = activateBtn.nextElementSibling;
+        if (badge && badge.classList.contains('view-badge')) {
+          activateBtn.appendChild(badge);
+        }
+      }
+      if (purchaseBtn) {
+        purchaseBtn.style.position = 'relative';
+        const badge = purchaseBtn.querySelector('.view-badge');
+      }
       
       if (hasMultipleImages) {
         const imgWrapper = card.querySelector('.product-img-wrapper');
@@ -2543,7 +2631,6 @@
       }
       if (hasVideoPreview) card.querySelector('.video-preview-btn')?.addEventListener('click',(e)=>{e.stopPropagation(); showVideoPreview(tool.videoPreview,tool.name);});
       
-      // Load comments
       await loadProductComments(tool.key);
     }
 
@@ -2567,7 +2654,14 @@
         const item = document.createElement('div');
         item.className = 'comment-item';
         const avatar = c.profileImage || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.userName)}&background=00bcd4&color=fff`;
-        item.innerHTML = `<div class="comment-header"><img src="${avatar}" class="comment-avatar" alt="${escapeHtml(c.userName)}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(c.userName)}&background=1a1a2e&color=fff'"><span class="comment-author">${escapeHtml(c.userName)}</span><span class="comment-time">${getTimeAgo(c.timestamp)}</span></div><div class="comment-text">${escapeHtml(c.text)}</div>`;
+        item.innerHTML = `
+          <div class="comment-header">
+            <img src="${avatar}" class="comment-avatar" alt="${escapeHtml(c.userName)}" onclick="visitUserProfile('${c.userId || 'unknown'}', '${escapeHtml(c.userName)}')" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(c.userName)}&background=1a1a2e&color=fff'">
+            <span class="comment-author" onclick="visitUserProfile('${c.userId || 'unknown'}', '${escapeHtml(c.userName)}')">${escapeHtml(c.userName)}</span>
+            <span class="comment-time">${getTimeAgo(c.timestamp)}</span>
+          </div>
+          <div class="comment-text">${escapeHtml(c.text)}</div>
+        `;
         commentsList.appendChild(item);
       });
     }
@@ -2595,7 +2689,7 @@
       } catch (e) { showToast('Error: ' + e.message, 'error'); }
     };
 
-    // Track unique view when Get Now is clicked
+    // Track unique view
     async function trackProductView(productId) {
       if (!currentUserId) return;
       try {
@@ -2603,7 +2697,6 @@
         const snap = await get(viewRef);
         if (!snap.exists()) {
           await set(viewRef, true);
-          // Update total unique views
           const totalRef = ref(db, `tools/${productId}/viewCount/totalUniqueViews`);
           const totalSnap = await get(totalRef);
           const currentTotal = totalSnap.exists() ? totalSnap.val() : 0;
@@ -2612,7 +2705,22 @@
       } catch (e) { console.error('Error tracking view:', e); }
     }
 
-    // Modified free product handler with view tracking
+    // Track view for paid products when unlock is clicked
+    async function trackPaidProductView(productId) {
+      if (!currentUserId) return;
+      try {
+        const viewRef = ref(db, `tools/${productId}/viewCount/uniqueUsers/${currentUserId}`);
+        const snap = await get(viewRef);
+        if (!snap.exists()) {
+          await set(viewRef, true);
+          const totalRef = ref(db, `tools/${productId}/viewCount/totalUniqueViews`);
+          const totalSnap = await get(totalRef);
+          const currentTotal = totalSnap.exists() ? totalSnap.val() : 0;
+          await set(totalRef, currentTotal + 1);
+        }
+      } catch (e) { console.error('Error tracking view:', e); }
+    }
+
     window.handleFreeProduct = async (downloadLink, toolKey, productName) => {
       await trackProductView(toolKey);
       if (downloadLink && downloadLink !== '#') {
@@ -2676,13 +2784,42 @@
       dlg.addEventListener('click',(e)=>{if(e.target===dlg)dlg.remove();});
     };
 
-    window.handleActivation = (toolKey, productName) => {
+    // Updated activation handler with view tracking
+    window.handleActivation = async (toolKey, productName) => {
       if (!currentUserId) { showToast('Please login','error'); return; }
+      // Track view when unlock is clicked
+      await trackPaidProductView(toolKey);
       showActivationPage(toolKey, productName);
     };
 
     function showActivationPage(toolKey, productName) {
-      activationContent.innerHTML = `<div class="activation-page"><div class="activation-icon"><i class="fas fa-lock"></i></div><h2 class="activation-title">Premium Product</h2><h3 style="color:var(--color-accent);">${escapeHtml(productName)}</h3><p class="activation-description">This product requires purchase and activation.</p><div class="activation-instructions"><h4>How to unlock:</h4><ol><li>Contact on Telegram</li><li>Send product name: <strong>${escapeHtml(productName)}</strong></li><li>Request purchase instructions</li><li>Enter activation code below</li></ol></div><div class="activation-input-group"><input type="text" class="activation-input" id="activationCodeInput" placeholder="Enter 10-digit code" maxlength="10" style="text-transform:uppercase;"></div><div class="activation-actions"><a href="${adminTelegramLink}" target="_blank" class="telegram-btn"><i class="fab fa-telegram"></i> Contact on Telegram</a><button class="admin-form-submit" onclick="verifyActivationCode('${toolKey}','${escapeHtml(productName)}')"><i class="fas fa-key"></i> Verify</button><button class="back-btn" onclick="closeActivationModal()">Back</button></div></div>`;
+      activationContent.innerHTML = `
+        <div class="activation-page">
+          <div class="activation-icon"><i class="fas fa-lock"></i></div>
+          <h2 class="activation-title">Premium Product</h2>
+          <h3 style="color:var(--color-accent);margin-bottom:15px;">${escapeHtml(productName)}</h3>
+          <p class="activation-description">This product requires purchase and activation.</p>
+          <div class="activation-instructions">
+            <h4>How to unlock:</h4>
+            <ol>
+              <li>Contact on Telegram</li>
+              <li>Send product name: <strong>${escapeHtml(productName)}</strong></li>
+              <li>Request purchase instructions</li>
+              <li>Enter activation code below</li>
+            </ol>
+            <p style="color:var(--color-warning);margin-top:10px;"><i class="fas fa-exclamation-circle"></i> Each activation code can only be used once!</p>
+          </div>
+          <div class="activation-input-group">
+            <input type="text" class="activation-input" id="activationCodeInput" placeholder="Enter 10-digit code" maxlength="10">
+            <p style="font-size:0.9em;color:var(--color-text-muted);margin-top:8px;">Enter the code exactly as received from the admin</p>
+          </div>
+          <div class="activation-actions">
+            <a href="${adminTelegramLink}" target="_blank" class="telegram-btn"><i class="fab fa-telegram"></i> Contact on Telegram</a>
+            <button class="admin-form-submit" onclick="verifyActivationCode('${toolKey}','${escapeHtml(productName)}')"><i class="fas fa-key"></i> Verify Activation Code</button>
+            <button class="back-btn" onclick="closeActivationModal()"><i class="fas fa-arrow-left"></i> Back to Products</button>
+          </div>
+        </div>
+      `;
       activationModal.classList.add('active');
     }
 
@@ -2695,7 +2832,7 @@
       btn.disabled = true;
       try {
         const snap = await get(ref(db, `tools/${toolKey}/activeKey`));
-        if (!snap.exists()||code!==snap.val()) { showToast('Invalid code','error'); btn.innerHTML=orig; btn.disabled=false; return; }
+        if (!snap.exists()||code!==snap.val()) { showToast('Incorrect activation code','error'); btn.innerHTML=orig; btn.disabled=false; return; }
         await remove(ref(db, `tools/${toolKey}/activeKey`));
         localStorage.setItem(toolKey+'_unlocked','true');
         closeActivationModal();
@@ -2711,7 +2848,20 @@
         const tool = (await get(ref(db,`tools/${toolKey}`))).val();
         if (!tool) { showToast('Product not found','error'); return; }
         const content = document.getElementById('infoContent');
-        content.innerHTML = `<div class="download-page"><div class="download-success-icon"><i class="fas fa-download"></i></div><h2 style="color:var(--color-success);"><i class="fas fa-unlock-alt"></i> Download Ready!</h2><h3 style="color:var(--color-accent);">${escapeHtml(productName)}</h3><button class="download-link" onclick="triggerDirectDownload('${tool.downloadLink}','${escapeHtml(productName)}')"><i class="fas fa-external-link-alt"></i> Download Now</button>${code?`<div style="margin-top:20px;padding:15px;background:rgba(16,185,129,0.1);border-radius:10px;"><p style="color:var(--color-success);"><i class="fas fa-key"></i> Code Used: ${code}</p></div>`:''}<div class="admin-form-buttons" style="margin-top:30px;"><button class="admin-form-submit" onclick="copyToClipboard('${tool.downloadLink}','Link copied!')"><i class="fas fa-copy"></i> Copy Link</button><button class="admin-form-cancel" onclick="document.getElementById('infoDialog').classList.remove('active')">Close</button></div></div>`;
+        content.innerHTML = `
+          <div class="download-page">
+            <div class="download-success-icon"><i class="fas fa-download"></i></div>
+            <h2 style="color:var(--color-success);"><i class="fas fa-unlock-alt"></i> Download Ready!</h2>
+            <h3 style="color:var(--color-accent);">${escapeHtml(productName)}</h3>
+            <p style="margin-bottom:20px;">Your product is ready to download:</p>
+            <button class="download-link" onclick="triggerDirectDownload('${tool.downloadLink}','${escapeHtml(productName)}')"><i class="fas fa-external-link-alt"></i> Download Now</button>
+            ${code?`<div style="margin-top:20px;padding:15px;background:rgba(16,185,129,0.1);border-radius:10px;"><p style="color:var(--color-success);"><i class="fas fa-key"></i> Activation Code Used: ${code}</p><p style="color:var(--color-text-muted);font-size:0.9em;">This code has been burned and cannot be used again</p></div>`:''}
+            <div class="admin-form-buttons" style="margin-top:30px;">
+              <button class="admin-form-submit" onclick="copyToClipboard('${tool.downloadLink}','Link copied!')"><i class="fas fa-copy"></i> Copy Link</button>
+              <button class="admin-form-cancel" onclick="document.getElementById('infoDialog').classList.remove('active')">Close</button>
+            </div>
+          </div>
+        `;
         document.getElementById('infoDialog').classList.add('active');
       } catch(e) { showToast('Error loading download','error'); }
     };
@@ -2721,7 +2871,21 @@
       if (tool) {
         const content = document.getElementById('infoContent');
         const isAdminUploader = tool.uploaderName && (tool.uploaderName.includes('Admin')||tool.uploaderName.includes('Moonlight'));
-        content.innerHTML = `<h2 style="color:var(--color-accent);">${escapeHtml(tool.name)}</h2><div style="margin-bottom:20px;padding:10px;background:rgba(0,188,212,0.1);border-radius:8px;"><strong>Category:</strong> ${escapeHtml(tool.category)}<br><strong>Price:</strong> ${tool.isPaid?tool.price:'Free'}<br>${tool.originalPrice?`<strong>Original:</strong> <span style="text-decoration:line-through;">${tool.originalPrice}</span><br>`:''}<strong>Uploaded by:</strong> ${escapeHtml(tool.uploaderName)} ${isAdminUploader?'<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>':''}<br><strong>Uploaded:</strong> ${new Date(tool.uploadedAt).toLocaleDateString()}<br><strong><i class="fas fa-eye"></i> Views:</strong> ${tool.totalViews||0}</div><p><strong>Description:</strong></p><div>${linkify(escapeHtml(tool.description||''))}</div>${tool.tool_usage?`<p><strong>How to use:</strong></p><div>${linkify(escapeHtml(tool.tool_usage))}</div>`:''}<button class="admin-form-submit" onclick="document.getElementById('infoDialog').classList.remove('active')" style="margin-top:20px;">Close</button>`;
+        content.innerHTML = `
+          <h2 style="color:var(--color-accent);">${escapeHtml(tool.name)}</h2>
+          <div style="margin-bottom:20px;padding:10px;background:rgba(0,188,212,0.1);border-radius:8px;">
+            <strong>Category:</strong> ${escapeHtml(tool.category)}<br>
+            <strong>Price:</strong> ${tool.isPaid?tool.price:'Free'}<br>
+            ${tool.originalPrice?`<strong>Original:</strong> <span style="text-decoration:line-through;">${tool.originalPrice}</span><br>`:''}
+            <strong>Uploaded by:</strong> ${escapeHtml(tool.uploaderName)} ${isAdminUploader?'<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>':''}<br>
+            <strong>Uploaded:</strong> ${new Date(tool.uploadedAt).toLocaleDateString()}<br>
+            <strong><i class="fas fa-eye"></i> Views:</strong> ${tool.totalViews||0}
+          </div>
+          <p><strong>Description:</strong></p>
+          <div style="margin-bottom:15px;">${linkify(escapeHtml(tool.description||''))}</div>
+          ${tool.tool_usage?`<p><strong>How to use:</strong></p><div>${linkify(escapeHtml(tool.tool_usage))}</div>`:''}
+          <button class="admin-form-submit" onclick="document.getElementById('infoDialog').classList.remove('active')" style="margin-top:20px;">Close</button>
+        `;
         document.getElementById('infoDialog').classList.add('active');
       }
     };
@@ -2736,6 +2900,7 @@
       loadAdminTelegramLink();
       const { wrapper } = createFileInputField(true);
       imageUrlsContainer.appendChild(wrapper);
+      updateAddImageButtonState();
       setupFormChangeListeners();
     });
 
