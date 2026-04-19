@@ -68,6 +68,506 @@
       z-index: 0;
     }
 
+    /* Bottom Sheet Consent Banner */
+    .bottom-sheet-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      z-index: 9998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .bottom-sheet-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .bottom-sheet {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26, 26, 46, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      padding: 35px 25px 30px;
+      z-index: 9999;
+      transform: translateY(100%);
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 -10px 40px rgba(0, 188, 212, 0.15);
+      border-top: 1px solid rgba(0, 188, 212, 0.3);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .bottom-sheet.active {
+      transform: translateY(0);
+    }
+
+    .sheet-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 350px;
+      margin: 0 auto;
+    }
+
+    .sheet-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0, 188, 212, 0.3);
+    }
+
+    .sheet-icon i {
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    .sheet-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .sheet-text {
+      color: var(--color-text);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .sheet-text a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .sheet-btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      color: white;
+      border: none;
+      padding: 16px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+      margin-bottom: 12px;
+    }
+
+    .sheet-btn-secondary {
+      background: transparent;
+      color: var(--color-text-muted);
+      border: none;
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    /* WhatsApp-style Top Banner */
+    .top-banner {
+      position: fixed;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 400px;
+      background: linear-gradient(135deg, var(--color-primary), #0891b2);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      z-index: 5000;
+      transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .top-banner.active {
+      top: 20px;
+    }
+    
+    .banner-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+    
+    .banner-content i {
+      font-size: 1.5rem;
+    }
+    
+    .banner-content span {
+      flex: 1;
+      font-weight: 500;
+    }
+
+    /* Generating Popup */
+    .generating-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--color-bg-light);
+      border-radius: var(--radius-lg);
+      padding: 30px 40px;
+      border: 2px solid var(--color-primary);
+      box-shadow: 0 10px 40px rgba(0, 188, 212, 0.3);
+      z-index: 10000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .generating-popup.active {
+      display: flex;
+    }
+    
+    .generating-popup i {
+      font-size: 3rem;
+      color: var(--color-primary);
+      margin-bottom: 15px;
+    }
+    
+    .generating-popup span {
+      color: var(--color-text);
+      font-size: 1.1rem;
+    }
+
+    /* Category Management Modal */
+    .category-management-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 6000;
+      padding: 20px;
+    }
+    
+    .category-management-modal.active {
+      display: flex;
+    }
+    
+    .category-management-content {
+      background: var(--color-bg-light);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      max-width: 500px;
+      width: 95%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 2px solid var(--color-primary);
+    }
+    
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .category-header h3 {
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+    }
+    
+    .add-category-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .add-category-input {
+      flex: 1;
+      padding: 12px 16px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+      font-size: 0.95rem;
+    }
+    
+    .add-category-btn {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    
+    .categories-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .category-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .category-name {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+    
+    .category-actions {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .edit-category-btn, .delete-category-btn {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: var(--transition);
+    }
+    
+    .edit-category-btn {
+      background: rgba(0, 188, 212, 0.2);
+      color: var(--color-primary);
+      border: 1px solid rgba(0, 188, 212, 0.3);
+    }
+    
+    .delete-category-btn {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--color-error);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    .manage-categories-btn {
+      background: rgba(0, 188, 212, 0.2);
+      color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+      padding: 8px 15px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    /* Comment Management Modal */
+    .comment-management-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 6000;
+      padding: 20px;
+    }
+    
+    .comment-management-modal.active {
+      display: flex;
+    }
+    
+    .comment-management-content {
+      background: var(--color-bg-light);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      max-width: 600px;
+      width: 95%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 2px solid var(--color-primary);
+    }
+    
+    .comment-management-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .comment-management-header h3 {
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+    }
+    
+    .comment-management-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .clear-all-btn {
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--color-error);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      padding: 8px 15px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    
+    .comment-item-admin {
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .comment-item-admin .comment-content {
+      flex: 1;
+    }
+    
+    .comment-item-admin .comment-actions {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .delete-comment-btn {
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: var(--transition);
+      background: rgba(239, 68, 68, 0.2);
+      color: var(--color-error);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    /* Comment Edit/Delete for Users */
+    .comment-item {
+        position: relative;
+        padding-bottom: 40px;
+    }
+
+    .comment-user-actions {
+        position: absolute;
+        bottom: 8px;
+        right: 12px;
+        display: flex;
+        gap: 8px;
+        opacity: 1;
+        transition: opacity 0.2s ease;
+    }
+
+    @media (min-width: 769px) {
+        .comment-user-actions {
+            opacity: 0;
+        }
+        
+        .comment-item:hover .comment-user-actions {
+            opacity: 1;
+        }
+    }
+
+    .comment-user-edit, .comment-user-delete {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 6px 12px;
+        font-size: 0.7rem;
+        border-radius: 20px;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .comment-user-edit {
+        background: rgba(0, 188, 212, 0.8);
+    }
+
+    .comment-user-delete {
+        background: rgba(239, 68, 68, 0.8);
+    }
+
+    .comment-user-actions .action-text {
+        margin-left: 4px;
+    }
+
+    @media (max-width: 480px) {
+        .comment-item {
+            padding-bottom: 45px;
+        }
+        
+        .comment-user-actions .action-text {
+            display: none;
+        }
+        
+        .comment-user-edit, .comment-user-delete {
+            padding: 8px;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            justify-content: center;
+        }
+    }
+
     /* --- TOP NAVIGATION --- */
     .top-nav {
       height: 70px;
@@ -322,33 +822,56 @@
       z-index: 2;
     }
 
-    /* Currency Selector */
-    .currency-selector {
-      display: flex;
-      gap: 10px;
-      align-items: center;
+    /* Error message styling */
+    .error-message {
+      color: var(--color-error);
+      font-size: 0.8rem;
+      margin-top: 5px;
+      display: none;
     }
     
-    .currency-select {
-      flex: 1;
-      padding: 12px 16px;
-      background: var(--bg-input);
+    .error-message.show {
+      display: block;
+    }
+
+    /* Media Type Selector */
+    .media-type-selector {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .media-type-option {
+      padding: 12px;
+      background: rgba(0, 188, 212, 0.1);
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
-      color: var(--color-text);
-      font-size: 0.95rem;
-    }
-    
-    .price-input-wrapper {
-      flex: 2;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.9rem;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      gap: 5px;
     }
-    
-    .currency-symbol {
-      padding: 0 10px;
-      color: var(--color-text-muted);
-      font-weight: 600;
+
+    .media-type-option.selected {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent-alt));
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .media-type-option i {
+      font-size: 1.2rem;
+    }
+
+    /* Currency Selector */
+    .price-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
     }
 
     .logout-dialog {
@@ -526,12 +1049,6 @@
       cursor: not-allowed;
     }
 
-    .price-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
     .admin-form-buttons {
       display: flex;
       gap: 15px;
@@ -622,7 +1139,8 @@
 
     .admin-product-edit,
     .admin-product-delete,
-    .admin-product-generate-key {
+    .admin-product-generate-key,
+    .admin-product-comments {
       padding: 6px 12px;
       border-radius: var(--radius-sm);
       border: none;
@@ -641,6 +1159,32 @@
       background: rgba(239, 68, 68, 0.2);
       color: var(--color-error);
       border: 1px solid var(--color-error);
+    }
+
+    .admin-product-generate-key {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--color-warning);
+      border: 1px solid var(--color-warning);
+    }
+
+    .admin-product-comments {
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--color-success);
+      border: 1px solid var(--color-success);
+    }
+
+    .admin-product-code {
+      font-size: 0.75rem;
+      color: var(--color-success);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border-radius: 6px;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      margin-top: 5px;
     }
 
     /* Upload Status */
@@ -756,6 +1300,15 @@
       padding: 25px;
       box-shadow: 0 8px 32px rgba(0, 188, 212, 0.1);
       backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .search-container {
+      z-index: 1000;
+    }
+
+    .filter-container {
+      z-index: 100;
     }
 
     .filter-label {
@@ -768,16 +1321,55 @@
     .search-box {
       display: flex;
       gap: 10px;
+      position: relative;
+    }
+
+    .search-input-wrapper {
+      flex: 1;
+      position: relative;
+      z-index: 1001;
     }
 
     .search-input {
-      flex: 1;
-      padding: 14px 16px;
+      width: 100%;
+      padding: 14px 40px 14px 16px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 10px;
       color: var(--color-text);
       font-size: 1em;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 5px;
+      display: none;
+      transition: var(--transition);
+      z-index: 1002;
+    }
+
+    .clear-search-btn:hover {
+      color: var(--color-error);
+    }
+
+    .clear-search-btn.visible {
+      display: block;
     }
 
     .search-btn {
@@ -788,6 +1380,50 @@
       border-radius: 10px;
       cursor: pointer;
       font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .search-suggestions {
+      position: absolute;
+      top: calc(100% + 5px);
+      left: 0;
+      right: 0;
+      background: var(--color-bg-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-top: 0;
+      max-height: 250px;
+      overflow-y: auto;
+      z-index: 9999;
+      display: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(0, 188, 212, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .search-suggestions.active {
+      display: block;
+    }
+
+    .suggestion-item {
+      padding: 12px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--color-text);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--color-bg-light);
+    }
+
+    .suggestion-item:hover {
+      background: rgba(0, 188, 212, 0.15);
+    }
+
+    .suggestion-item i {
+      color: var(--color-primary);
+      width: 20px;
     }
 
     .custom-select-filter {
@@ -818,7 +1454,7 @@
       border-radius: 10px;
       margin-top: 8px;
       display: none;
-      z-index: 105;
+      z-index: 500;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
       max-height: 300px;
       overflow-y: auto;
@@ -839,6 +1475,8 @@
     .market-container {
       column-count: 3;
       column-gap: 25px;
+      position: relative;
+      z-index: 1;
     }
 
     @media (max-width: 1024px) {
@@ -860,7 +1498,7 @@
       overflow: hidden;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       position: relative;
-      z-index: 2;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       break-inside: avoid;
@@ -893,11 +1531,30 @@
       cursor: pointer;
     }
 
-    .product-img {
+    .product-img, .product-thumbnail {
       width: 100%;
       height: auto;
       display: block;
       object-fit: contain;
+    }
+
+    .play-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 188, 212, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      backdrop-filter: blur(5px);
+      z-index: 3;
+      pointer-events: none;
     }
 
     .carousel-nav {
@@ -1047,17 +1704,12 @@
       gap: 10px;
     }
 
-    .copy-icon, .view-count-icon {
+    .copy-icon {
       cursor: pointer;
       color: var(--color-accent);
       display: flex;
       align-items: center;
       gap: 5px;
-    }
-
-    .view-count-icon {
-      color: var(--color-success);
-      cursor: default;
     }
 
     .share-icon {
@@ -1132,27 +1784,13 @@
       position: relative;
     }
 
-    .purchase-btn .view-badge {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background: var(--color-success);
-      color: white;
-      font-size: 0.65em;
-      padding: 2px 6px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      gap: 3px;
-    }
-
     .activate-btn {
       background: linear-gradient(135deg, #8b5cf6, #7c3aed);
       color: white;
       position: relative;
     }
 
-    .activate-btn .view-badge {
+    .view-badge {
       position: absolute;
       top: -5px;
       right: -5px;
@@ -1161,7 +1799,7 @@
       font-size: 0.65em;
       padding: 2px 6px;
       border-radius: 10px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 3px;
     }
@@ -1219,6 +1857,7 @@
       border-radius: 10px;
       margin-bottom: 10px;
       border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
     }
 
     .comment-header {
@@ -1256,6 +1895,7 @@
       color: var(--color-text);
       white-space: pre-wrap;
       word-wrap: break-word;
+      padding-right: 60px;
     }
 
     .add-comment {
@@ -1287,6 +1927,45 @@
       cursor: pointer;
       font-weight: 600;
       white-space: nowrap;
+    }
+
+    /* Edit Comment Input */
+    .edit-comment-input {
+      width: 100%;
+      padding: 8px 12px;
+      background: var(--bg-input);
+      border: 1px solid var(--color-primary);
+      border-radius: 8px;
+      color: var(--color-text);
+      font-size: 0.85em;
+      resize: none;
+      font-family: var(--font-body);
+    }
+
+    .edit-comment-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      justify-content: flex-end;
+    }
+
+    .edit-comment-save, .edit-comment-cancel {
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.75rem;
+      transition: var(--transition);
+    }
+
+    .edit-comment-save {
+      background: var(--color-success);
+      color: white;
+    }
+
+    .edit-comment-cancel {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--color-text);
     }
 
     /* --- BOTTOM NAVIGATION --- */
@@ -1331,26 +2010,27 @@
       font-size: 1.3rem;
     }
 
-    .notification-dot {
-      position: absolute;
-      top: 0;
-      right: 8px;
-      width: 8px;
-      height: 8px;
-      background: #ef4444;
-      border-radius: 50%;
-      display: none;
-      box-shadow: 0 0 8px #ef4444;
-      animation: pulse-red 1.5s infinite;
+    /* Icon Container for Notification Dots */
+    .icon-container {
+      position: relative;
+      display: inline-block;
     }
 
-    @keyframes pulse-red {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(1.1); }
+    .notification-dot {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      background-color: #ef4444;
+      border-radius: 50%;
+      border: 2px solid var(--color-bg);
+      display: none;
+      z-index: 10;
     }
 
     .notification-dot.active {
-      display: block;
+      display: block !important;
     }
 
     /* Toast */
@@ -1516,6 +2196,54 @@
       transform: scale(1.3);
     }
 
+    /* Video Modal */
+    .video-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 4000;
+      padding: 20px;
+    }
+
+    .video-modal.active {
+      display: flex;
+    }
+
+    .video-modal-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .video-modal-video {
+      width: 100%;
+      max-height: 80vh;
+      border-radius: 10px;
+    }
+
+    .video-close-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
     /* Info Dialog */
     .info-dialog {
       position: fixed;
@@ -1591,10 +2319,6 @@
       color: var(--color-text);
     }
 
-    .activation-instructions li {
-      margin-bottom: 10px;
-    }
-
     .activation-input-group {
       margin: 30px 0;
     }
@@ -1645,6 +2369,22 @@
       cursor: pointer;
     }
 
+    .terms-note {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    
+    .terms-note a {
+      color: var(--color-primary);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    
+    .terms-note a:hover {
+      text-decoration: underline;
+    }
+
     /* Download Page */
     .download-page {
       text-align: center;
@@ -1667,6 +2407,23 @@
       font-weight: 600;
       margin: 10px 0;
       cursor: pointer;
+    }
+
+    /* New Product Button */
+    .new-product-btn {
+      background: linear-gradient(135deg, var(--color-success), #059669);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+      width: 100%;
     }
 
     /* Responsive */
@@ -1692,6 +2449,63 @@
   </style>
 </head>
 <body>
+  <!-- Bottom Sheet Overlay -->
+  <div class="bottom-sheet-overlay" id="bottomSheetOverlay"></div>
+  
+  <!-- Bottom Sheet Consent Banner -->
+  <div class="bottom-sheet" id="consentBottomSheet">
+    <div class="sheet-content">
+      <div class="sheet-icon"><i class="fas fa-shield-alt"></i></div>
+      <h2 class="sheet-title">Welcome to Motion-Flow</h2>
+      <p class="sheet-text">By using this platform, you agree to our <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a>.</p>
+      <button class="sheet-btn-primary" id="acceptConsentBtn"><i class="fas fa-check"></i> Accept</button>
+      <button class="sheet-btn-secondary" id="declineConsentBtn">Decline</button>
+    </div>
+  </div>
+
+  <!-- Generating Popup -->
+  <div class="generating-popup" id="generatingPopup">
+    <i class="fas fa-spinner fa-spin"></i>
+    <span>Generating activation code...</span>
+  </div>
+
+  <!-- Category Management Modal -->
+  <div class="category-management-modal" id="categoryManagementModal">
+    <div class="category-management-content">
+      <div class="category-header">
+        <h3><i class="fas fa-tags"></i> Manage Categories</h3>
+        <button class="admin-form-cancel" onclick="closeCategoryManagement()" style="padding: 8px 15px;"><i class="fas fa-times"></i> Close</button>
+      </div>
+      <div class="add-category-form">
+        <input type="text" id="newCategoryInput" class="add-category-input" placeholder="Enter new category name...">
+        <button class="add-category-btn" onclick="addNewCategory()"><i class="fas fa-plus"></i> Add</button>
+      </div>
+      <div class="categories-list" id="categoriesList"></div>
+    </div>
+  </div>
+
+  <!-- Comment Management Modal -->
+  <div class="comment-management-modal" id="commentManagementModal">
+    <div class="comment-management-content">
+      <div class="comment-management-header">
+        <h3><i class="fas fa-comments"></i> Manage Comments</h3>
+        <div class="comment-management-actions">
+          <button class="clear-all-btn" id="clearAllCommentsBtn"><i class="fas fa-trash"></i> Clear All</button>
+          <button class="admin-form-cancel" onclick="closeCommentManagement()" style="padding: 8px 15px;"><i class="fas fa-times"></i> Close</button>
+        </div>
+      </div>
+      <div class="comments-list" id="adminCommentsList"></div>
+    </div>
+  </div>
+
+  <!-- WhatsApp-style Top Banner -->
+  <div id="topNotification" class="top-banner">
+    <div class="banner-content">
+      <i class="fa-solid fa-circle-info"></i>
+      <span id="bannerMessage">New notification!</span>
+    </div>
+  </div>
+
   <!-- Success Popup -->
   <div class="success-popup" id="successPopup">
     <div class="success-icon"><i class="fas fa-check-circle"></i></div>
@@ -1712,11 +2526,7 @@
   
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-user-info">
-        <h3 style="font-size: 1.5rem; color: var(--color-primary); text-align: center; width: 100%;">MOTION FLOW</h3>
-      </div>
-    </div>
+    <div class="sidebar-header"><div class="sidebar-user-info"><h3 style="font-size: 1.5rem; color: var(--color-primary); text-align: center; width: 100%;">MOTION FLOW</h3></div></div>
     <ul class="sidebar-menu">
       <li><a href="homepage.html" class="active"><i class="fa-solid fa-home"></i> Home</a></li>
       <li><a href="apk/apk.html"><i class="fa-solid fa-download"></i> APK Share</a></li>
@@ -1724,6 +2534,7 @@
       <li><a href="Chats/chats.html"><i class="fa-solid fa-comments"></i> Messages</a></li>
       <li><a href="tutorial.html"><i class="fa-solid fa-graduation-cap"></i> Tutorials</a></li>
       <li><a href="Settings/settings.html"><i class="fa-solid fa-cog"></i> Settings</a></li>
+      <li><a href="terms.html"><i class="fa-solid fa-scale-balanced"></i> Terms & Rules</a></li>
     </ul>
     <div class="sidebar-divider"></div>
     <ul class="sidebar-menu">
@@ -1744,29 +2555,23 @@
     </div>
   </div>
 
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="video-close-btn" onclick="closeVideoModal()"><i class="fas fa-times"></i></button>
+      <video class="video-modal-video" id="modalVideo" controls playsinline></video>
+    </div>
+  </div>
+
   <!-- Admin Login Modal -->
   <div class="admin-modal-overlay" id="adminLoginModal">
     <div class="admin-modal-content">
       <h2 style="margin-bottom: 20px; color: var(--color-primary); text-align: center;"><i class="fa-solid fa-lock"></i> Admin Login</h2>
-      <div class="admin-form-group">
-        <label class="admin-form-label">Email</label>
-        <input type="email" id="adminEmail" class="admin-form-input" placeholder="adminEmail">
-      </div>
-      <div class="admin-form-group">
-        <label class="admin-form-label">Password</label>
-        <div class="password-wrapper">
-          <input type="password" id="adminPassword" class="admin-form-input" placeholder="adminPassword" style="padding-right: 40px;">
-          <button type="button" class="password-toggle" id="adminPasswordToggle"><i class="fa-solid fa-eye"></i></button>
-        </div>
-      </div>
-      <div class="admin-form-group" id="twoFactorSection" style="display: none;">
-        <label class="admin-form-label">2FA Access Code</label>
-        <input type="text" id="admin2FACode" class="admin-form-input" placeholder="accessCode">
-      </div>
-      <div class="admin-form-buttons">
-        <button class="admin-form-submit" id="adminLoginSubmit">Login</button>
-        <button class="admin-form-cancel" onclick="closeAdminModal()">Cancel</button>
-      </div>
+      <div class="admin-form-group"><label class="admin-form-label">Email</label><input type="email" id="adminEmail" class="admin-form-input" placeholder="adminEmail"><div class="error-message" id="emailError">Please enter a valid email</div></div>
+      <div class="admin-form-group"><label class="admin-form-label">Password</label><div class="password-wrapper"><input type="password" id="adminPassword" class="admin-form-input" placeholder="adminPassword" style="padding-right: 40px;"><button type="button" class="password-toggle" id="adminPasswordToggle"><i class="fa-solid fa-eye"></i></button></div><div class="error-message" id="passwordError">Please enter your password</div></div>
+      <div class="admin-form-group" id="twoFactorSection" style="display: none;"><label class="admin-form-label">2FA Access Code</label><input type="text" id="admin2FACode" class="admin-form-input" placeholder="accessCode"><div class="error-message" id="codeError">Please enter the access code</div></div>
+      <div class="error-message" id="loginError" style="text-align: center; margin-bottom: 15px;"></div>
+      <div class="admin-form-buttons"><button class="admin-form-submit" id="adminLoginSubmit">Login</button><button class="admin-form-cancel" onclick="closeAdminModal()">Cancel</button></div>
     </div>
   </div>
 
@@ -1780,41 +2585,51 @@
         <div class="admin-form-group"><label class="admin-form-label">Admin Name *</label><input type="text" id="adminName" class="admin-form-input" placeholder="Admin Moonlight" required></div>
         <div class="admin-form-group"><label class="admin-form-label">Product Name *</label><input type="text" id="productName" class="admin-form-input" required></div>
         <div class="admin-form-group"><label class="admin-form-label">Description *</label><textarea id="productDescription" class="admin-form-input admin-form-textarea" required placeholder="Describe your product. You can include links like https://example.com"></textarea></div>
-        <div class="admin-form-group"><label class="admin-form-label">Category *</label><select id="productCategory" class="admin-form-input" required><option value="">Select Category</option><option value="CC">Color Correction</option><option value="Animation">Animation</option><option value="Presets">Presets</option><option value="Plugins">Plugins</option><option value="Templates">Templates</option><option value="Tutorials">Tutorials</option><option value="EditingPacks">Editing Packs</option></select></div>
+        <div class="admin-form-group"><label class="admin-form-label">Category *</label><select id="productCategory" class="admin-form-input" required><option value="">Select Category</option></select></div>
         <div class="admin-form-group"><label class="admin-form-label">Product Type *</label><select id="productType" class="admin-form-input" required><option value="free">Free</option><option value="paid">Paid</option></select></div>
         
         <!-- Currency and Price Section -->
         <div class="admin-form-group price-container" id="priceFields" style="display: none;">
-          <div>
-            <label class="admin-form-label">Currency *</label>
-            <select id="priceCurrency" class="admin-form-select">
-              <option value="USD" data-symbol="$">🇺🇸 USD ($)</option>
-              <option value="NGN" data-symbol="₦">🇳🇬 NGN (₦)</option>
-              <option value="EUR" data-symbol="€">🇪🇺 EUR (€)</option>
-              <option value="GBP" data-symbol="£">🇬🇧 GBP (£)</option>
-              <option value="INR" data-symbol="₹">🇮🇳 INR (₹)</option>
-              <option value="CAD" data-symbol="C$">🇨🇦 CAD (C$)</option>
-              <option value="AUD" data-symbol="A$">🇦🇺 AUD (A$)</option>
-            </select>
-          </div>
-          <div>
-            <label class="admin-form-label">Original Price</label>
-            <input type="text" id="originalPrice" class="admin-form-input" placeholder="99.99">
-          </div>
-          <div>
-            <label class="admin-form-label">Current Price *</label>
-            <input type="text" id="currentPrice" class="admin-form-input" placeholder="49.99" required>
+          <div><label class="admin-form-label">Currency *</label><select id="priceCurrency" class="admin-form-select"><option value="USD" data-symbol="$">🇺🇸 USD ($)</option><option value="NGN" data-symbol="₦">🇳🇬 NGN (₦)</option><option value="EUR" data-symbol="€">🇪🇺 EUR (€)</option><option value="GBP" data-symbol="£">🇬🇧 GBP (£)</option><option value="INR" data-symbol="₹">🇮🇳 INR (₹)</option><option value="CAD" data-symbol="C$">🇨🇦 CAD (C$)</option><option value="AUD" data-symbol="A$">🇦🇺 AUD (A$)</option></select></div>
+          <div><label class="admin-form-label">Original Price</label><input type="text" id="originalPrice" class="admin-form-input" placeholder="99.99"></div>
+          <div><label class="admin-form-label">Current Price *</label><input type="text" id="currentPrice" class="admin-form-input" placeholder="49.99" required></div>
+        </div>
+        
+        <div class="admin-settings-section" id="adminSettingsSection">
+          <h3>Admin Settings</h3>
+          <button type="button" class="manage-categories-btn" onclick="openCategoryManagement()"><i class="fas fa-tags"></i> Manage Categories</button>
+          <div class="admin-form-group"><label class="admin-form-label">Telegram Link for Paid Products</label><input type="url" id="adminTelegramLink" class="admin-form-input" placeholder="https://t.me/eclipsia_techs"></div>
+        </div>
+        
+        <!-- Media Type Selector -->
+        <div class="admin-form-group">
+          <label class="admin-form-label">Media Type *</label>
+          <div class="media-type-selector">
+            <div class="media-type-option selected" data-type="image"><i class="fas fa-image"></i><span>Image Post</span></div>
+            <div class="media-type-option" data-type="video"><i class="fas fa-video"></i><span>Video Post</span></div>
           </div>
         </div>
         
-        <div class="admin-settings-section" id="adminSettingsSection"><h3>Admin Settings</h3><div class="admin-form-group"><label class="admin-form-label">Telegram Link for Paid Products</label><input type="url" id="adminTelegramLink" class="admin-form-input" placeholder="https://t.me/eclipsia_techs"></div></div>
-        <div class="admin-form-group"><label class="admin-form-label">Image Aspect Ratio *</label><div class="image-size-selector"><div class="image-size-option selected" data-ratio="16:9">16:9 (Default)</div><div class="image-size-option" data-ratio="1:1">1:1 (Square)</div><div class="image-size-option" data-ratio="4:3">4:3 (Classic)</div></div></div>
-        <div class="admin-form-group"><label class="admin-form-label">Product Images (Local Upload, max 5) *</label><div class="image-urls-container" id="imageUrlsContainer"></div><button type="button" class="add-image-btn" id="addImageBtn" onclick="addImageFileField()"><i class="fa-solid fa-plus"></i> Add Another Image</button></div>
-        <div class="admin-form-group"><label class="admin-form-label">Video Preview URL (Optional)</label><input type="url" id="videoUrl" class="admin-form-input" placeholder="https://files.catbox.moe/example.mp4"></div>
+        <!-- Image Upload Section -->
+        <div id="imageUploadSection">
+          <div class="admin-form-group"><label class="admin-form-label">Image Aspect Ratio *</label><div class="image-size-selector"><div class="image-size-option selected" data-ratio="16:9">16:9 (Default)</div><div class="image-size-option" data-ratio="1:1">1:1 (Square)</div><div class="image-size-option" data-ratio="4:3">4:3 (Classic)</div></div></div>
+          <div class="admin-form-group"><label class="admin-form-label">Product Images (Local Upload, max 10) *</label><div class="image-urls-container" id="imageUrlsContainer"></div><button type="button" class="add-image-btn" id="addImageBtn" onclick="addImageFileField()"><i class="fa-solid fa-plus"></i> Add Another Image</button></div>
+          <div class="admin-form-group"><label class="admin-form-label">Video Preview URL (Optional)</label><input type="url" id="imageVideoPreviewUrl" class="admin-form-input" placeholder="https://files.catbox.moe/example.mp4"></div>
+        </div>
+        
+        <!-- Video Upload Section -->
+        <div id="videoUploadSection" style="display: none;">
+          <div class="admin-form-group"><label class="admin-form-label">CatBox Video URL *</label><input type="url" id="catboxVideoUrl" class="admin-form-input" placeholder="https://files.catbox.moe/example.mp4"></div>
+          <div class="admin-form-group"><label class="admin-form-label">Video Thumbnail URL *</label><input type="url" id="videoThumbnailUrl" class="admin-form-input" placeholder="https://files.catbox.moe/thumbnail.jpg"></div>
+        </div>
+        
         <div class="admin-form-group"><label class="admin-form-label">Download Link *</label><input type="url" id="downloadLink" class="admin-form-input" placeholder="https://drive.google.com/file/..." required></div>
         <div class="admin-form-group"><label class="admin-form-label">Usage Instructions</label><textarea id="usageInstructions" class="admin-form-input admin-form-textarea" placeholder="How to use this product..."></textarea></div>
         <div class="admin-form-buttons"><button type="submit" class="admin-form-submit" id="uploadSubmitBtn" disabled><i class="fas fa-upload"></i> Upload Product</button><button type="button" class="admin-form-cancel" onclick="closeUploadModal()">Cancel</button></div>
       </form>
+      
+      <button class="new-product-btn" id="newProductBtn" style="display: none;" onclick="createNewProduct()"><i class="fas fa-plus-circle"></i> Create New Product</button>
+      
       <div class="admin-products-section" id="adminProductsSection" style="display: none;"><h3>Manage Products</h3><div class="admin-products-list" id="adminProductsList"><div style="text-align: center; color: var(--color-text-muted); padding: 20px;">Loading products...</div></div></div>
     </div>
   </div>
@@ -1823,8 +2638,30 @@
   <div class="main-content" id="mainContent">
     <div class="market-header"><h1>Motion-Flow Creative Market</h1><p>Discover amazing After Effects projects, templates, and tools from our creative community</p></div>
     <div class="search-filter-section">
-      <div class="search-container"><label class="filter-label">Search Products</label><div class="search-box"><input type="text" class="search-input" id="searchInput" placeholder="Search by name, description, or creator..."><button class="search-btn" id="searchBtn">Search</button></div></div>
-      <div class="filter-container"><label class="filter-label">Filter by Category</label><div class="custom-select-filter"><div class="select-trigger-filter" id="categoryTrigger"><span class="placeholder">All Categories</span><i class="fas fa-chevron-down"></i></div><div class="select-dropdown-filter" id="categoryDropdown"><div class="select-option-filter" data-value="all">All Categories</div><div class="select-option-filter" data-value="CC">Color Correction</div><div class="select-option-filter" data-value="Animation">Animation</div><div class="select-option-filter" data-value="Presets">Presets</div><div class="select-option-filter" data-value="Plugins">Plugins</div><div class="select-option-filter" data-value="Templates">Templates</div><div class="select-option-filter" data-value="Tutorials">Tutorials</div><div class="select-option-filter" data-value="EditingPacks">Editing Packs</div></div></div></div>
+      <div class="search-container">
+        <label class="filter-label">Search Products</label>
+        <div class="search-box">
+          <div class="search-input-wrapper">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search by name, description, or creator..." autocomplete="off">
+            <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()"><i class="fas fa-times"></i></button>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+          </div>
+          <button class="search-btn" id="searchBtn">Search</button>
+        </div>
+      </div>
+      
+      <div class="filter-container">
+        <label class="filter-label">Filter by Category</label>
+        <div class="custom-select-filter">
+          <div class="select-trigger-filter" id="categoryTrigger">
+            <span class="placeholder" id="categoryPlaceholder">All Categories</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="select-dropdown-filter" id="categoryDropdown">
+            <div class="select-option-filter" data-value="all">All Categories</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="market-container" id="marketContainer"><div class="loading-container"><div class="loading-spinner"></div><div class="loading-text">Loading products...</div></div></div>
   </div>
@@ -1832,9 +2669,15 @@
   <!-- Bottom Navigation -->
   <nav class="bottom-nav">
     <a href="homepage.html" class="nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
-    <a href="updates/updates.html" class="nav-item"><i class="fa-solid fa-bell"></i><span>Updates</span><div class="notification-dot" id="updates-notification"></div></a>
-    <a href="Live_Chat/live.html" class="nav-item"><i class="fa-solid fa-comments"></i><span>Live Chat</span><div class="notification-dot" id="livechat-notification"></div></a>
-    <a href="profile/profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>profile</span></a>
+    <a href="updates/updates.html" class="nav-item" onclick="markUpdatesAsSeen()">
+      <div class="icon-container"><i class="fa-solid fa-bell"></i><span id="updateDot" class="notification-dot"></span></div>
+      <span>Updates</span>
+    </a>
+    <a href="Live_Chat/live.html" class="nav-item" onclick="markChatAsSeen()">
+      <div class="icon-container"><i class="fa-solid fa-comments"></i><span id="chatDot" class="notification-dot"></span></div>
+      <span>Live Chat</span>
+    </a>
+    <a href="profile/profile.html" class="nav-item"><i class="fa-solid fa-user"></i><span>Profile</span></a>
   </nav>
 
   <!-- Toast -->
@@ -1884,7 +2727,7 @@
     const marketContainer = document.getElementById("marketContainer");
     const categoryTrigger = document.getElementById('categoryTrigger');
     const categoryDropdown = document.getElementById('categoryDropdown');
-    const categoryOptions = document.querySelectorAll('.select-option-filter');
+    const categoryPlaceholder = document.getElementById('categoryPlaceholder');
     const adminLoginModal = document.getElementById('adminLoginModal');
     const adminUploadModal = document.getElementById('adminUploadModal');
     const adminEmail = document.getElementById('adminEmail');
@@ -1900,6 +2743,8 @@
     const addImageBtn = document.getElementById('addImageBtn');
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+    const searchSuggestions = document.getElementById('searchSuggestions');
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toastMessage');
     const toastIcon = document.getElementById('toastIcon');
@@ -1911,6 +2756,8 @@
     const imageViewer = document.getElementById('imageViewer');
     const viewerImage = document.getElementById('viewerImage');
     const viewerDots = document.getElementById('viewerDots');
+    const videoModal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
     const adminTelegramLinkInput = document.getElementById('adminTelegramLink');
     const activationModal = document.getElementById('activationModal');
     const activationContent = document.getElementById('activationContent');
@@ -1921,7 +2768,32 @@
     const logoutDialog = document.getElementById('logoutDialog');
     const logoutConfirm = document.getElementById('logoutConfirm');
     const logoutCancel = document.getElementById('logoutCancel');
-    const liveChatNotification = document.getElementById('livechat-notification');
+    const newProductBtn = document.getElementById('newProductBtn');
+    const generatingPopup = document.getElementById('generatingPopup');
+    const imageUploadSection = document.getElementById('imageUploadSection');
+    const videoUploadSection = document.getElementById('videoUploadSection');
+    const catboxVideoUrl = document.getElementById('catboxVideoUrl');
+    const videoThumbnailUrl = document.getElementById('videoThumbnailUrl');
+    const imageVideoPreviewUrl = document.getElementById('imageVideoPreviewUrl');
+    const commentManagementModal = document.getElementById('commentManagementModal');
+    const adminCommentsList = document.getElementById('adminCommentsList');
+    const clearAllCommentsBtn = document.getElementById('clearAllCommentsBtn');
+    const categoryManagementModal = document.getElementById('categoryManagementModal');
+    const categoriesList = document.getElementById('categoriesList');
+    const newCategoryInput = document.getElementById('newCategoryInput');
+    const productCategorySelect = document.getElementById('productCategory');
+    
+    // Bottom Sheet Elements
+    const bottomSheetOverlay = document.getElementById('bottomSheetOverlay');
+    const consentBottomSheet = document.getElementById('consentBottomSheet');
+    const acceptConsentBtn = document.getElementById('acceptConsentBtn');
+    const declineConsentBtn = document.getElementById('declineConsentBtn');
+    
+    // Error elements
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const codeError = document.getElementById('codeError');
+    const loginError = document.getElementById('loginError');
 
     // Global State
     let currentUserId = null;
@@ -1930,11 +2802,13 @@
     let sidebarOpen = false;
     let currentFilterCategory = 'all';
     let currentSearchQuery = '';
+    let isSearchActive = false;
+    let searchDebounceTimer = null;
     let isAdmin = false;
     let adminClickCount = 0;
     let adminClickTimer = null;
     let imageFileCount = 1;
-    const MAX_IMAGES = 5;
+    const MAX_IMAGES = 10;
     let adminProducts = [];
     let imageAspectRatio = '16:9';
     let adminTelegramLink = 'https://t.me/eclipsia_techs';
@@ -1943,13 +2817,377 @@
     let hasUnsavedChanges = false;
     let viewerImages = [];
     let viewerCurrentIndex = 0;
-    let touchStartX = 0;
-    let touchEndX = 0;
+    let mediaType = 'image';
+    let currentManagingProductId = null;
+    let existingImages = [];
+    let categories = [];
 
     const ADMIN_EMAIL = "motionflow.admins@gmail.com";
     const ADMIN_PASSWORD = "MOTION-FLOW-ADMIN";
 
-    // Password toggle
+    // Default categories
+    const DEFAULT_CATEGORIES = ['CC', 'Animation', 'Presets', 'Plugins', 'Templates', 'Tutorials', 'EditingPacks', 'SoundFX', 'LUTs', 'Transitions'];
+
+    // Category Management Functions
+    async function loadCategories() {
+      try {
+        const snap = await get(ref(db, 'admin/categories'));
+        if (snap.exists()) {
+          categories = snap.val();
+        } else {
+          categories = [...DEFAULT_CATEGORIES];
+          await set(ref(db, 'admin/categories'), categories);
+        }
+        updateCategorySelects();
+        updateFilterDropdown();
+      } catch (e) {
+        console.error('Error loading categories:', e);
+        categories = [...DEFAULT_CATEGORIES];
+        updateCategorySelects();
+        updateFilterDropdown();
+      }
+    }
+
+    function updateCategorySelects() {
+      if (productCategorySelect) {
+        const currentValue = productCategorySelect.value;
+        productCategorySelect.innerHTML = '<option value="">Select Category</option>';
+        categories.forEach(cat => {
+          const option = document.createElement('option');
+          option.value = cat;
+          option.textContent = cat;
+          productCategorySelect.appendChild(option);
+        });
+        if (currentValue) productCategorySelect.value = currentValue;
+      }
+    }
+
+    function updateFilterDropdown() {
+      categoryDropdown.innerHTML = '<div class="select-option-filter" data-value="all">All Categories</div>';
+      categories.forEach(cat => {
+        const option = document.createElement('div');
+        option.className = 'select-option-filter';
+        option.dataset.value = cat;
+        option.textContent = cat;
+        option.addEventListener('click', async function() {
+          currentFilterCategory = this.dataset.value;
+          categoryPlaceholder.textContent = this.textContent;
+          categoryTrigger.classList.remove('active'); 
+          categoryDropdown.classList.remove('active');
+          showLoadingAnimation();
+          setTimeout(async () => await renderTools(currentFilterCategory, currentSearchQuery), 300);
+        });
+        categoryDropdown.appendChild(option);
+      });
+    }
+
+    window.openCategoryManagement = function() {
+      if (!isAdmin) { showToast('Admin access required', 'error'); return; }
+      loadCategoriesList();
+      categoryManagementModal.classList.add('active');
+    };
+
+    window.closeCategoryManagement = function() {
+      categoryManagementModal.classList.remove('active');
+    };
+
+    function loadCategoriesList() {
+      categoriesList.innerHTML = '';
+      categories.forEach(cat => {
+        const item = document.createElement('div');
+        item.className = 'category-item';
+        item.innerHTML = `
+          <span class="category-name">${escapeHtml(cat)}</span>
+          <div class="category-actions">
+            <button class="edit-category-btn" onclick="editCategory('${escapeHtml(cat).replace(/'/g,"\\'")}')"><i class="fas fa-edit"></i> Edit</button>
+            <button class="delete-category-btn" onclick="deleteCategory('${escapeHtml(cat).replace(/'/g,"\\'")}')"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+        `;
+        categoriesList.appendChild(item);
+      });
+    }
+
+    window.addNewCategory = async function() {
+      const newCat = newCategoryInput.value.trim();
+      if (!newCat) { showToast('Enter a category name', 'error'); return; }
+      if (categories.includes(newCat)) { showToast('Category already exists', 'error'); return; }
+      
+      categories.push(newCat);
+      await set(ref(db, 'admin/categories'), categories);
+      updateCategorySelects();
+      updateFilterDropdown();
+      loadCategoriesList();
+      newCategoryInput.value = '';
+      showToast('Category added', 'success');
+    };
+
+    window.editCategory = async function(oldName) {
+      const newName = prompt('Enter new category name:', oldName);
+      if (!newName || newName === oldName) return;
+      if (categories.includes(newName)) { showToast('Category already exists', 'error'); return; }
+      
+      const index = categories.indexOf(oldName);
+      if (index !== -1) {
+        categories[index] = newName;
+        await set(ref(db, 'admin/categories'), categories);
+        updateCategorySelects();
+        updateFilterDropdown();
+        loadCategoriesList();
+        showToast('Category updated', 'success');
+      }
+    };
+
+    window.deleteCategory = async function(catName) {
+      const index = categories.indexOf(catName);
+      if (index !== -1) {
+        categories.splice(index, 1);
+        await set(ref(db, 'admin/categories'), categories);
+        updateCategorySelects();
+        updateFilterDropdown();
+        loadCategoriesList();
+        showToast('Category deleted', 'success');
+      }
+    };
+
+    // Bottom Sheet Consent Logic
+    function showConsentSheet() {
+      bottomSheetOverlay.classList.add('active');
+      consentBottomSheet.classList.add('active');
+    }
+
+    function hideConsentSheet() {
+      bottomSheetOverlay.classList.remove('active');
+      consentBottomSheet.classList.remove('active');
+    }
+
+    function acceptConsent() {
+      localStorage.setItem('motionFlow_consent', 'accepted');
+      hideConsentSheet();
+      showToast('Welcome to Motion-Flow!', 'success');
+    }
+
+    function declineConsent() {
+      hideConsentSheet();
+      window.location.href = 'about:blank';
+    }
+
+    if (!localStorage.getItem('motionFlow_consent')) {
+      setTimeout(showConsentSheet, 500);
+    }
+
+    acceptConsentBtn.addEventListener('click', acceptConsent);
+    declineConsentBtn.addEventListener('click', declineConsent);
+    bottomSheetOverlay.addEventListener('click', hideConsentSheet);
+
+    // Comment Management Functions
+    window.openCommentManagement = function(productId) {
+      currentManagingProductId = productId;
+      loadAdminComments(productId);
+      commentManagementModal.classList.add('active');
+    };
+
+    window.closeCommentManagement = function() {
+      commentManagementModal.classList.remove('active');
+      currentManagingProductId = null;
+    };
+
+    async function loadAdminComments(productId) {
+      const tool = allToolsData.find(t => t.key === productId);
+      if (!tool) return;
+      
+      adminCommentsList.innerHTML = '';
+      const comments = Object.entries(tool.comments || {});
+      
+      if (comments.length === 0) {
+        adminCommentsList.innerHTML = '<div style="text-align:center;color:var(--color-text-muted);padding:20px;">No comments yet.</div>';
+        return;
+      }
+      
+      comments.sort((a, b) => (b[1].timestamp || 0) - (a[1].timestamp || 0));
+      
+      comments.forEach(([commentId, comment]) => {
+        const item = document.createElement('div');
+        item.className = 'comment-item-admin';
+        item.innerHTML = `
+          <div class="comment-content">
+            <div class="comment-header">
+              <span class="comment-author">${escapeHtml(comment.userName)}</span>
+              <span class="comment-time">${getTimeAgo(comment.timestamp)}</span>
+            </div>
+            <div class="comment-text">${escapeHtml(comment.text)}</div>
+          </div>
+          <div class="comment-actions">
+            <button class="delete-comment-btn" onclick="deleteCommentAdmin('${productId}', '${commentId}')"><i class="fas fa-trash"></i> Delete</button>
+          </div>
+        `;
+        adminCommentsList.appendChild(item);
+      });
+    }
+
+    window.deleteCommentAdmin = async function(productId, commentId) {
+      if (!isAdmin) { showToast('Admin access required', 'error'); return; }
+      try {
+        await remove(ref(db, `tools/${productId}/comments/${commentId}`));
+        showToast('Comment deleted', 'success');
+        loadAdminComments(productId);
+        loadMarketData();
+      } catch (e) {
+        showToast('Error deleting comment', 'error');
+      }
+    };
+
+    clearAllCommentsBtn.addEventListener('click', async () => {
+      if (!currentManagingProductId || !isAdmin) return;
+      
+      try {
+        await remove(ref(db, `tools/${currentManagingProductId}/comments`));
+        showToast('All comments cleared', 'success');
+        loadAdminComments(currentManagingProductId);
+        loadMarketData();
+      } catch (e) {
+        showToast('Error clearing comments', 'error');
+      }
+    });
+
+    // User Comment Edit/Delete
+    window.editUserComment = function(productId, commentId, currentText) {
+      const commentItem = document.querySelector(`[data-comment-id="${commentId}"]`);
+      if (!commentItem) return;
+      
+      const textDiv = commentItem.querySelector('.comment-text');
+      
+      textDiv.innerHTML = `
+        <textarea class="edit-comment-input" id="edit-input-${commentId}">${escapeHtml(currentText)}</textarea>
+        <div class="edit-comment-actions">
+          <button class="edit-comment-save" onclick="saveEditedComment('${productId}', '${commentId}')">Save</button>
+          <button class="edit-comment-cancel" onclick="cancelEditComment('${productId}', '${commentId}')">Cancel</button>
+        </div>
+      `;
+    };
+
+    window.saveEditedComment = async function(productId, commentId) {
+      const input = document.getElementById(`edit-input-${commentId}`);
+      const newText = input.value.trim();
+      
+      if (!newText) { showToast('Comment cannot be empty', 'error'); return; }
+      if (newText.length > 500) { showToast('Comment too long (max 500)', 'error'); return; }
+      
+      try {
+        await update(ref(db, `tools/${productId}/comments/${commentId}`), { 
+          text: newText, 
+          edited: true, 
+          editedAt: Date.now() 
+        });
+        showToast('Comment updated', 'success');
+        loadMarketData();
+      } catch (e) {
+        showToast('Error updating comment', 'error');
+      }
+    };
+
+    window.cancelEditComment = function(productId, commentId) {
+      loadProductComments(productId);
+    };
+
+    window.deleteUserComment = async function(productId, commentId) {
+      try {
+        await remove(ref(db, `tools/${productId}/comments/${commentId}`));
+        showToast('Comment deleted', 'success');
+        loadMarketData();
+      } catch (e) {
+        showToast('Error deleting comment', 'error');
+      }
+    };
+
+    // Clear Search
+    window.clearSearch = function() {
+      searchInput.value = '';
+      clearSearchBtn.classList.remove('visible');
+      searchSuggestions.classList.remove('active');
+      currentSearchQuery = '';
+      isSearchActive = false;
+      
+      if (currentFilterCategory === 'all') {
+        renderTools('all', '');
+      } else {
+        categoryPlaceholder.textContent = 'All Categories';
+        currentFilterCategory = 'all';
+        renderTools('all', '');
+      }
+      showToast('Showing all products', 'info');
+    };
+
+    function debouncedSearch(query) {
+      if (searchDebounceTimer) clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        performSearchWithQuery(query);
+      }, 300);
+    }
+
+    function performSearchWithQuery(query) {
+      currentSearchQuery = query.toLowerCase();
+      if (currentSearchQuery) {
+        isSearchActive = true;
+        renderTools(currentFilterCategory, currentSearchQuery);
+        updateSearchSuggestions(currentSearchQuery);
+      } else {
+        isSearchActive = false;
+        searchSuggestions.classList.remove('active');
+        renderTools(currentFilterCategory, '');
+      }
+    }
+
+    function updateSearchSuggestions(query) {
+      if (!query || query.length < 1) {
+        searchSuggestions.classList.remove('active');
+        return;
+      }
+      
+      const suggestions = [];
+      allToolsData.forEach(tool => {
+        if (tool.name.toLowerCase().includes(query)) {
+          suggestions.push({ type: 'product', text: tool.name, icon: 'fa-box' });
+        }
+        if (tool.category && tool.category.toLowerCase().includes(query)) {
+          if (!suggestions.some(s => s.text === tool.category)) {
+            suggestions.push({ type: 'category', text: tool.category, icon: 'fa-folder' });
+          }
+        }
+        if (tool.uploaderName && tool.uploaderName.toLowerCase().includes(query)) {
+          if (!suggestions.some(s => s.text === tool.uploaderName)) {
+            suggestions.push({ type: 'creator', text: tool.uploaderName, icon: 'fa-user' });
+          }
+        }
+      });
+      
+      if (suggestions.length > 0) {
+        searchSuggestions.innerHTML = '';
+        const uniqueSuggestions = suggestions.slice(0, 5);
+        uniqueSuggestions.forEach(s => {
+          const item = document.createElement('div');
+          item.className = 'suggestion-item';
+          item.innerHTML = `<i class="fas ${s.icon}"></i><span>${escapeHtml(s.text)}</span>`;
+          item.onclick = () => {
+            searchInput.value = s.text;
+            clearSearchBtn.classList.add('visible');
+            performSearchWithQuery(s.text);
+            searchSuggestions.classList.remove('active');
+          };
+          searchSuggestions.appendChild(item);
+        });
+        searchSuggestions.classList.add('active');
+      } else {
+        searchSuggestions.classList.remove('active');
+      }
+    }
+
+    function hideAllErrors() {
+      emailError.classList.remove('show');
+      passwordError.classList.remove('show');
+      codeError.classList.remove('show');
+      loginError.classList.remove('show');
+    }
+
     if (adminPasswordToggle) {
       adminPasswordToggle.addEventListener('click', function() {
         const type = adminPassword.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -1957,6 +3195,95 @@
         this.innerHTML = type === 'password' ? '<i class="fa-solid fa-eye"></i>' : '<i class="fa-solid fa-eye-slash"></i>';
       });
     }
+
+    document.querySelectorAll('.media-type-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.media-type-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        mediaType = opt.dataset.type;
+        if (mediaType === 'image') {
+          imageUploadSection.style.display = 'block';
+          videoUploadSection.style.display = 'none';
+          catboxVideoUrl.required = false;
+          videoThumbnailUrl.required = false;
+        } else {
+          imageUploadSection.style.display = 'none';
+          videoUploadSection.style.display = 'block';
+          catboxVideoUrl.required = true;
+          videoThumbnailUrl.required = true;
+        }
+        checkFormChanges();
+      });
+    });
+
+    // Notification Functions
+    function showTopAlert(msg) {
+      const banner = document.getElementById('topNotification');
+      document.getElementById('bannerMessage').innerText = msg;
+      banner.classList.add('active');
+      document.title = "⚠️ NEW UPDATE!";
+      banner.onclick = () => { banner.classList.remove('active'); document.title = "Home - Motion-Flow"; };
+      setTimeout(() => { banner.classList.remove('active'); document.title = "Home - Motion-Flow"; }, 4000);
+    }
+
+    function initNotifications() {
+      const uDot = document.getElementById('updateDot');
+      const cDot = document.getElementById('chatDot');
+      
+      // Updates Listener
+      const lastUpd = localStorage.getItem('lastVisitUpdates') || 0;
+      const updatesRef = ref(db, 'updates');
+      onValue(updatesRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const values = Object.values(data);
+          if (values.length > 0) {
+            const latestUpdate = values.reduce((a, b) => (a.createdAt > b.createdAt ? a : b));
+            if (latestUpdate.createdAt > lastUpd) {
+              if (uDot) uDot.classList.add('active');
+              showTopAlert("New Platform Update Posted!");
+            }
+          }
+        }
+      });
+
+      // Live Chat Listener
+      const lastChat = localStorage.getItem('lastVisitChat') || 0;
+      const chatPaths = ['messages', 'liveChat/messages', 'chats/messages', `artifacts/motion-flow-47450/public/data/liveChat/messages`];
+      
+      chatPaths.forEach(path => {
+        const chatRef = ref(db, path);
+        onValue(chatRef, (snapshot) => {
+          if (snapshot.exists()) {
+            const data = snapshot.val();
+            const values = Object.values(data);
+            if (values.length > 0) {
+              const latestMsg = values.reduce((a, b) => {
+                const aTime = a.timestamp || a.createdAt || a.time || 0;
+                const bTime = b.timestamp || b.createdAt || b.time || 0;
+                return aTime > bTime ? a : b;
+              });
+              const msgTime = latestMsg.timestamp || latestMsg.createdAt || latestMsg.time || 0;
+              
+              if (msgTime > lastChat) {
+                if (cDot) cDot.classList.add('active');
+                showTopAlert("New message in Live Chat!");
+              }
+            }
+          }
+        });
+      });
+    }
+
+    window.markUpdatesAsSeen = function() {
+      localStorage.setItem('lastVisitUpdates', Date.now());
+      document.getElementById('updateDot')?.classList.remove('active');
+    };
+
+    window.markChatAsSeen = function() {
+      localStorage.setItem('lastVisitChat', Date.now());
+      document.getElementById('chatDot')?.classList.remove('active');
+    };
 
     function linkify(text) {
       if (!text) return '';
@@ -1981,7 +3308,11 @@
                            document.getElementById('productCategory').value &&
                            document.getElementById('downloadLink').value.trim() &&
                            document.getElementById('adminName').value.trim();
-        uploadSubmitBtn.disabled = !hasRequired;
+        if (mediaType === 'video') {
+          uploadSubmitBtn.disabled = !(hasRequired && catboxVideoUrl.value.trim() && videoThumbnailUrl.value.trim());
+        } else {
+          uploadSubmitBtn.disabled = !hasRequired;
+        }
         return;
       }
       const currentData = {
@@ -1990,10 +3321,10 @@
         description: document.getElementById('productDescription').value.trim(),
         category: document.getElementById('productCategory').value,
         type: productType.value,
-        videoUrl: document.getElementById('videoUrl').value.trim(),
         downloadLink: document.getElementById('downloadLink').value.trim(),
         usageInstructions: document.getElementById('usageInstructions').value.trim(),
-        imageAspectRatio: imageAspectRatio
+        imageAspectRatio: imageAspectRatio,
+        mediaType: mediaType
       };
       let changed = false;
       for (let key in currentData) if (currentData[key] !== originalFormData[key]) { changed = true; break; }
@@ -2010,17 +3341,17 @@
         description: document.getElementById('productDescription').value.trim(),
         category: document.getElementById('productCategory').value,
         type: productType.value,
-        videoUrl: document.getElementById('videoUrl').value.trim(),
         downloadLink: document.getElementById('downloadLink').value.trim(),
         usageInstructions: document.getElementById('usageInstructions').value.trim(),
-        imageAspectRatio: imageAspectRatio
+        imageAspectRatio: imageAspectRatio,
+        mediaType: mediaType
       };
       hasUnsavedChanges = false;
       uploadSubmitBtn.disabled = true;
     }
 
     function setupFormChangeListeners() {
-      const formInputs = ['adminName', 'productName', 'productDescription', 'productCategory', 'productType', 'videoUrl', 'downloadLink', 'usageInstructions'];
+      const formInputs = ['adminName', 'productName', 'productDescription', 'productCategory', 'productType', 'downloadLink', 'usageInstructions', 'catboxVideoUrl', 'videoThumbnailUrl', 'imageVideoPreviewUrl'];
       formInputs.forEach(id => { const el = document.getElementById(id); if (el) { el.addEventListener('input', checkFormChanges); el.addEventListener('change', checkFormChanges); } });
       document.addEventListener('change', (e) => { if (e.target.classList.contains('file-input-hidden')) checkFormChanges(); });
     }
@@ -2082,8 +3413,8 @@
       if (adminClickCount >= 3) { adminClickCount = 0; clearTimeout(adminClickTimer); openAdminLogin(); }
     });
 
-    function openAdminLogin() { adminLoginModal.classList.add('active'); adminEmail.focus(); }
-    function closeAdminModal() { adminLoginModal.classList.remove('active'); adminEmail.value = ''; adminPassword.value = ''; admin2FACode.value = ''; twoFactorSection.style.display = 'none'; }
+    function openAdminLogin() { adminLoginModal.classList.add('active'); adminEmail.focus(); hideAllErrors(); }
+    function closeAdminModal() { adminLoginModal.classList.remove('active'); adminEmail.value = ''; adminPassword.value = ''; admin2FACode.value = ''; twoFactorSection.style.display = 'none'; hideAllErrors(); }
 
     async function openUploadModal() {
       adminUploadModal.classList.add('active');
@@ -2091,6 +3422,7 @@
       await loadAdminTelegramLink();
       await loadAdminProducts();
       adminProductsSection.style.display = 'block';
+      newProductBtn.style.display = 'none';
     }
 
     function closeUploadModal() {
@@ -2099,11 +3431,23 @@
       hideUploadStatus();
       adminProductsSection.style.display = 'none';
       currentEditProductId = null;
+      existingImages = [];
       uploadModalTitle.innerHTML = '<i class="fa-solid fa-plus"></i> Add New Product';
       uploadSubmitBtn.innerHTML = '<i class="fas fa-upload"></i> Upload Product';
       uploadSubmitBtn.disabled = true;
       hasUnsavedChanges = false;
+      newProductBtn.style.display = 'none';
     }
+
+    window.createNewProduct = function() {
+      currentEditProductId = null;
+      existingImages = [];
+      resetUploadForm();
+      uploadModalTitle.innerHTML = '<i class="fa-solid fa-plus"></i> Add New Product';
+      uploadSubmitBtn.innerHTML = '<i class="fas fa-upload"></i> Upload Product';
+      newProductBtn.style.display = 'none';
+      showToast('Ready to create a new product', 'info');
+    };
 
     async function loadAdminTelegramLink() {
       try { const snap = await get(ref(db, 'admin/telegramLink')); if (snap.exists()) { adminTelegramLink = snap.val(); adminTelegramLinkInput.value = adminTelegramLink; } }
@@ -2115,33 +3459,17 @@
       if (link) { try { await set(ref(db, 'admin/telegramLink'), link); adminTelegramLink = link; } catch (error) { console.error('Error saving Telegram link:', error); } }
     }
 
-    // Updated admin login with specific error messages
     adminLoginSubmit.addEventListener('click', async () => {
       const email = adminEmail.value.trim();
       const password = adminPassword.value.trim();
       const twoFACode = admin2FACode.value.trim();
 
-      if (!email || !password) { 
-        showToast('Please enter email and password', 'error'); 
-        return; 
-      }
-      
-      if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) { 
-        showToast('Email or password is incorrect', 'error'); 
-        return; 
-      }
-      
-      if (twoFactorSection.style.display === 'none') { 
-        twoFactorSection.style.display = 'block'; 
-        admin2FACode.focus(); 
-        showToast('Please enter 2FA access code', 'info'); 
-        return; 
-      }
-      
-      if (!twoFACode) { 
-        showToast('Please enter 2FA access code', 'error'); 
-        return; 
-      }
+      hideAllErrors();
+      if (!email) { emailError.textContent = 'Email is required'; emailError.classList.add('show'); return; }
+      if (!password) { passwordError.textContent = 'Password is required'; passwordError.classList.add('show'); return; }
+      if (email !== ADMIN_EMAIL || password !== ADMIN_PASSWORD) { loginError.textContent = 'Email or password is incorrect'; loginError.classList.add('show'); return; }
+      if (twoFactorSection.style.display === 'none') { twoFactorSection.style.display = 'block'; admin2FACode.focus(); return; }
+      if (!twoFACode) { codeError.textContent = 'Access code is required'; codeError.classList.add('show'); return; }
 
       const originalText = adminLoginSubmit.innerHTML;
       adminLoginSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
@@ -2149,33 +3477,15 @@
 
       try {
         const snap = await get(ref(db, 'admin/accessCode'));
-        if (snap.exists() && snap.val() === twoFACode) { 
-          isAdmin = true; 
-          closeAdminModal(); 
-          showToast('Admin login successful!', 'success'); 
-          setTimeout(() => openUploadModal(), 500); 
-        }
-        else { 
-          showToast('Incorrect access code', 'error'); 
-        }
-      } catch (error) { 
-        showToast('Error verifying access code', 'error'); 
-      }
-      finally { 
-        adminLoginSubmit.innerHTML = originalText; 
-        adminLoginSubmit.disabled = false; 
-      }
+        if (snap.exists() && snap.val() === twoFACode) { isAdmin = true; closeAdminModal(); showToast('Admin login successful!', 'success'); setTimeout(() => openUploadModal(), 500); }
+        else { codeError.textContent = 'Incorrect access code'; codeError.classList.add('show'); }
+      } catch (error) { loginError.textContent = 'Error verifying access code'; loginError.classList.add('show'); }
+      finally { adminLoginSubmit.innerHTML = originalText; adminLoginSubmit.disabled = false; }
     });
 
     productType.addEventListener('change', () => {
-      if (productType.value === 'paid') { 
-        priceFields.style.display = 'grid'; 
-        document.getElementById('currentPrice').required = true; 
-      }
-      else { 
-        priceFields.style.display = 'none'; 
-        document.getElementById('currentPrice').required = false; 
-      }
+      if (productType.value === 'paid') { priceFields.style.display = 'grid'; document.getElementById('currentPrice').required = true; }
+      else { priceFields.style.display = 'none'; document.getElementById('currentPrice').required = false; }
       checkFormChanges();
     });
 
@@ -2241,33 +3551,54 @@
         removeBtn.type = 'button';
         removeBtn.className = 'remove-image-btn';
         removeBtn.innerHTML = '<i class="fas fa-trash"></i>';
-        removeBtn.onclick = () => { 
-          wrapper.remove(); 
-          imageFileCount--; 
-          updateAddImageButtonState();
-          checkFormChanges(); 
-        };
+        removeBtn.onclick = () => { wrapper.remove(); imageFileCount--; updateAddImageButtonState(); checkFormChanges(); };
         wrapper.appendChild(removeBtn);
       }
       return { wrapper, input, fieldId };
     }
 
+    // Create existing image field with delete button
+    function createExistingImageField(base64, index) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'file-input-wrapper';
+      wrapper.dataset.existingImage = 'true';
+      wrapper.dataset.imageIndex = index;
+      
+      const previewDiv = document.createElement('div');
+      previewDiv.className = 'file-preview';
+      previewDiv.innerHTML = `<img src="${base64}" alt="Preview">`;
+      
+      const controlDiv = document.createElement('div');
+      controlDiv.className = 'file-input-control';
+      controlDiv.innerHTML = `<div class="file-name">Existing image</div>`;
+      
+      wrapper.appendChild(previewDiv);
+      wrapper.appendChild(controlDiv);
+      
+      // Delete button for existing images
+      const deleteBtn = document.createElement('button');
+      deleteBtn.type = 'button';
+      deleteBtn.className = 'remove-image-btn';
+      deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+      deleteBtn.onclick = () => { 
+        wrapper.remove(); 
+        imageFileCount--; 
+        updateAddImageButtonState(); 
+        checkFormChanges(); 
+      };
+      wrapper.appendChild(deleteBtn);
+      
+      return wrapper;
+    }
+
     function updateAddImageButtonState() {
-      if (imageFileCount >= MAX_IMAGES) {
-        addImageBtn.disabled = true;
-        addImageBtn.title = 'Maximum 5 images reached';
-      } else {
-        addImageBtn.disabled = false;
-        addImageBtn.title = '';
-      }
+      if (imageFileCount >= MAX_IMAGES) { addImageBtn.disabled = true; addImageBtn.title = `Maximum ${MAX_IMAGES} images reached`; }
+      else { addImageBtn.disabled = false; addImageBtn.title = ''; }
     }
 
     window.addImageFileField = function() {
-      if (imageFileCount >= MAX_IMAGES) { 
-        showToast(`Limit reached! Maximum ${MAX_IMAGES} images allowed.`, 'error'); 
-        return; 
-      }
-      const { wrapper } = createFileInputField();
+      if (imageFileCount >= MAX_IMAGES) { showToast(`Limit reached! Maximum ${MAX_IMAGES} images allowed.`, 'error'); return; }
+      const { wrapper } = createFileInputField(true);
       imageUrlsContainer.appendChild(wrapper);
       imageFileCount++;
       updateAddImageButtonState();
@@ -2285,9 +3616,16 @@
       document.querySelectorAll('.image-size-option').forEach(o => o.classList.remove('selected'));
       document.querySelector('.image-size-option[data-ratio="16:9"]').classList.add('selected');
       imageAspectRatio = '16:9';
+      mediaType = 'image';
+      document.querySelectorAll('.media-type-option').forEach(o => o.classList.remove('selected'));
+      document.querySelector('.media-type-option[data-type="image"]').classList.add('selected');
+      imageUploadSection.style.display = 'block';
+      videoUploadSection.style.display = 'none';
+      imageVideoPreviewUrl.value = '';
       uploadSubmitBtn.innerHTML = '<i class="fas fa-upload"></i> Upload Product';
       uploadSubmitBtn.disabled = true;
       currentEditProductId = null;
+      existingImages = [];
       hasUnsavedChanges = false;
       originalFormData = {};
     }
@@ -2312,12 +3650,42 @@
             adminProducts.push({ id: key, ...p });
             const item = document.createElement('div');
             item.className = 'admin-product-item';
-            item.innerHTML = `<div class="admin-product-info"><div class="admin-product-name">${escapeHtml(p.name || 'Unnamed')}</div><div class="admin-product-id">ID: ${key.substring(0,8)}...</div></div><div class="admin-product-actions">${p.type==='paid'?`<button class="admin-product-generate-key" onclick="generateActivationKeyForProduct('${key}','${escapeHtml(p.name||'this product')}')"><i class="fas fa-key"></i> Generate Key</button>`:''}<button class="admin-product-edit" onclick="editProduct('${key}')"><i class="fas fa-edit"></i> Edit</button><button class="admin-product-delete" onclick="showDeleteConfirmation('${key}','${escapeHtml(p.name||'this product')}')"><i class="fas fa-trash"></i> Delete</button></div>`;
+            const hasActiveKey = p.activeKey ? true : false;
+            const activeKeyHtml = p.activeKey ? `<div class="admin-product-code" onclick="copyActivationKey('${p.activeKey}')"><i class="fas fa-key"></i> Code: ${p.activeKey}</div>` : '';
+            item.innerHTML = `
+              <div class="admin-product-info">
+                <div class="admin-product-name">${escapeHtml(p.name || 'Unnamed')}</div>
+                <div class="admin-product-id">ID: ${key.substring(0,8)}...</div>
+                ${activeKeyHtml}
+              </div>
+              <div class="admin-product-actions">
+                ${p.type==='paid'?`<button class="admin-product-generate-key" onclick="generateActivationKeyForProduct('${key}','${escapeHtml(p.name||'this product')}', ${hasActiveKey})"><i class="fas fa-key"></i> ${hasActiveKey ? 'Regenerate Code' : 'Generate Key'}</button>`:''}
+                <button class="admin-product-edit" onclick="editProduct('${key}')"><i class="fas fa-edit"></i> Edit</button>
+                <button class="admin-product-comments" onclick="openCommentManagement('${key}')"><i class="fas fa-comments"></i> Comments</button>
+                <button class="admin-product-delete" onclick="deleteProductDirect('${key}','${escapeHtml(p.name||'this product')}')"><i class="fas fa-trash"></i> Delete</button>
+              </div>
+            `;
             adminProductsList.appendChild(item);
           });
         } else { adminProductsList.innerHTML = '<div style="text-align:center;color:var(--color-text-muted);padding:20px;">No products uploaded yet</div>'; }
       } catch (e) { adminProductsList.innerHTML = '<div style="text-align:center;color:var(--color-error);padding:20px;">Error loading products</div>'; }
     }
+
+    window.copyActivationKey = function(key) {
+      navigator.clipboard.writeText(key).then(() => { showToast('Copied', 'success'); }).catch(() => showToast('Failed to copy', 'error'));
+    };
+
+    // Direct delete without confirmation popup
+    window.deleteProductDirect = async function(productId, productName) {
+      if (!isAdmin) { showToast('Admin access required', 'error'); return; }
+      try { 
+        await remove(ref(db, `tools/${productId}`)); 
+        showToast(`"${productName}" deleted`, 'success'); 
+        loadAdminProducts(); 
+        loadMarketData(); 
+      }
+      catch (e) { showToast('Error: ' + e.message, 'error'); }
+    };
 
     window.showDeleteConfirmation = function(productId, productName) {
       deleteConfirmationContent.innerHTML = `<div class="delete-confirmation"><div class="delete-icon"><i class="fas fa-trash-alt"></i></div><h2 class="delete-title">Delete Product</h2><p class="delete-message">Are you sure you want to delete "${escapeHtml(productName)}"?</p><div class="admin-form-buttons"><button class="admin-form-submit" style="background:#dc2626" onclick="confirmDeleteProduct('${productId}','${escapeHtml(productName)}')">Delete</button><button class="admin-form-cancel" onclick="closeDeleteConfirmation()">Cancel</button></div></div>`;
@@ -2329,56 +3697,81 @@
       catch (e) { showToast('Error: ' + e.message, 'error'); }
     };
 
-    window.generateActivationKeyForProduct = async function(productId, productName) {
+    window.generateActivationKeyForProduct = async function(productId, productName, hasExistingKey) {
       if (!isAdmin) { showToast('Admin access required', 'error'); return; }
-      try { await set(ref(db, `tools/${productId}/activeKey`), generateActivationKey()); loadAdminProducts(); showToast('Key generated!', 'success'); }
-      catch (e) { showToast('Error generating key', 'error'); }
+      
+      generatingPopup.classList.add('active');
+      const activationKey = generateActivationKey();
+      
+      try { 
+        await set(ref(db, `tools/${productId}/activeKey`), activationKey); 
+        setTimeout(() => {
+          generatingPopup.classList.remove('active');
+          loadAdminProducts(); 
+          showToast(hasExistingKey ? 'Code regenerated!' : 'Key generated!', 'success');
+        }, 800);
+      }
+      catch (e) { 
+        generatingPopup.classList.remove('active');
+        showToast('Error generating key', 'error'); 
+      }
     };
 
     window.editProduct = function(productId) {
       const p = adminProducts.find(x => x.id === productId);
       if (p) {
         currentEditProductId = productId;
+        existingImages = p.images || [];
+        
         document.getElementById('adminName').value = p.adminName || p.uploaderName || '';
         document.getElementById('productName').value = p.name || '';
         document.getElementById('productDescription').value = p.description || '';
         document.getElementById('productCategory').value = p.category || '';
         document.getElementById('productType').value = p.type || 'free';
-        if (p.type === 'paid') { 
-          priceFields.style.display = 'grid'; 
-          document.getElementById('originalPrice').value = p.originalPriceAmount || ''; 
-          document.getElementById('currentPrice').value = p.priceAmount || ''; 
-          document.getElementById('priceCurrency').value = p.currency || 'USD';
-          document.getElementById('currentPrice').required = true; 
-        } else { 
-          priceFields.style.display = 'none'; 
+        if (p.type === 'paid') { priceFields.style.display = 'grid'; document.getElementById('originalPrice').value = p.originalPriceAmount || ''; document.getElementById('currentPrice').value = p.priceAmount || ''; document.getElementById('priceCurrency').value = p.currency || 'USD'; document.getElementById('currentPrice').required = true; }
+        else { priceFields.style.display = 'none'; }
+        
+        mediaType = p.mediaType || 'image';
+        document.querySelectorAll('.media-type-option').forEach(o => o.classList.remove('selected'));
+        document.querySelector(`.media-type-option[data-type="${mediaType}"]`).classList.add('selected');
+        
+        if (mediaType === 'image') {
+          imageUploadSection.style.display = 'block';
+          videoUploadSection.style.display = 'none';
+          document.querySelectorAll('.image-size-option').forEach(o => { o.classList.remove('selected'); if (o.dataset.ratio === (p.imageAspectRatio||'16:9')) o.classList.add('selected'); });
+          imageAspectRatio = p.imageAspectRatio || '16:9';
+          imageUrlsContainer.innerHTML = '';
+          imageFileCount = 0;
+          
+          // Display existing images with delete buttons
+          if (existingImages && Array.isArray(existingImages)) {
+            existingImages.forEach((b64, idx) => {
+              const wrapper = createExistingImageField(b64, idx);
+              imageUrlsContainer.appendChild(wrapper);
+              imageFileCount++;
+            });
+          }
+          
+          // Add one empty field for new images
+          if (imageFileCount < MAX_IMAGES) { 
+            const { wrapper } = createFileInputField(true); 
+            imageUrlsContainer.appendChild(wrapper); 
+            imageFileCount++; 
+          }
+          updateAddImageButtonState();
+          imageVideoPreviewUrl.value = p.videoPreview || '';
+        } else {
+          imageUploadSection.style.display = 'none';
+          videoUploadSection.style.display = 'block';
+          catboxVideoUrl.value = p.videoUrl || '';
+          videoThumbnailUrl.value = p.thumbnailUrl || p.images?.[0] || '';
         }
-        document.querySelectorAll('.image-size-option').forEach(o => { o.classList.remove('selected'); if (o.dataset.ratio === (p.imageAspectRatio||'16:9')) o.classList.add('selected'); });
-        imageAspectRatio = p.imageAspectRatio || '16:9';
-        imageUrlsContainer.innerHTML = '';
-        imageFileCount = 0;
-        if (p.images && Array.isArray(p.images)) {
-          p.images.forEach((b64) => {
-            const { wrapper, fieldId } = createFileInputField(false);
-            imageUrlsContainer.appendChild(wrapper);
-            imageFileCount++;
-            setTimeout(() => {
-              const previewDiv = document.getElementById('preview_' + fieldId);
-              if (previewDiv) previewDiv.innerHTML = `<img src="${b64}" alt="Preview">`;
-            }, 10);
-          });
-        }
-        if (imageFileCount < MAX_IMAGES) { 
-          const { wrapper } = createFileInputField(true); 
-          imageUrlsContainer.appendChild(wrapper); 
-          imageFileCount++; 
-        }
-        updateAddImageButtonState();
-        document.getElementById('videoUrl').value = p.videoPreview || '';
+        
         document.getElementById('downloadLink').value = p.downloadLink || '';
         document.getElementById('usageInstructions').value = p.tool_usage || '';
         uploadModalTitle.innerHTML = '<i class="fas fa-edit"></i> Edit Product';
         uploadSubmitBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+        newProductBtn.style.display = 'block';
         saveOriginalFormData();
         showToast('Product loaded for editing', 'success');
       }
@@ -2392,11 +3785,8 @@
       const description = document.getElementById('productDescription').value.trim();
       const category = document.getElementById('productCategory').value;
       const type = productType.value;
-      const videoUrl = document.getElementById('videoUrl').value.trim();
       const downloadLink = document.getElementById('downloadLink').value.trim();
       const usageInstructions = document.getElementById('usageInstructions').value.trim();
-      const fileInputs = document.querySelectorAll('.file-input-hidden');
-      const imageFiles = Array.from(fileInputs).map(i => i.files[0]).filter(f => f);
       
       if (!adminName || !productName || !description || !category || !downloadLink) { showToast('Fill all required fields', 'error'); return; }
       if (type === 'paid' && !document.getElementById('currentPrice').value.trim()) { showToast('Current price required', 'error'); return; }
@@ -2406,49 +3796,79 @@
       showUploadStatus(currentEditProductId ? 'Saving...' : 'Uploading...', 'loading');
       
       try {
-        let imageUrls = [];
-        if (imageFiles.length > 0) { 
-          showUploadStatus('Processing images...', 'loading'); 
-          for (const f of imageFiles) imageUrls.push(await fileToBase64(f)); 
-        }
-        
         const currency = type === 'paid' ? document.getElementById('priceCurrency').value : 'USD';
         const currencySymbol = type === 'paid' ? document.getElementById('priceCurrency').selectedOptions[0].dataset.symbol : '$';
         
         const productData = { 
           adminName, name: productName, description, category, type, 
-          videoPreview: videoUrl || null, downloadLink, 
+          downloadLink, mediaType,
           tool_usage: usageInstructions || "How to use: Open in After Effects and customize as needed.", 
           uploaderName: adminName, uploaderId: currentUserId, updatedAt: Date.now(), 
-          isPaid: type === 'paid', imageAspectRatio, currency, currencySymbol
+          isPaid: type === 'paid', currency, currencySymbol
         };
         
-        if (imageUrls.length > 0) productData.images = imageUrls;
-        else if (!currentEditProductId) { showToast('At least one image required', 'error'); throw new Error('No images'); }
+        if (mediaType === 'image') {
+          productData.imageAspectRatio = imageAspectRatio;
+          const fileInputs = document.querySelectorAll('.file-input-hidden');
+          const newImageFiles = Array.from(fileInputs).map(i => i.files[0]).filter(f => f);
+          
+          let finalImages = [];
+          
+          // Keep existing images (from the preview divs with data-existing-image)
+          const existingWrappers = document.querySelectorAll('[data-existing-image="true"]');
+          existingWrappers.forEach(wrapper => {
+            const img = wrapper.querySelector('.file-preview img');
+            if (img && img.src) {
+              finalImages.push(img.src);
+            }
+          });
+          
+          // Add new images
+          if (newImageFiles.length > 0) { 
+            showUploadStatus('Processing images...', 'loading'); 
+            for (const f of newImageFiles) {
+              finalImages.push(await fileToBase64(f));
+            }
+          }
+          
+          if (finalImages.length === 0 && !currentEditProductId) { 
+            showToast('At least one image required', 'error'); 
+            throw new Error('No images'); 
+          }
+          
+          if (finalImages.length > 0) {
+            productData.images = finalImages;
+          }
+          
+          const videoPreviewUrl = imageVideoPreviewUrl.value.trim();
+          if (videoPreviewUrl) {
+            productData.videoPreview = videoPreviewUrl;
+          }
+        } else {
+          const videoUrl = catboxVideoUrl.value.trim();
+          const thumbnailUrl = videoThumbnailUrl.value.trim();
+          if (!videoUrl || !thumbnailUrl) { showToast('Video URL and thumbnail required', 'error'); throw new Error('Missing video data'); }
+          productData.videoUrl = videoUrl;
+          productData.thumbnailUrl = thumbnailUrl;
+          productData.images = [thumbnailUrl];
+        }
         
         if (type === 'paid') { 
           productData.priceAmount = document.getElementById('currentPrice').value.trim(); 
           productData.price = `${currencySymbol}${productData.priceAmount}`;
           const op = document.getElementById('originalPrice').value.trim(); 
-          if (op) { 
-            productData.originalPriceAmount = op; 
-            productData.originalPrice = `${currencySymbol}${op}`; 
-          }
-        } else { 
-          productData.price = "Free"; 
-          productData.priceAmount = "0";
-        }
+          if (op) { productData.originalPriceAmount = op; productData.originalPrice = `${currencySymbol}${op}`; }
+        } else { productData.price = "Free"; productData.priceAmount = "0"; }
         
         await saveAdminTelegramLink();
         
         if (currentEditProductId) {
           await update(ref(db, `tools/${currentEditProductId}`), productData);
           showUploadStatus('Updated!', 'success');
-          setTimeout(() => { hideUploadStatus(); uploadSubmitBtn.disabled = false; uploadSubmitBtn.classList.remove('loading'); loadAdminProducts(); loadMarketData(); closeUploadModal(); showSuccessPopup('Product updated!'); }, 1500);
+          setTimeout(() => { hideUploadStatus(); uploadSubmitBtn.disabled = false; uploadSubmitBtn.classList.remove('loading'); loadAdminProducts(); loadMarketData(); showSuccessPopup('Product updated!'); }, 1500);
         } else {
           const newRef = push(ref(db, 'tools'));
-          productData.createdAt = Date.now();
-          productData.uploadedAt = Date.now();
+          productData.createdAt = Date.now(); productData.uploadedAt = Date.now();
           productData.viewCount = { uniqueUsers: {}, totalUniqueViews: 0 };
           productData.comments = {};
           await set(newRef, productData);
@@ -2456,10 +3876,8 @@
           setTimeout(() => { hideUploadStatus(); uploadSubmitBtn.disabled = false; uploadSubmitBtn.classList.remove('loading'); loadAdminProducts(); loadMarketData(); resetUploadForm(); showSuccessPopup('Product uploaded!'); }, 1500);
         }
       } catch (error) { 
-        uploadSubmitBtn.classList.remove('loading'); 
-        uploadSubmitBtn.disabled = false; 
-        showUploadStatus('Error: ' + error.message, 'error'); 
-        setTimeout(hideUploadStatus, 3000); 
+        uploadSubmitBtn.classList.remove('loading'); uploadSubmitBtn.disabled = false; 
+        showUploadStatus('Error: ' + error.message, 'error'); setTimeout(hideUploadStatus, 3000); 
       }
     });
 
@@ -2467,21 +3885,60 @@
     hamburgerBtn.addEventListener('click', toggleSidebar);
     sidebarOverlay.addEventListener('click', toggleSidebar);
 
-    categoryTrigger.addEventListener('click', (e) => { e.stopPropagation(); categoryTrigger.classList.toggle('active'); categoryDropdown.classList.toggle('active'); });
-    document.addEventListener('click', (e) => { if (!categoryTrigger.contains(e.target) && !categoryDropdown.contains(e.target)) { categoryTrigger.classList.remove('active'); categoryDropdown.classList.remove('active'); } });
-    categoryOptions.forEach(opt => opt.addEventListener('click', async function() {
-      currentFilterCategory = this.dataset.value;
-      categoryTrigger.querySelector('.placeholder').textContent = this.textContent;
-      categoryTrigger.classList.remove('active'); categoryDropdown.classList.remove('active');
-      showLoadingAnimation();
-      setTimeout(async () => await renderTools(currentFilterCategory, currentSearchQuery), 300);
-    }));
+    categoryTrigger.addEventListener('click', (e) => { 
+      e.stopPropagation(); 
+      categoryTrigger.classList.toggle('active'); 
+      categoryDropdown.classList.toggle('active'); 
+    });
+    
+    document.addEventListener('click', (e) => { 
+      if (!categoryTrigger.contains(e.target) && !categoryDropdown.contains(e.target)) { 
+        categoryTrigger.classList.remove('active'); 
+        categoryDropdown.classList.remove('active'); 
+      }
+      if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+        searchSuggestions.classList.remove('active');
+      }
+    });
 
-    searchBtn.addEventListener('click', performSearch);
-    searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') performSearch(); });
-    function performSearch() { currentSearchQuery = searchInput.value.trim().toLowerCase(); showLoadingAnimation(); setTimeout(async () => await renderTools(currentFilterCategory, currentSearchQuery), 300); }
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value;
+      if (query) {
+        clearSearchBtn.classList.add('visible');
+        debouncedSearch(query);
+      } else {
+        clearSearchBtn.classList.remove('visible');
+        searchSuggestions.classList.remove('active');
+        currentSearchQuery = '';
+        isSearchActive = false;
+        renderTools(currentFilterCategory, '');
+      }
+    });
 
-    // Load user profile data
+    searchInput.addEventListener('focus', () => {
+      if (searchInput.value) {
+        updateSearchSuggestions(searchInput.value.toLowerCase());
+      }
+    });
+
+    searchBtn.addEventListener('click', () => {
+      const query = searchInput.value.trim();
+      if (query) {
+        performSearchWithQuery(query);
+        searchSuggestions.classList.remove('active');
+      }
+    });
+
+    searchInput.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim();
+        if (query) {
+          performSearchWithQuery(query);
+          searchSuggestions.classList.remove('active');
+        }
+      }
+    });
+
     async function loadUserProfileData(userId) {
       try {
         const possiblePaths = [doc(firestore, "artifacts", "motion-flow-v1", "users", userId, "profile", "settings"), doc(firestore, "users", userId)];
@@ -2495,7 +3952,14 @@
     }
 
     onAuthStateChanged(auth, async (user) => {
-      if (user) { currentUserId = user.uid; await loadUserProfileData(currentUserId); loadMarketData(); setupFormChangeListeners(); }
+      if (user) { 
+        currentUserId = user.uid; 
+        await loadUserProfileData(currentUserId); 
+        await loadCategories();
+        loadMarketData(); 
+        setupFormChangeListeners(); 
+        initNotifications(); 
+      }
       else { window.location.href = "index.html"; }
     });
 
@@ -2515,10 +3979,10 @@
             const totalViews = Object.keys(viewCount.uniqueUsers || {}).length;
             const comments = t.comments || {};
             const commentCount = Object.keys(comments).length;
-            allToolsData.push({ ...t, key, toolId: key, name: t.name || "Unnamed", category: t.category || "uncategorized", description: t.description || "", images, image: images[0], videoPreview: t.videoPreview || null, uploaderName: t.adminName || t.uploaderName || "Admin Moonlight", uploadedAt: t.uploadedAt || t.createdAt || Date.now(), tool_usage: t.tool_usage || "", downloadLink: t.downloadLink || "#", isPaid: t.isPaid || t.type === 'paid', price: t.price || (t.type==='paid'?'$0.00':'Free'), originalPrice: t.originalPrice || null, imageAspectRatio: t.imageAspectRatio || '16:9', viewCount: viewCount, totalViews: totalViews, comments: comments, commentCount: commentCount });
+            allToolsData.push({ ...t, key, toolId: key, name: t.name || "Unnamed", category: t.category || "uncategorized", description: t.description || "", images, image: images[0], videoPreview: t.videoPreview || null, videoUrl: t.videoUrl || null, thumbnailUrl: t.thumbnailUrl || null, mediaType: t.mediaType || 'image', uploaderName: t.adminName || t.uploaderName || "Admin Moonlight", uploadedAt: t.uploadedAt || t.createdAt || Date.now(), tool_usage: t.tool_usage || "", downloadLink: t.downloadLink || "#", isPaid: t.isPaid || t.type === 'paid', price: t.price || (t.type==='paid'?'$0.00':'Free'), originalPrice: t.originalPrice || null, imageAspectRatio: t.imageAspectRatio || '16:9', viewCount: viewCount, totalViews: totalViews, comments: comments, commentCount: commentCount });
           });
           allToolsData.sort((a,b) => (b.uploadedAt||0) - (a.uploadedAt||0));
-          renderTools('all', '');
+          renderTools(currentFilterCategory, currentSearchQuery);
         } else { showNoProductsMessage(); }
       }, (error) => { clearLoadingAnimation(); showErrorMessage('Connection error.'); });
     }
@@ -2532,27 +3996,44 @@
 
     function filterToolsBySearch(tools, query) {
       if (!query) return tools;
-      return tools.filter(t => t.name.toLowerCase().includes(query) || (t.description||'').toLowerCase().includes(query) || (t.uploaderName||'').toLowerCase().includes(query));
+      return tools.filter(t => 
+        t.name.toLowerCase().includes(query) || 
+        (t.description||'').toLowerCase().includes(query) || 
+        (t.uploaderName||'').toLowerCase().includes(query) ||
+        (t.category||'').toLowerCase().includes(query)
+      );
     }
 
     async function renderTools(filterCategory = 'all', searchQuery = '') {
       let toolsToDisplay = filterCategory === 'all' ? allToolsData : allToolsData.filter(t => t.category === filterCategory);
       if (searchQuery) toolsToDisplay = filterToolsBySearch(toolsToDisplay, searchQuery);
       marketContainer.innerHTML = '';
-      if (toolsToDisplay.length === 0) { marketContainer.innerHTML = `<div class="empty-state"><div class="empty-icon"><i class="fas fa-search"></i></div><h3>No products found</h3><p>Try a different search.</p></div>`; return; }
+      if (toolsToDisplay.length === 0) { 
+        marketContainer.innerHTML = `<div class="empty-state"><div class="empty-icon"><i class="fas fa-search"></i></div><h3>No products found</h3><p>Try a different search or clear filters.</p>${isSearchActive ? `<button class="admin-form-submit" onclick="clearSearch()" style="margin-top:20px;"><i class="fas fa-times"></i> Clear Search</button>` : ''}</div>`; 
+        return; 
+      }
       for (const tool of toolsToDisplay) await createToolCard(tool);
     }
 
-    // Visit user profile function
     window.visitUserProfile = function(userId, userName) {
       if (!userId || userId === 'unknown' || userId === 'admin') { showToast('Cannot visit this profile', 'info'); return; }
       if (currentUserId && userId === currentUserId) { window.location.href = '../profile/profile.html'; }
       else { window.location.href = `../Users/user-profile.html?userId=${userId}`; }
     };
 
+    window.closeVideoModal = function() { videoModal.classList.remove('active'); modalVideo.pause(); modalVideo.src = ''; };
+    
+    window.playVideo = function(videoUrl) {
+      if (!videoUrl) { showToast('Video not available', 'error'); return; }
+      modalVideo.src = videoUrl;
+      videoModal.classList.add('active');
+      modalVideo.play().catch(e => console.log('Autoplay prevented:', e));
+    };
+
     async function createToolCard(tool) {
-      const hasVideoPreview = tool.videoPreview && tool.videoPreview !== '#';
-      const hasMultipleImages = tool.images && tool.images.length > 1;
+      const isVideo = tool.mediaType === 'video' || (tool.videoUrl && !tool.images?.length);
+      const hasMultipleImages = !isVideo && tool.images && tool.images.length > 1;
+      const hasVideoPreview = !isVideo && tool.videoPreview && tool.videoPreview !== '#';
       const isUnlocked = tool.isPaid ? localStorage.getItem(tool.toolId + '_unlocked') === 'true' : true;
       const isAdminUploader = tool.uploaderName && (tool.uploaderName.includes('Admin') || tool.uploaderName.includes('Moonlight'));
       const card = document.createElement('div');
@@ -2563,11 +4044,14 @@
       const commentCount = tool.commentCount || 0;
       const totalViews = tool.totalViews || 0;
       
+      const displayImage = isVideo ? (tool.thumbnailUrl || tool.images?.[0] || 'https://via.placeholder.com/300x200/1a1a2e/00bcd4?text=Video') : (tool.images?.[0] || 'https://via.placeholder.com/300x200/1a1a2e/00bcd4?text=No+Image');
+      
       card.innerHTML = `
         <div class="product-img-wrapper">
-          <img src="${tool.images[0]}" alt="${escapeHtml(tool.name)}" class="product-img" data-current-index="0">
-          ${hasMultipleImages ? `<div class="carousel-nav"><button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button><button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button></div><div class="carousel-dots">${tool.images.map((_,i)=>`<button class="carousel-dot ${i===0?'active':''}" data-index="${i}"></button>`).join('')}</div>` : ''}
-          ${hasVideoPreview ? `<button class="video-preview-btn"><i class="fas fa-play"></i> Video Preview</button>` : ''}
+          <img src="${displayImage}" alt="${escapeHtml(tool.name)}" class="${isVideo ? 'product-thumbnail' : 'product-img'}" data-current-index="0">
+          ${isVideo ? '<div class="play-overlay"><i class="fas fa-play"></i></div>' : ''}
+          ${hasVideoPreview ? `<button class="video-preview-btn" onclick="event.stopPropagation(); showVideoPreview('${tool.videoPreview}', '${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-play"></i> Video Preview</button>` : ''}
+          ${!isVideo && hasMultipleImages ? `<div class="carousel-nav"><button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button><button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button></div><div class="carousel-dots">${tool.images.map((_,i)=>`<button class="carousel-dot ${i===0?'active':''}" data-index="${i}"></button>`).join('')}</div>` : ''}
         </div>
         <div class="product-info">
           <div class="product-header"><div class="product-title"><h3>${escapeHtml(tool.name)}</h3><small style="color:var(--color-text-muted);">${escapeHtml(tool.category)}</small></div><div class="price-display">${tool.isPaid?`<div class="current-price paid">${tool.price}</div>${tool.originalPrice?`<div class="original-price">${tool.originalPrice}</div>`:''}`:`<div class="current-price">Free</div>`}</div></div>
@@ -2584,9 +4068,9 @@
             ${tool.isPaid ? 
               (isUnlocked ? 
                 `<button class="download-btn" onclick="handleDownload('${tool.downloadLink}','${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-download"></i> Download</button>` :
-                `<button class="activate-btn" onclick="handleActivation('${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-lock-open"></i> Unlock</button><span class="view-badge" style="position:absolute;top:-5px;right:-5px;background:var(--color-success);color:white;font-size:0.65em;padding:2px 6px;border-radius:10px;display:flex;align-items:center;gap:3px;"><i class="fas fa-eye"></i> ${totalViews}</span>`
+                `<button class="activate-btn" onclick="handleActivation('${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-lock-open"></i> Unlock<span class="view-badge"><i class="fas fa-eye"></i> ${totalViews}</span></button>`
               ) :
-              `<button class="purchase-btn" onclick="handleFreeProduct('${tool.downloadLink}','${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')" style="position:relative;"><i class="fas fa-shopping-cart"></i> Get Now<span class="view-badge" style="position:absolute;top:-5px;right:-5px;background:var(--color-success);color:white;font-size:0.65em;padding:2px 6px;border-radius:10px;display:flex;align-items:center;gap:3px;"><i class="fas fa-eye"></i> ${totalViews}</span></button>`
+              `<button class="purchase-btn" onclick="handleFreeProduct('${tool.downloadLink}','${tool.key}','${escapeHtml(tool.name).replace(/'/g,"\\'")}')"><i class="fas fa-shopping-cart"></i> Get Now<span class="view-badge"><i class="fas fa-eye"></i> ${totalViews}</span></button>`
             }
             <button class="info-btn" onclick="showToolInfo('${tool.key}')"><i class="fas fa-info-circle"></i> Info</button>
           </div>
@@ -2599,23 +4083,10 @@
       `;
       marketContainer.appendChild(card);
       
-      // Fix button positioning for view badge
-      const activateBtn = card.querySelector('.activate-btn');
-      const purchaseBtn = card.querySelector('.purchase-btn');
-      if (activateBtn) {
-        activateBtn.style.position = 'relative';
-        const badge = activateBtn.nextElementSibling;
-        if (badge && badge.classList.contains('view-badge')) {
-          activateBtn.appendChild(badge);
-        }
-      }
-      if (purchaseBtn) {
-        purchaseBtn.style.position = 'relative';
-        const badge = purchaseBtn.querySelector('.view-badge');
-      }
-      
-      if (hasMultipleImages) {
-        const imgWrapper = card.querySelector('.product-img-wrapper');
+      const imgWrapper = card.querySelector('.product-img-wrapper');
+      if (isVideo) {
+        imgWrapper.addEventListener('click', () => { if (tool.videoUrl) playVideo(tool.videoUrl); });
+      } else if (hasMultipleImages) {
         const imgEl = imgWrapper.querySelector('.product-img');
         const prevBtn = imgWrapper.querySelector('.prev-btn');
         const nextBtn = imgWrapper.querySelector('.next-btn');
@@ -2626,15 +4097,22 @@
         nextBtn?.addEventListener('click',(e)=>{e.stopPropagation(); idx=(idx+1)%tool.images.length; update();});
         dots.forEach((d,i)=>d.addEventListener('click',(e)=>{e.stopPropagation(); idx=i; update();}));
         imgWrapper.addEventListener('click',(e)=>{if(!e.target.classList.contains('carousel-btn')&&!e.target.classList.contains('carousel-dot')&&!e.target.classList.contains('video-preview-btn'))openImageViewer(tool.images,idx,tool);});
-      } else {
-        card.querySelector('.product-img-wrapper').addEventListener('click',(e)=>{if(!e.target.classList.contains('video-preview-btn'))openImageViewer([tool.images[0]],0,tool);});
+      } else if (!isVideo) {
+        imgWrapper.addEventListener('click',(e)=>{if(!e.target.classList.contains('video-preview-btn'))openImageViewer([tool.images?.[0] || displayImage],0,tool);});
       }
-      if (hasVideoPreview) card.querySelector('.video-preview-btn')?.addEventListener('click',(e)=>{e.stopPropagation(); showVideoPreview(tool.videoPreview,tool.name);});
       
       await loadProductComments(tool.key);
     }
 
-    // Product Comments Functions
+    window.showVideoPreview = (url, name) => {
+      if (!url||url==='#') { showToast('Video not available','error'); return; }
+      const dlg = document.createElement('div');
+      dlg.className = 'admin-modal-overlay active';
+      dlg.innerHTML = `<div class="admin-modal-content" style="max-width:800px;"><h2 style="color:var(--color-primary);"><i class="fas fa-play-circle"></i> ${escapeHtml(name)}</h2><div style="aspect-ratio:16/9;background:#000;"><video src="${url}" controls autoplay playsinline style="width:100%;height:100%;"></video></div><div class="admin-form-buttons" style="margin-top:20px;"><button class="admin-form-cancel" onclick="this.closest('.admin-modal-overlay').remove()">Close</button></div></div>`;
+      document.body.appendChild(dlg);
+      dlg.addEventListener('click',(e)=>{if(e.target===dlg)dlg.remove();});
+    };
+
     window.toggleProductComments = function(productId) {
       const section = document.getElementById(`product-comments-${productId}`);
       section.classList.toggle('active');
@@ -2647,20 +4125,28 @@
       const commentsList = document.getElementById(`comments-list-${productId}`);
       if (!commentsList) return;
       commentsList.innerHTML = '';
-      const comments = Object.values(tool.comments || {});
+      const comments = Object.entries(tool.comments || {});
       if (comments.length === 0) { commentsList.innerHTML = `<div style="text-align:center;color:var(--color-text-muted);padding:15px;">No comments yet.</div>`; return; }
-      comments.sort((a,b) => (b.timestamp||0) - (a.timestamp||0));
-      comments.forEach(c => {
+      comments.sort((a,b) => (b[1].timestamp||0) - (a[1].timestamp||0));
+      comments.forEach(([commentId, c]) => {
         const item = document.createElement('div');
         item.className = 'comment-item';
+        item.dataset.commentId = commentId;
         const avatar = c.profileImage || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.userName)}&background=00bcd4&color=fff`;
+        const isOwnComment = c.userId === currentUserId;
         item.innerHTML = `
           <div class="comment-header">
             <img src="${avatar}" class="comment-avatar" alt="${escapeHtml(c.userName)}" onclick="visitUserProfile('${c.userId || 'unknown'}', '${escapeHtml(c.userName)}')" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(c.userName)}&background=1a1a2e&color=fff'">
             <span class="comment-author" onclick="visitUserProfile('${c.userId || 'unknown'}', '${escapeHtml(c.userName)}')">${escapeHtml(c.userName)}</span>
-            <span class="comment-time">${getTimeAgo(c.timestamp)}</span>
+            <span class="comment-time">${getTimeAgo(c.timestamp)}${c.edited ? ' (edited)' : ''}</span>
           </div>
           <div class="comment-text">${escapeHtml(c.text)}</div>
+          ${isOwnComment ? `
+            <div class="comment-user-actions">
+              <button class="comment-user-edit" onclick="editUserComment('${productId}', '${commentId}', '${escapeHtml(c.text).replace(/'/g,"\\'")}')"><i class="fas fa-edit"></i><span class="action-text">Edit</span></button>
+              <button class="comment-user-delete" onclick="deleteUserComment('${productId}', '${commentId}')"><i class="fas fa-trash"></i><span class="action-text">Delete</span></button>
+            </div>
+          ` : ''}
         `;
         commentsList.appendChild(item);
       });
@@ -2673,8 +4159,7 @@
       const text = input.value.trim();
       if (!text) { showToast('Enter a comment', 'error'); return; }
       if (text.length > 500) { showToast('Comment too long (max 500)', 'error'); return; }
-      let userName = 'User';
-      let profileImage = null;
+      let userName = 'User', profileImage = null;
       if (currentUserData) {
         userName = currentUserData.nickname || currentUserData.username || currentUserData.displayName || (currentUserData.email?currentUserData.email.split('@')[0]:`User${currentUserId.substring(0,6)}`);
         profileImage = currentUserData.profileImage || currentUserData.profilePicture || null;
@@ -2689,36 +4174,17 @@
       } catch (e) { showToast('Error: ' + e.message, 'error'); }
     };
 
-    // Track unique view
     async function trackProductView(productId) {
       if (!currentUserId) return;
       try {
         const viewRef = ref(db, `tools/${productId}/viewCount/uniqueUsers/${currentUserId}`);
-        const snap = await get(viewRef);
-        if (!snap.exists()) {
+        if (!(await get(viewRef)).exists()) {
           await set(viewRef, true);
           const totalRef = ref(db, `tools/${productId}/viewCount/totalUniqueViews`);
-          const totalSnap = await get(totalRef);
-          const currentTotal = totalSnap.exists() ? totalSnap.val() : 0;
+          const currentTotal = (await get(totalRef)).val() || 0;
           await set(totalRef, currentTotal + 1);
         }
-      } catch (e) { console.error('Error tracking view:', e); }
-    }
-
-    // Track view for paid products when unlock is clicked
-    async function trackPaidProductView(productId) {
-      if (!currentUserId) return;
-      try {
-        const viewRef = ref(db, `tools/${productId}/viewCount/uniqueUsers/${currentUserId}`);
-        const snap = await get(viewRef);
-        if (!snap.exists()) {
-          await set(viewRef, true);
-          const totalRef = ref(db, `tools/${productId}/viewCount/totalUniqueViews`);
-          const totalSnap = await get(totalRef);
-          const currentTotal = totalSnap.exists() ? totalSnap.val() : 0;
-          await set(totalRef, currentTotal + 1);
-        }
-      } catch (e) { console.error('Error tracking view:', e); }
+      } catch (e) {}
     }
 
     window.handleFreeProduct = async (downloadLink, toolKey, productName) => {
@@ -2737,25 +4203,10 @@
     };
 
     function openImageViewer(images, idx, product) {
-      viewerImages = images;
-      viewerCurrentIndex = idx;
-      updateImageViewer();
-      imageViewer.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      viewerImage.addEventListener('touchstart', handleTouchStart);
-      viewerImage.addEventListener('touchmove', handleTouchMove);
-      viewerImage.addEventListener('touchend', handleTouchEnd);
+      viewerImages = images; viewerCurrentIndex = idx; updateImageViewer();
+      imageViewer.classList.add('active'); document.body.style.overflow = 'hidden';
     }
-    function closeImageViewer() {
-      imageViewer.classList.remove('active');
-      document.body.style.overflow = 'auto';
-      viewerImage.removeEventListener('touchstart', handleTouchStart);
-      viewerImage.removeEventListener('touchmove', handleTouchMove);
-      viewerImage.removeEventListener('touchend', handleTouchEnd);
-    }
-    function handleTouchStart(e) { touchStartX = e.touches[0].clientX; }
-    function handleTouchMove(e) { touchEndX = e.touches[0].clientX; }
-    function handleTouchEnd() { if (touchStartX - touchEndX > 50) viewerNextImage(); else if (touchEndX - touchStartX > 50) viewerPrevImage(); }
+    function closeImageViewer() { imageViewer.classList.remove('active'); document.body.style.overflow = 'auto'; }
     function updateImageViewer() {
       viewerImage.src = viewerImages[viewerCurrentIndex];
       viewerDots.innerHTML = viewerImages.map((_,i)=>`<button class="image-viewer-dot ${i===viewerCurrentIndex?'active':''}" onclick="viewerCurrentIndex=${i};updateImageViewer()"></button>`).join('');
@@ -2769,26 +4220,12 @@
     function getTimeAgo(ts) {
       const diff = Date.now() - ts;
       const s = Math.floor(diff/1000), m = Math.floor(s/60), h = Math.floor(m/60), d = Math.floor(h/24);
-      if (d>0) return `${d}d ago`;
-      if (h>0) return `${h}h ago`;
-      if (m>0) return `${m}m ago`;
-      return 'Just now';
+      if (d>0) return `${d}d ago`; if (h>0) return `${h}h ago`; if (m>0) return `${m}m ago`; return 'Just now';
     }
 
-    window.showVideoPreview = (url, name) => {
-      if (!url||url==='#') { showToast('Video not available','error'); return; }
-      const dlg = document.createElement('div');
-      dlg.className = 'admin-modal-overlay active';
-      dlg.innerHTML = `<div class="admin-modal-content" style="max-width:800px;"><h2 style="color:var(--color-primary);"><i class="fas fa-play-circle"></i> ${escapeHtml(name)}</h2><div style="aspect-ratio:16/9;background:#000;"><video src="${url}" controls autoplay playsinline style="width:100%;height:100%;"></video></div><div class="admin-form-buttons" style="margin-top:20px;"><button class="admin-form-cancel" onclick="this.closest('.admin-modal-overlay').remove()">Close</button></div></div>`;
-      document.body.appendChild(dlg);
-      dlg.addEventListener('click',(e)=>{if(e.target===dlg)dlg.remove();});
-    };
-
-    // Updated activation handler with view tracking
     window.handleActivation = async (toolKey, productName) => {
       if (!currentUserId) { showToast('Please login','error'); return; }
-      // Track view when unlock is clicked
-      await trackPaidProductView(toolKey);
+      await trackProductView(toolKey);
       showActivationPage(toolKey, productName);
     };
 
@@ -2801,23 +4238,16 @@
           <p class="activation-description">This product requires purchase and activation.</p>
           <div class="activation-instructions">
             <h4>How to unlock:</h4>
-            <ol>
-              <li>Contact on Telegram</li>
-              <li>Send product name: <strong>${escapeHtml(productName)}</strong></li>
-              <li>Request purchase instructions</li>
-              <li>Enter activation code below</li>
-            </ol>
+            <ol><li>Contact on Telegram</li><li>Send product name: <strong>${escapeHtml(productName)}</strong></li><li>Request purchase instructions</li><li>Enter activation code below</li></ol>
             <p style="color:var(--color-warning);margin-top:10px;"><i class="fas fa-exclamation-circle"></i> Each activation code can only be used once!</p>
           </div>
-          <div class="activation-input-group">
-            <input type="text" class="activation-input" id="activationCodeInput" placeholder="Enter 10-digit code" maxlength="10">
-            <p style="font-size:0.9em;color:var(--color-text-muted);margin-top:8px;">Enter the code exactly as received from the admin</p>
-          </div>
+          <div class="activation-input-group"><input type="text" class="activation-input" id="activationCodeInput" placeholder="Enter 10-digit code" maxlength="10"></div>
           <div class="activation-actions">
             <a href="${adminTelegramLink}" target="_blank" class="telegram-btn"><i class="fab fa-telegram"></i> Contact on Telegram</a>
             <button class="admin-form-submit" onclick="verifyActivationCode('${toolKey}','${escapeHtml(productName)}')"><i class="fas fa-key"></i> Verify Activation Code</button>
             <button class="back-btn" onclick="closeActivationModal()"><i class="fas fa-arrow-left"></i> Back to Products</button>
           </div>
+          <div class="terms-note">By entering a code, you agree to the <a href="terms.html" target="_blank">Motion-Flow Terms of Service</a>.</div>
         </div>
       `;
       activationModal.classList.add('active');
@@ -2827,9 +4257,7 @@
       const code = document.getElementById('activationCodeInput').value.trim().toUpperCase();
       if (!code||code.length!==10) { showToast('Enter valid 10-digit code','error'); return; }
       const btn = document.querySelector('#activationContent .admin-form-submit');
-      const orig = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-      btn.disabled = true;
+      const orig = btn.innerHTML; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...'; btn.disabled = true;
       try {
         const snap = await get(ref(db, `tools/${toolKey}/activeKey`));
         if (!snap.exists()||code!==snap.val()) { showToast('Incorrect activation code','error'); btn.innerHTML=orig; btn.disabled=false; return; }
@@ -2848,20 +4276,7 @@
         const tool = (await get(ref(db,`tools/${toolKey}`))).val();
         if (!tool) { showToast('Product not found','error'); return; }
         const content = document.getElementById('infoContent');
-        content.innerHTML = `
-          <div class="download-page">
-            <div class="download-success-icon"><i class="fas fa-download"></i></div>
-            <h2 style="color:var(--color-success);"><i class="fas fa-unlock-alt"></i> Download Ready!</h2>
-            <h3 style="color:var(--color-accent);">${escapeHtml(productName)}</h3>
-            <p style="margin-bottom:20px;">Your product is ready to download:</p>
-            <button class="download-link" onclick="triggerDirectDownload('${tool.downloadLink}','${escapeHtml(productName)}')"><i class="fas fa-external-link-alt"></i> Download Now</button>
-            ${code?`<div style="margin-top:20px;padding:15px;background:rgba(16,185,129,0.1);border-radius:10px;"><p style="color:var(--color-success);"><i class="fas fa-key"></i> Activation Code Used: ${code}</p><p style="color:var(--color-text-muted);font-size:0.9em;">This code has been burned and cannot be used again</p></div>`:''}
-            <div class="admin-form-buttons" style="margin-top:30px;">
-              <button class="admin-form-submit" onclick="copyToClipboard('${tool.downloadLink}','Link copied!')"><i class="fas fa-copy"></i> Copy Link</button>
-              <button class="admin-form-cancel" onclick="document.getElementById('infoDialog').classList.remove('active')">Close</button>
-            </div>
-          </div>
-        `;
+        content.innerHTML = `<div class="download-page"><div class="download-success-icon"><i class="fas fa-download"></i></div><h2 style="color:var(--color-success);"><i class="fas fa-unlock-alt"></i> Download Ready!</h2><h3 style="color:var(--color-accent);">${escapeHtml(productName)}</h3><p>Your product is ready:</p><button class="download-link" onclick="triggerDirectDownload('${tool.downloadLink}','${escapeHtml(productName)}')"><i class="fas fa-external-link-alt"></i> Download Now</button>${code?`<div style="margin-top:20px;padding:15px;background:rgba(16,185,129,0.1);border-radius:10px;"><p style="color:var(--color-success);"><i class="fas fa-key"></i> Code Used: ${code}</p></div>`:''}<div class="admin-form-buttons" style="margin-top:30px;"><button class="admin-form-submit" onclick="copyToClipboard('${tool.downloadLink}','Link copied!')"><i class="fas fa-copy"></i> Copy Link</button><button class="admin-form-cancel" onclick="document.getElementById('infoDialog').classList.remove('active')">Close</button></div></div>`;
         document.getElementById('infoDialog').classList.add('active');
       } catch(e) { showToast('Error loading download','error'); }
     };
@@ -2871,26 +4286,12 @@
       if (tool) {
         const content = document.getElementById('infoContent');
         const isAdminUploader = tool.uploaderName && (tool.uploaderName.includes('Admin')||tool.uploaderName.includes('Moonlight'));
-        content.innerHTML = `
-          <h2 style="color:var(--color-accent);">${escapeHtml(tool.name)}</h2>
-          <div style="margin-bottom:20px;padding:10px;background:rgba(0,188,212,0.1);border-radius:8px;">
-            <strong>Category:</strong> ${escapeHtml(tool.category)}<br>
-            <strong>Price:</strong> ${tool.isPaid?tool.price:'Free'}<br>
-            ${tool.originalPrice?`<strong>Original:</strong> <span style="text-decoration:line-through;">${tool.originalPrice}</span><br>`:''}
-            <strong>Uploaded by:</strong> ${escapeHtml(tool.uploaderName)} ${isAdminUploader?'<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>':''}<br>
-            <strong>Uploaded:</strong> ${new Date(tool.uploadedAt).toLocaleDateString()}<br>
-            <strong><i class="fas fa-eye"></i> Views:</strong> ${tool.totalViews||0}
-          </div>
-          <p><strong>Description:</strong></p>
-          <div style="margin-bottom:15px;">${linkify(escapeHtml(tool.description||''))}</div>
-          ${tool.tool_usage?`<p><strong>How to use:</strong></p><div>${linkify(escapeHtml(tool.tool_usage))}</div>`:''}
-          <button class="admin-form-submit" onclick="document.getElementById('infoDialog').classList.remove('active')" style="margin-top:20px;">Close</button>
-        `;
+        content.innerHTML = `<h2 style="color:var(--color-accent);">${escapeHtml(tool.name)}</h2><div style="margin-bottom:20px;padding:10px;background:rgba(0,188,212,0.1);border-radius:8px;"><strong>Category:</strong> ${escapeHtml(tool.category)}<br><strong>Price:</strong> ${tool.isPaid?tool.price:'Free'}<br>${tool.originalPrice?`<strong>Original:</strong> <span style="text-decoration:line-through;">${tool.originalPrice}</span><br>`:''}<strong>Uploaded by:</strong> ${escapeHtml(tool.uploaderName)} ${isAdminUploader?'<span class="admin-badge"><i class="fas fa-crown"></i> Admin</span>':''}<br><strong>Uploaded:</strong> ${new Date(tool.uploadedAt).toLocaleDateString()}<br><strong><i class="fas fa-eye"></i> Views:</strong> ${tool.totalViews||0}</div><p><strong>Description:</strong></p><div>${linkify(escapeHtml(tool.description||''))}</div>${tool.tool_usage?`<p><strong>How to use:</strong></p><div>${linkify(escapeHtml(tool.tool_usage))}</div>`:''}<button class="admin-form-submit" onclick="document.getElementById('infoDialog').classList.remove('active')" style="margin-top:20px;">Close</button>`;
         document.getElementById('infoDialog').classList.add('active');
       }
     };
 
-    window.copyToClipboard = (text, msg) => { navigator.clipboard.writeText(text).then(()=>showToast(msg,'success')).catch(()=>showToast('Failed to copy','error')); };
+    window.copyToClipboard = (text, msg) => { navigator.clipboard.writeText(text).then(()=>showToast(msg||'Copied!','success')).catch(()=>showToast('Failed to copy','error')); };
     window.shareProduct = (toolId, productName, shareLink) => {
       if (navigator.share) { navigator.share({title:`Check out ${productName}`,text:`I found this on Motion-Flow: ${productName}`,url:shareLink}).catch(()=>copyToClipboard(shareLink,'Link copied!')); }
       else { copyToClipboard(shareLink,'Link copied!'); }
@@ -2911,6 +4312,22 @@
     window.openUploadModal = openUploadModal;
     window.addProductComment = addProductComment;
     window.toggleProductComments = toggleProductComments;
+    window.createNewProduct = createNewProduct;
+    window.markUpdatesAsSeen = markUpdatesAsSeen;
+    window.markChatAsSeen = markChatAsSeen;
+    window.openCommentManagement = openCommentManagement;
+    window.closeCommentManagement = closeCommentManagement;
+    window.editUserComment = editUserComment;
+    window.saveEditedComment = saveEditedComment;
+    window.cancelEditComment = cancelEditComment;
+    window.deleteUserComment = deleteUserComment;
+    window.deleteCommentAdmin = deleteCommentAdmin;
+    window.openCategoryManagement = openCategoryManagement;
+    window.closeCategoryManagement = closeCategoryManagement;
+    window.addNewCategory = addNewCategory;
+    window.editCategory = editCategory;
+    window.deleteCategory = deleteCategory;
+    window.deleteProductDirect = deleteProductDirect;
   </script>
 </body>
 </html>
